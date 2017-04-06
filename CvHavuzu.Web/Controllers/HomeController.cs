@@ -19,7 +19,7 @@ namespace CvHavuzu.Web.Controllers
 
             return View();
         }
-
+        [Route("iletisim")]
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
