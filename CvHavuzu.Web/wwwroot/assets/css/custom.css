@@ -13,3 +13,6 @@ body {
         box-shadow: 0px 3px 20px 1px rgba(0,0,0,0.3);
     }
 h1 {font-size:28px !important;}
+label {
+color:black;
+}
