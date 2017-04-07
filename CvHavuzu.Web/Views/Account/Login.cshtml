@@ -23,7 +23,7 @@
                 <div class="col-md-8">
                     
                         <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
-                            <h4>Use a local account to log in.</h4>
+                            <h4>Giriş yapmak için e-mail'nizi ve şifrenizi giriniz.</h4>
                             <hr />
                             <div asp-validation-summary="All" class="text-danger"></div>
                             <div class="form-group">
@@ -51,32 +51,44 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <button type="submit" class="btn btn-default">Log in</button>
+                                <div class="col-md-offset-10 col-md-2">
+                                    <button type="submit" class="btn btn-primary">Giriş</button>
                                 </div>
                             </div>
-                            <p>
-                                <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a>
-                            </p>
-                            <p>
-                                <a asp-action="ForgotPassword">Forgot your password?</a>
-                            </p>
+
+                                <div class="col-md-offset-3 col-md-9">
+                                    <br />
+                                    <a class="btn btn-primary" href="/account/register">Yeni Kayıt</a>
+                                    <a class="btn btn-primary" href="/account/forgotpassword">Şifremi Unuttum ?</a>
+                                    <!--           <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Yeni Kayıt</a> -->
+                                    <!--           <a asp-action="ForgotPassword">Şifremi Unuttum</a> -->
+                                </div>
+
                         </form>
                     
                 </div>
                 <div class="col-md-4">
                   
-                        <h4>Use another service to log in.</h4>
+                        <h4>Sosyal medya ile giriş yapın</h4>
                         <hr />
                         @{
                             var loginProviders = SignInManager.GetExternalAuthenticationSchemes().ToList();
                             if (loginProviders.Count == 0)
                             {
                                 <div>
-                                    <p>
-                                        There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                                        for details on setting up this ASP.NET application to support logging in via external services.
-                                    </p>
+
+                                    <a class="btn btn-block btn-social btn-facebook">
+                                        <span class="fa fa-facebook"></span> Facebook ile giriş yapın.
+                                    </a>
+
+                                    <a class="btn btn-block btn-social btn-twitter">
+                                        <span class="fa fa-twitter"></span>Twitter ile giriş yapın.
+                                    </a>
+
+                                    <a class="btn btn-block btn-social btn-google">
+                                        <span class="fa fa-google"></span> Google ile giriş yapın.
+                                    </a>
+                                   
                                 </div>
                             }
                             else
