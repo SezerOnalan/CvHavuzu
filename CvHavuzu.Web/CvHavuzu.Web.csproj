@@ -219,6 +219,7 @@
     <Content Include="wwwroot\assets\vendors\themify-icons\fonts\themify.svg" />
     <Content Include="wwwroot\assets\vendors\themify-icons\fonts\themify.ttf" />
     <Content Include="wwwroot\assets\vendors\themify-icons\fonts\themify.woff" />
+    <Content Include="wwwroot\images\blue-bg.jpg" />
     <Content Include="wwwroot\resume-manage.html" />
   </ItemGroup>
   <ItemGroup>

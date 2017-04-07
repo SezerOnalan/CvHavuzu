@@ -1,3 +1,10 @@
+body {
+    background: #09277D !important; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(top, #09277D, white) !important; /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(top, #09277D, white) !important; /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(top, #09277D, white) !important; /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom, #09277D, white) !important; /* Standard syntax */
+}
 .demo-btn-margin .btn{margin-bottom:6px}
 .page-header {
     padding-top: 0px !important;
