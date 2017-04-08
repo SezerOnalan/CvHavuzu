@@ -403,11 +403,11 @@ namespace CvHavuzu.Web.Controllers
         public async Task<IActionResult> VerifyCode(string provider, bool rememberMe, string returnUrl = null)
         {
             // Require that the user has already logged in via username/password or external login
-            var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
-            if (user == null)
-            {
-                return View("Error");
-            }
+            //var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
+            //if (user == null)
+            //{
+            //    return View("Error");
+            //}
             return View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe });
         }
 
