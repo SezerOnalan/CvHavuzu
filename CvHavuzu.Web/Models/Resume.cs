@@ -10,9 +10,9 @@ namespace CvHavuzu.Web.Models
     public class Resume
     {
         public int Id { get; set; }
-        [Required (ErrorMessage ="Ad alanı gereklidir!")]
+        [Required(ErrorMessage = "Ad alanı gereklidir.")]
         [StringLength(200)]
-        [Display (Name ="Ad")]
+        [Display(Name = "Ad")]
         public string FirstName { get; set; }
         [Required]
         [StringLength(200)]
