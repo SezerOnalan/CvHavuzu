@@ -1,0 +1,36 @@
+﻿@model CvHavuzu.Web.Models.ResumeStatus
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Sil</h2>
+
+<h3>Silmek istediğinize emin misiniz?</h3>
+<div>
+    <form asp-action="Delete">
+        
+        <hr />
+        <dl class="dl-horizontal">
+            <input type="hidden" asp-for="Id" />
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+        </dl>
+
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-default" /> |
+            <a asp-action="Index">Listeye Geri Dön</a>
+        </div>
+    </form>
+</div>
