@@ -11,6 +11,8 @@ namespace CvHavuzu.Web.Models
         public int Id { get; set; }
         [Required]
         [StringLength(200)]
+
+        [Display(Name ="isim")]
         public string Fullname { get; set; }
     }
 }
