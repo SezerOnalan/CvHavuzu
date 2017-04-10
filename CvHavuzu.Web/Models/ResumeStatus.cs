@@ -11,7 +11,9 @@ namespace CvHavuzu.Web.Models
         public int Id { get; set; }
         [Required]
         [StringLength(200)]
+        [Display(Name ="Ad" )]
         public string Name { get; set; }
+        [Display(Name ="Açıklama")]
         public string Description { get; set; }
     }
 }
