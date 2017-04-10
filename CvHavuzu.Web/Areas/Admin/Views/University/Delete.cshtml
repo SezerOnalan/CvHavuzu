@@ -1,0 +1,36 @@
+﻿@model CvHavuzu.Web.Models.University
+
+@{
+    ViewData["Title"] = "Sil";
+}
+
+<br />
+
+
+<h3>Silmek istediğinizden emin misiniz?</h3>
+<div>
+    <hr />
+    <br />
+    <form asp-action="Delete">
+        <div class="col-lg-12"></div><h4>Üniversiteler</h4>
+        <hr />
+
+        <dl class="dl-horizontal">
+            <input type="hidden" asp-for="Id" />
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+        </dl>
+
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-default" /> 
+            <br />
+            <br />
+            <a asp-action="Index">Listeye geri dön</a>
+        </div>
+    </form>
+</div>

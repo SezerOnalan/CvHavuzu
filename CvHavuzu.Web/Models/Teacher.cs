@@ -9,8 +9,9 @@ namespace CvHavuzu.Web.Models
     public class Teacher
     {
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Ad - Soyad alanı zorunludur.")]
         [StringLength(200)]
+        [Display(Name = "Ad - Soyad")]
         public string Fullname { get; set; }
     }
 }

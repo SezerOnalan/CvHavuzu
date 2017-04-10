@@ -9,9 +9,11 @@ namespace CvHavuzu.Web.Models
     public class ResumeStatus
     {
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Ad alanı gereklidir")]
         [StringLength(200)]
+        [Display(Name ="Ad" )]
         public string Name { get; set; }
+        [Display(Name ="Açıklama")]
         public string Description { get; set; }
     }
 }
