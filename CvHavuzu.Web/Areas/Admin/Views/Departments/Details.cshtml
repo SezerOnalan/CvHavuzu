@@ -1,0 +1,24 @@
+﻿@model CvHavuzu.Web.Models.Department
+
+@{
+    ViewData["Title"] = "Ayrıntılar";
+}
+
+<h2>Ayrıntılar</h2>
+
+<div>
+    <h4>Bölüm</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Düzenle" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Listeye geri dön!</a>
+</div>
