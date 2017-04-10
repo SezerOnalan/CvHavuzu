@@ -1,0 +1,31 @@
+﻿@model CvHavuzu.Web.Models.University
+
+@{
+    ViewData["Title"] = "Details";
+}
+<br />
+<br />
+
+
+<div>
+    <h3>University</h3>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+
+
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Düzenle</a> 
+    <br />
+    <br />
+    <a asp-action="Index">Listeye dön</a>
+
+
+</div>

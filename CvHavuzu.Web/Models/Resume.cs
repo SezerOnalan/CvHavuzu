@@ -10,12 +10,15 @@ namespace CvHavuzu.Web.Models
     public class Resume
     {
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Ad alanı gereklidir.")]
         [StringLength(200)]
+        [Display(Name = "Ad")]
         public string FirstName { get; set; }
         [Required]
         [StringLength(200)]
+        [Display(Name = "Soyad")]
         public string LastName { get; set; }
+        [Display(Name = "Cinsiyet")]
         public Gender Gender { get; set; }
         public int? ProfessionId { get; set; }
         [ForeignKey("ProfessionId")]

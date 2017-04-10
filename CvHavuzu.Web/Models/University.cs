@@ -9,8 +9,9 @@ namespace CvHavuzu.Web.Models
     public class University
     {
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Üniversite Adı girilmesi gereklidir.")]
         [StringLength(200)]
+        [Display(Name="Üniversite Adı")]
         public string Name { get; set; }
     }
 }
