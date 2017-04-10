@@ -11,7 +11,7 @@ namespace CvHavuzu.Web.Models
         public int Id { get; set; }
         [Required(ErrorMessage = "Ad alanı gereklidir!")]
         [StringLength(200)]
-        [Display(Name = "Ad")]
+        [Display(Name = "Bölüm Adı")]
         public string Name { get; set; }
     }
 }
