@@ -1,0 +1,30 @@
+﻿@model CvHavuzu.Web.Models.Teacher
+
+@{
+    ViewData["Title"] = "Sil";
+}
+
+<h2>Sil</h2>
+
+<h3>Bu kaydı silmek istediğinize emin misiniz?</h3>
+<div>
+    <form asp-action="Delete">
+        <h4>Eğitmen</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <input type="hidden" asp-for="Id" />
+            <dt>
+                @Html.DisplayNameFor(model => model.Fullname)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Fullname)
+            </dd>
+        </dl>
+
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-default" /> |
+            <a asp-action="Index">Listeye Geri Dön</a>
+        </div>
+    </form>
+</div>
