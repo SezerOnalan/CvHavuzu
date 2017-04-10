@@ -32,9 +32,28 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Anasayfa</a></li>
+
+                    
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown">Modüller <span class="caret"></span></a>
+                        
+                        <ul class="dropdown-menu">
+                            <li><a asp-area="Admin" asp-controller="Resume" asp-action="index">Öz Geçmiş</a></li>
+                            <li><a asp-area="Admin" asp-controller="ResumeStatus" asp-action="index">İş Durumu</a></li>
+                            <li><a asp-area="Admin" asp-controller="Gender" asp-action="index">Cinsiyet</a></li>
+                            <li><a asp-area="Admin" asp-controller="Profession" asp-action="index">Meslek</a></li>
+                            <li><a asp-area="Admin" asp-controller="University" asp-action="index">Üniversite</a></li>
+                            <li><a asp-area="Admin" asp-controller="Department" asp-action="index">Bölüm</a></li>
+                            <li><a asp-area="Admin" asp-controller="EducationLevel" asp-action="index">Öğrenim Durumu</a></li>
+                            
+                            <li><a asp-area="Admin" asp-controller="Teacher" asp-action="index">Eğitmen</a></li>
+                            
+                            <li><a asp-area="Admin" asp-controller="Consultant" asp-action="index">Danışman</a></li>
+                        </ul>
+                    </li>    
+
+                    
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
@@ -44,7 +63,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2017 - WebApplication2</p>
+            <p>&copy; 2017 - Cv Havuzu</p>
         </footer>
     </div>
 

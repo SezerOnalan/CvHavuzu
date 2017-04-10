@@ -1,15 +1,15 @@
-@model CvHavuzu.Web.Models.Profession
+﻿@model CvHavuzu.Web.Models.Profession
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Sil";
 }
 
-<h2>Delete</h2>
+<h2>Sil</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Bunu Silmek istediğinize Emin misiniz?</h3>
 <div>
     <form asp-action="Delete">
-        <h4>Profession</h4>
+        <h4>Meslek Silme</h4>
         <hr />
         <dl class="dl-horizontal">
             <input type="hidden" asp-for="Id" />
@@ -23,8 +23,8 @@
 
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            <a asp-action="Index">Back to List</a>
+            <input type="submit" value="Sil" class="btn btn-default" /> |
+            <a asp-action="Index">Listeye Geri Dön</a>
         </div>
     </form>
 </div>

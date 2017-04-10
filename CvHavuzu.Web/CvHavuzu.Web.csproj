@@ -13,6 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="C:\Users\Admin\Desktop\Index.cshtml" Link="Index.cshtml" />
     <Content Include="wwwroot\assets\css\app.min.css" />
     <Content Include="wwwroot\assets\css\custom.css" />
     <Content Include="wwwroot\assets\fonts\dropify.eot" />
