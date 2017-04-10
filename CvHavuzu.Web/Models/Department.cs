@@ -9,7 +9,7 @@ namespace CvHavuzu.Web.Models
     public class Department
     {
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Ad alanı gereklidir!")]
         [StringLength(200)]
         [Display(Name = "Ad")]
         public string Name { get; set; }
