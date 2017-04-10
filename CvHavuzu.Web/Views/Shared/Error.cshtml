@@ -1,14 +1,28 @@
 ﻿@{
-    ViewData["Title"] = "Error";
+    ViewData["Title"] = "Hata!";
 }
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
-
-<h3>Development Mode</h3>
-<p>
-    Swapping to <strong>Development</strong> environment will display more detailed information about the error that occurred.
-</p>
-<p>
-    <strong>Development environment should not be enabled in deployed applications</strong>, as it can result in sensitive information from exceptions being displayed to end users. For local debugging, development environment can be enabled by setting the <strong>ASPNETCORE_ENVIRONMENT</strong> environment variable to <strong>Development</strong>, and restarting the application.
-</p>
+<header class="page-header bg-img size-lg">
+    <div class="container">
+        <h1 class="text-center">Hata</h1>
+        <p class="lead text-center">İşleminiz gerçekleştirilirken hata oluştu.</p>
+    </div>
+</header>
+<!-- END Page header -->
+<!-- Main container -->
+<main>
+    <section class="no-padding-top bg-alt">
+        <div class="container">
+            <h3>Geliştirici Modu</h3>
+            <p>
+                <strong>Geliştirme</strong> ortamına geçiş, oluşan hata hakkında daha ayrıntılı bilgi görüntüler.
+            </p>
+            <p>
+                <strong> Konuşlandırılmış uygulamalarda geliştirme ortamı etkinleştirilmemelidir</strong>,
+                Son kullanıcılara görüntülenecek istisnalardan hassas bilgilere neden olabilir.
+                Yerel hata ayıklama için, Geliştirme ortamı,
+                <strong> ASPNETCORE_ENVIRONMENT </strong> ortamınin <strong>Geliştirme</strong> ve uygulamayı yeniden başlatmayla sağlanır.
+            </p>
+            </div>
+</section>
+</main>
