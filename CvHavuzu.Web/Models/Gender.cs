@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace CvHavuzu.Web.Models
 {
-    public enum Cinsiyet
+    public enum Gender
     {
-        Erkek = 1,
-        Kadin = 2
+        Male = 1,
+        Female = 2
     }
 }

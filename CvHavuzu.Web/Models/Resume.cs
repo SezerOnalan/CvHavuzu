@@ -16,7 +16,7 @@ namespace CvHavuzu.Web.Models
         [Required]
         [StringLength(200)]
         public string LastName { get; set; }
-        public Cinsiyet Cinsiyet { get; set; }
+        public Gender Gender { get; set; }
         public int? ProfessionId { get; set; }
         [ForeignKey("ProfessionId")]
         public virtual Profession Profession { get; set; }
