@@ -3,12 +3,12 @@
 @{
     ViewData["Title"] = "Eğitmenler";
 }
-
 <h2>Eğitmenler</h2>
-
+<br />
 <p>
-    <a asp-action="Create">Eğitmen Ekle</a>
+    <a class="btn btn-default" asp-action="Create">Eğitmen Ekle</a>
 </p>
+<br />
 <table class="table">
     <thead>
         <tr>
@@ -25,9 +25,9 @@
                 @Html.DisplayFor(modelItem => item.Fullname)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Düzenle</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Detaylar</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Düzenle</a> 
+                <a class="btn btn-default" asp-action="Details" asp-route-id="@item.Id">Detaylar</a> 
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Sil</a>
             </td>
         </tr>
 }
