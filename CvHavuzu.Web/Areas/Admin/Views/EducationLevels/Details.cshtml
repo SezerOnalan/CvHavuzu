@@ -4,7 +4,7 @@
     ViewData["Title"] = "Detaylar";
 }
 
-<h2>@ViewData["Title"]</h2>
+<h2>Eğitim Seviyesi Detayları</h2>
 
 <div>
     <h4>Egitim Seviyeleri</h4>
@@ -19,6 +19,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Düzenle</a> |
-    <a asp-action="Index">Listeye git</a>
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Düzenle</a> |
+    <a asp-action="Index">Listeye Geri Dön</a>
 </div>
