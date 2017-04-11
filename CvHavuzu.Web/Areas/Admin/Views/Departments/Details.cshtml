@@ -1,13 +1,12 @@
 ﻿@model CvHavuzu.Web.Models.Department
 
 @{
-    ViewData["Title"] = "Ayrıntılar";
+    ViewData["Title"] = "Bölüm Ayrıntıları";
 }
 
-<h2>Ayrıntılar</h2>
+<h2>Bölüm Ayrıntıları</h2>
 
 <div>
-    <h4>Bölümler</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -19,6 +18,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Düzenle" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.Id">Düzenle</a> |
     <a asp-action="Index">Listeye geri dön!</a>
 </div>
