@@ -44,12 +44,13 @@
                             <li><a asp-area="Admin" asp-controller="Profession" asp-action="index">Meslekler</a></li>
                             <li><a asp-area="Admin" asp-controller="University" asp-action="index">Üniversiteler</a></li>
                             <li><a asp-area="Admin" asp-controller="Departments" asp-action="index">Üniversite Bölümleri</a></li>
-                            <li><a asp-area="Admin" asp-controller="EducationLevels" asp-action="index">Öğrenim Durumları</a></li>
+                            <li><a asp-area="Admin" asp-controller="EducationLevels" asp-action="index">Eğitim Seviyeleri</a></li>
                             <li><a asp-area="Admin" asp-controller="Teacher" asp-action="index">Eğitmenler</a></li>
                             <li><a asp-area="Admin" asp-controller="Consultant" asp-action="index">Danışmanlar</a></li>
                         </ul>
-                    </li>    
-
+                    </li>
+                    <li><a href="#">Üyeler</a></li>
+                    <li><a href="#">Ayarlar</a></li>
                     
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")

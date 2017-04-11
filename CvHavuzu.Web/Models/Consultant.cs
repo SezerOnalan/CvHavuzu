@@ -12,7 +12,7 @@ namespace CvHavuzu.Web.Models
         [Required]
         [StringLength(200)]
 
-        [Display(Name ="isim")]
+        [Display(Name ="Ad Soyad")]
         public string Fullname { get; set; }
     }
 }
