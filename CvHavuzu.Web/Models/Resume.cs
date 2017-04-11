@@ -9,17 +9,26 @@ namespace CvHavuzu.Web.Models
 {
     public class Resume
     {
+        public Resume()
+        {
+            CreateDate = DateTime.Now;
+            UpdateDate = DateTime.Now;
+            Approved = false;
+            ShowInList = true;
+        }
         public int Id { get; set; }
         [Required(ErrorMessage = "Ad alanı gereklidir.")]
         [StringLength(200)]
         [Display(Name = "Ad")]
         public string FirstName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Soyad alanı gereklidir.")]
         [StringLength(200)]
         [Display(Name = "Soyad")]
         public string LastName { get; set; }
+        [Required(ErrorMessage = "Cinsiyet alanı gereklidir.")]
         [Display(Name = "Cinsiyet")]
         public Gender Gender { get; set; }
+        [Display(Name = "Meslek")]
         public int? ProfessionId { get; set; }
         [ForeignKey("ProfessionId")]
         public virtual Profession Profession { get; set; }
@@ -59,7 +68,7 @@ namespace CvHavuzu.Web.Models
         public int? ConsultantId { get; set; }
         [ForeignKey("ConsultantId")]
         public virtual Consultant Consultant { get; set; }
-
+        public bool Approved { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime UpdateDate { get; set; }
     }
