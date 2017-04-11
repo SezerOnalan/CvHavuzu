@@ -1,14 +1,14 @@
 ﻿@model CvHavuzu.Web.Models.Resume
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Özgecmiş Oluştur";
 }
 
-<h2>Create</h2>
-
+<h2>Özgecmiş Oluştur</h2>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.min.css" />
 <form asp-action="Create">
     <div class="form-horizontal">
-        <h4>Resume</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
@@ -152,16 +152,29 @@
                 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Oluştur" class="btn btn-default" />
             </div>
         </div>
     </div>
 </form>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Listeye geri dön</a>
 </div>
 
 @section Scripts {
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $('#tblRecords').DataTable({
+            "responsive": true,
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.13/i18n/Turkish.json"
+            }
+        });
+    });
+    </script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
 }
