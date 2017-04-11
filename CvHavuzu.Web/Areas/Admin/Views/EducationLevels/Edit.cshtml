@@ -4,7 +4,7 @@
     ViewData["Title"] = "Düzenle";
 }
 
-<h2>@ViewData["Title"]</h2>
+<h2>Eğitim Seviyesi @ViewData["Title"]</h2>
 
 <form asp-action="Edit">
     <div class="form-horizontal">
@@ -21,14 +21,14 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Kaydet" class="btn btn-default" />
+                <input type="submit" value="Güncelle" class="btn btn-primary" />
             </div>
         </div>
     </div>
 </form>
 
 <div>
-    <a asp-action="Index">Listeye git</a>
+    <a asp-action="Index">Listeye Geri Dön</a>
 </div>
 
 @section Scripts {

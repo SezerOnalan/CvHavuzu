@@ -3,9 +3,9 @@
 @{
     ViewData["Title"] = "Eğitmen Sil";
 }
-
+<br />
 <h2>Eğitmen Sil</h2>
-
+<br>
 <h3>Silmek istediğinize emin misiniz?</h3>
 <div>
     <form asp-action="Delete">
@@ -22,7 +22,9 @@
 
 
         <div class="form-actions no-color">
-            <input type="submit" value="Sil" class="btn btn-default" /> |
+            <input type="submit" value="Sil" class="btn btn-danger" /> 
+            <br />
+            <br />
             <a asp-action="Index">Listeye Geri Dön</a>
         </div>
     </form>
