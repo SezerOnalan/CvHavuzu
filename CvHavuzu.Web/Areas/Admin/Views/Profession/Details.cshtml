@@ -21,3 +21,18 @@
     <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Düzenle</a>
     <a asp-action="Index">Listeye Geri Dön</a>
 </div>
+@section Scripts {
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $('#tblRecords').DataTable({
+            "responsive": true,
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.13/i18n/Turkish.json"
+            }
+        });
+    });
+    </script>
+
+}
