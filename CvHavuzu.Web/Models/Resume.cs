@@ -27,49 +27,70 @@ namespace CvHavuzu.Web.Models
         public string LastName { get; set; }
         [Required(ErrorMessage = "Cinsiyet alanı gereklidir.")]
         [Display(Name = "Cinsiyet")]
+        [EnumDataType(typeof(Models.Gender))]
         public Gender Gender { get; set; }
         [Display(Name = "Meslek")]
         public int? ProfessionId { get; set; }
+        [Display(Name = "Meslek")]
         [ForeignKey("ProfessionId")]
         public virtual Profession Profession { get; set; }
-
+        [Display(Name="Eğitim Seviyesi")]
         public int? EducationLevelId { get; set; }
         [ForeignKey("EducationLevelId")]
+        [Display(Name = "Eğitim Seviyesi")]
         public virtual EducationLevel EducationLevel { get; set; }
-
+        [Display(Name="Üniversite")]
         public int? UniversityId { get; set; }
         [ForeignKey("UniversityId")]
+        [Display(Name = "Üniversite")]
         public virtual University University { get; set; }
-
+        [Display(Name="Bölüm")]
         public int? DepartmentId { get; set; }
         [ForeignKey("DepartmentId")]
+        [Display(Name = "Bölüm")]
         public virtual Department Department { get; set; }
-
+        [Display(Name="Doğum Tarihi")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, ConvertEmptyStringToNull = true, DataFormatString = "dd.MM.yyyy", NullDisplayText = "")]
         public DateTime? BirthDate { get; set; }
 
+        [Display(Name = "Özgeçmiş Dosyası")]
         [StringLength(200)]
+        [DataType(DataType.Upload)]
         public string ResumeFile { get; set; }
 
+        [Display(Name="Durum")]
         public int? ResumeStatusId { get; set; }
         [ForeignKey("ResumeStatusId")]
+        [Display(Name = "Durum")]
         public virtual ResumeStatus ResumeStatus { get; set; }
 
+        [Display(Name = "Yetenekler")]
+        [DataType(DataType.MultilineText)]
         public string Skills { get; set; }
 
+        [Display(Name = "Listede Göster")]
         public bool ShowInList { get; set; }
 
+        [Display(Name = "Lokasyon")]
         [StringLength(200)]
         public string Location { get; set; }
 
+        [Display(Name = "Eğitmen")]
         public int? TeacherId { get; set; }
         [ForeignKey("TeacherId")]
+        [Display(Name = "Eğitmen")]
         public virtual Teacher Teacher { get; set; }
-
+        [Display(Name = "Danışman")]
         public int? ConsultantId { get; set; }
         [ForeignKey("ConsultantId")]
+        [Display(Name = "Danışman")]
         public virtual Consultant Consultant { get; set; }
+        [Display(Name = "Onaylandı")]
         public bool Approved { get; set; }
+        [Display(Name = "Oluşturulma Tarihi")]
         public DateTime CreateDate { get; set; }
+        [Display(Name = "Güncellenme Tarihi")]
         public DateTime UpdateDate { get; set; }
     }
 }
