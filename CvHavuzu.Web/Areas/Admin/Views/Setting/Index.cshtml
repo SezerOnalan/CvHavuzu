@@ -1,0 +1,9 @@
+@model Setting
+@{
+    ViewData["Title"] = "Ayarlar";
+}
+<h2>Ayarlar</h2>
+<form asp-area="Admin" asp-controller="Setting" asp-action="Index" method="post">
+    Hoþgeldiniz metni: <textarea asp-for="WelcomeText"></textarea><br />
+    Sözleþme Metni: <textarea asp-for="MembershipAgreement"></textarea>
+</form>
