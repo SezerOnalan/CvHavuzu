@@ -1,15 +1,14 @@
 ﻿@model CvHavuzu.Web.Models.Teacher
 
 @{
-    ViewData["Title"] = "Sil";
+    ViewData["Title"] = "Eğitmen Sil";
 }
 
-<h2>Sil</h2>
+<h2>Eğitmen Sil</h2>
 
-<h3>Bu kaydı silmek istediğinize emin misiniz?</h3>
+<h3>Silmek istediğinize emin misiniz?</h3>
 <div>
     <form asp-action="Delete">
-        <h4>Eğitmen</h4>
         <hr />
         <dl class="dl-horizontal">
             <input type="hidden" asp-for="Id" />
