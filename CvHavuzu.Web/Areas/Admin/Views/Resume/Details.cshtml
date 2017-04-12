@@ -1,10 +1,10 @@
 ﻿@model CvHavuzu.Web.Models.Resume
 
 @{
-    ViewData["Title"] = "Özgeçmiş Ayrıntıları";
+    ViewData["Title"] = "Özgeçmiş Detayları";
 }
 
-<h2>Özgeçmiş Ayrıntıları</h2>
+<h2>Özgeçmiş Detayları</h2>
 
 <div>
     <hr />
@@ -120,7 +120,7 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Düzenle</a> |
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Düzenle</a> |
     <a asp-action="Index">Listeye geri dön</a>
 </div>
 
