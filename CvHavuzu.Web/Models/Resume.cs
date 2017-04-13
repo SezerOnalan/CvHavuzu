@@ -16,7 +16,16 @@ namespace CvHavuzu.Web.Models
             Approved = false;
             ShowInList = true;
         }
+
         public int Id { get; set; }
+
+        [StringLength(200)]
+        [Display(Name = "Resim")]
+        public string ImagePath { get; set; }
+        [Required(ErrorMessage = "Kulanıcı adı gereklidir.")]
+        [StringLength(200)]
+        [Display(Name = "Kullanıcı Adı")]
+        public string UserName { get; set; }
         [Required(ErrorMessage = "Ad alanı gereklidir.")]
         [StringLength(200)]
         [Display(Name = "Ad")]
@@ -34,22 +43,22 @@ namespace CvHavuzu.Web.Models
         [Display(Name = "Meslek")]
         [ForeignKey("ProfessionId")]
         public virtual Profession Profession { get; set; }
-        [Display(Name="Eğitim Seviyesi")]
+        [Display(Name = "Eğitim Seviyesi")]
         public int? EducationLevelId { get; set; }
         [ForeignKey("EducationLevelId")]
         [Display(Name = "Eğitim Seviyesi")]
         public virtual EducationLevel EducationLevel { get; set; }
-        [Display(Name="Üniversite")]
+        [Display(Name = "Üniversite")]
         public int? UniversityId { get; set; }
         [ForeignKey("UniversityId")]
         [Display(Name = "Üniversite")]
         public virtual University University { get; set; }
-        [Display(Name="Bölüm")]
+        [Display(Name = "Bölüm")]
         public int? DepartmentId { get; set; }
         [ForeignKey("DepartmentId")]
         [Display(Name = "Bölüm")]
         public virtual Department Department { get; set; }
-        [Display(Name="Doğum Tarihi")]
+        [Display(Name = "Doğum Tarihi")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, ConvertEmptyStringToNull = true, DataFormatString = "dd.MM.yyyy", NullDisplayText = "")]
         public DateTime? BirthDate { get; set; }
@@ -59,7 +68,7 @@ namespace CvHavuzu.Web.Models
         [DataType(DataType.Upload)]
         public string ResumeFile { get; set; }
 
-        [Display(Name="Durum")]
+        [Display(Name = "Durum")]
         public int? ResumeStatusId { get; set; }
         [ForeignKey("ResumeStatusId")]
         [Display(Name = "Durum")]
@@ -72,9 +81,14 @@ namespace CvHavuzu.Web.Models
         [Display(Name = "Listede Göster")]
         public bool ShowInList { get; set; }
 
-        [Display(Name = "Lokasyon")]
+
         [StringLength(200)]
-        public string Location { get; set; }
+        [Display(Name = "Şehir")]
+        public string City { get; set; }
+
+        [StringLength(200)]
+        [Display(Name = "İlçe")]
+        public string District { get; set; }
 
         [Display(Name = "Eğitmen")]
         public int? TeacherId { get; set; }
@@ -92,5 +106,6 @@ namespace CvHavuzu.Web.Models
         public DateTime CreateDate { get; set; }
         [Display(Name = "Güncellenme Tarihi")]
         public DateTime UpdateDate { get; set; }
+
     }
 }

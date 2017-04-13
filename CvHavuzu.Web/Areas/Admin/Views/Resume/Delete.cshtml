@@ -7,138 +7,159 @@
 <h2>Özgeçmiş Sil</h2>
 
 <h3>Silmek istediğinize emin misiniz?</h3>
-<div><form asp-action="Delete">
-    <hr />
-    <dl class="dl-horizontal">
-        <input type="hidden" asp-for="Id" />
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.BirthDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.BirthDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ResumeFile)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ResumeFile)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Skills)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Skills)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ShowInList)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ShowInList)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Location)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Approved)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Approved)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CreateDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CreateDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdateDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.UpdateDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Consultant)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Consultant.Fullname)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Department)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Department.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.EducationLevel)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.EducationLevel.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Profession)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Profession.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ResumeStatus)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ResumeStatus.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Teacher)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Teacher.Fullname)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.University)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.University.Name)
-        </dd>
-    </dl>
+<div>
+    <form asp-action="Delete">
+        <hr />
+        <dl class="dl-horizontal">
+            <input type="hidden" asp-for="Id" />
+            <dt>
+                @Html.DisplayNameFor(model => model.ImagePath)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ImagePath)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.UserName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.UserName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Gender)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Gender)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.BirthDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.BirthDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ResumeFile)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ResumeFile)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Skills)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Skills)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ShowInList)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ShowInList)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.City)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.City)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.District)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.District)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Approved)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Approved)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CreateDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.UpdateDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.UpdateDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Consultant)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Consultant.Fullname)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Department)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Department.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.EducationLevel)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.EducationLevel.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Profession)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Profession.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ResumeStatus)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ResumeStatus.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Teacher)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Teacher.Fullname)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.University)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.University.Name)
+            </dd>
+        </dl>
 
 
-    <div class="form-actions no-color">
-        <input type="submit" value="Sil" class="btn btn-danger" /> |
-        <a asp-action="Index">Listeye geri dön</a>
-    </div>
-</form>
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-danger" /> |
+            <a asp-action="Index">Listeye geri dön</a>
+        </div>
+    </form>
 </div>
 @section scripts {
     <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
     <script>
-    $(document).ready(function () {
-        $('#tblRecords').DataTable({
-            "responsive": true,
-            "language": {
-                "url": "//cdn.datatables.net/plug-ins/1.10.13/i18n/Turkish.json"
-            }
+        $(document).ready(function () {
+            $('#tblRecords').DataTable({
+                "responsive": true,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.13/i18n/Turkish.json"
+                }
+            });
         });
-    });
     </script>
 }
