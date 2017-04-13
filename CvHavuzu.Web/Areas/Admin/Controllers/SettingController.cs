@@ -17,8 +17,12 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            Setting setting = new Setting();
-            setting.WelcomeText = "Örnek metin";
+            Setting setting;
+            setting = context.Settings.FirstOrDefault();
+            if (setting == null)
+            {
+                setting = new Setting();
+            }
             return View(setting);
         }
 
