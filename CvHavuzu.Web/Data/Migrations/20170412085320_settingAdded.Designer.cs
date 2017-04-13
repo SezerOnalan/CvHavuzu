@@ -9,9 +9,10 @@ using CvHavuzu.Web.Models;
 namespace CvHavuzu.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170412085320_settingAdded")]
+    partial class settingAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
@@ -227,39 +228,6 @@ namespace CvHavuzu.Web.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Settings");
-                });
-
-            modelBuilder.Entity("CvHavuzu.Web.Models.Stat", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("CompanyName")
-                        .HasMaxLength(200);
-
-                    b.Property<DateTime>("DownloadDate");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(200);
-
-                    b.Property<string>("Fullname")
-                        .HasMaxLength(200);
-
-                    b.Property<string>("Ip")
-                        .IsRequired()
-                        .HasMaxLength(200);
-
-                    b.Property<string>("Phone")
-                        .HasMaxLength(200);
-
-                    b.Property<int>("ResumeId");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(200);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Stats");
                 });
 
             modelBuilder.Entity("CvHavuzu.Web.Models.Teacher", b =>

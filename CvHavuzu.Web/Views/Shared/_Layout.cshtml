@@ -86,8 +86,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-6">
-                    <h6>About</h6>
-                    <p class="text-justify">An employment website is a web site that deals specifically with employment or careers. Many employment websites are designed to allow employers to post job requirements for a position to be filled and are commonly known as job boards. Other employment sites offer employer reviews, career and job-search advice, and describe different job descriptions or employers. Through a job website a prospective employee can locate and fill out a job application.</p>
+                    <h6>Hakkında</h6>
+                    <p class="text-justify">@Html.Raw(ViewBag.Setting.FooterText)</p>
                 </div>
 
                 <div class="col-xs-6 col-md-3">
@@ -151,5 +151,6 @@
         <script src="/assets/js/custom.js"></script>
     </environment>
     @RenderSection("Scripts", required: false)
+    @Html.Raw(ViewBag.Setting.CustomHtml)
 </body>
 </html>

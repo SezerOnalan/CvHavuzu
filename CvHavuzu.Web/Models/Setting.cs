@@ -10,6 +10,7 @@ namespace CvHavuzu.Web.Models
     {
         public Setting()
         {
+            ResumeDownloadSecurity = ResumeDownloadSecurity.MembershipRequired;
             UpdateDate = DateTime.Now;
         }
         public int Id { get; set; }

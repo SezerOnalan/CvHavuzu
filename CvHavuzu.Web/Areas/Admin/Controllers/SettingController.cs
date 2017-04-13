@@ -21,5 +21,33 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
             setting.WelcomeText = "Örnek metin";
             return View(setting);
         }
+
+        [HttpPost]
+        public IActionResult Index(Setting setting)
+        {
+            if (ModelState.IsValid)
+            {
+                Setting s;
+                if (context.Settings.Any())
+                {
+                    s = context.Settings.FirstOrDefault();
+                    s.WelcomeText = setting.WelcomeText;
+                    s.MembershipAgreement = setting.MembershipAgreement;
+                    s.ResumeDownloadSecurity = setting.ResumeDownloadSecurity;
+                    s.LastResumeCreateDate = setting.LastResumeCreateDate;
+                    s.FooterText = setting.FooterText;
+                    s.CustomHtml = setting.CustomHtml;
+                    s.UpdateDate = DateTime.Now;
+                    context.SaveChanges();
+                } else
+                {
+                    context.Settings.Add(setting);
+                    context.SaveChanges();
+                }
+                
+                ViewBag.Message = "Ayarlar baþarýyla kaydedildi.";
+            }
+            return View(setting);
+        }
     }
 }
