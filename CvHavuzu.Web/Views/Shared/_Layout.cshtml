@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Nitelikli Bilişim Uzmanı Yetiştirme eğitimlerinden mezun olan ve iş arayan uzmanlarımızın CV'lerini buradan indirebilirsiniz.'">
-    <meta name="keywords" content="cv, özgeçmiş, resume, uzman, bilişim, yazılım, sistem, developer, mühendis, engineer, programcı, mvc, .net, c#, windows, oop, html5, css3, frontend, backend">
+    <meta name="description" content="@ViewBag.Setting.SeoDescription">
+    <meta name="keywords" content="@ViewBag.Setting.SeoKeywords">
 
     <title>@ViewData["Title"] - CvHavuzu</title>
 
@@ -44,8 +44,8 @@
                 <a class="navbar-toggle" href="#" data-toggle="offcanvas"><i class="ti-menu"></i></a>
 
                 <div class="logo-wrapper">
-                    <a class="logo" href="index.html"><img src="/assets/img/logo.png" alt="logo"></a>
-                    <a class="logo-alt" href="index.html"><img src="/assets/img/logo-alt.png" alt="logo-alt"></a>
+                    <a class="logo" href="/"><img src="@ViewBag.Setting.Logo" alt="logo"></a>
+                    @*<a class="logo-alt" href="index.html"><img src="/assets/img/logo-alt.png" alt="logo-alt"></a>*@
                 </div>
 
             </div>

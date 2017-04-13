@@ -42,6 +42,11 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
                     s.FooterText = setting.FooterText;
                     s.CustomHtml = setting.CustomHtml;
                     s.UpdateDate = DateTime.Now;
+                    s.Logo = setting.Logo;
+                    s.Title = setting.Title;
+                    s.SeoTitle = setting.SeoTitle;
+                    s.SeoDescription = setting.SeoDescription;
+                    s.SeoKeywords = setting.SeoKeywords;
                     context.SaveChanges();
                 } else
                 {

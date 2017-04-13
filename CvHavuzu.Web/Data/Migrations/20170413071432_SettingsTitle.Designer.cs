@@ -9,9 +9,10 @@ using CvHavuzu.Web.Models;
 namespace CvHavuzu.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170413071432_SettingsTitle")]
+    partial class SettingsTitle
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
@@ -212,15 +213,9 @@ namespace CvHavuzu.Web.Data.Migrations
 
                     b.Property<string>("CustomHtml");
 
-                    b.Property<string>("Facebook");
-
                     b.Property<string>("FooterText");
 
-                    b.Property<string>("Instagram");
-
                     b.Property<DateTime?>("LastResumeCreateDate");
-
-                    b.Property<string>("LinkedIn");
 
                     b.Property<string>("Logo");
 
@@ -235,8 +230,6 @@ namespace CvHavuzu.Web.Data.Migrations
                     b.Property<string>("SeoTitle");
 
                     b.Property<string>("Title");
-
-                    b.Property<string>("Twitter");
 
                     b.Property<DateTime>("UpdateDate");
 
