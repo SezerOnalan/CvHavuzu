@@ -12,11 +12,12 @@ using Microsoft.Extensions.Options;
 using CvHavuzu.Web.Models;
 using CvHavuzu.Web.Models.AccountViewModels;
 using CvHavuzu.Web.Services;
+using CvHavuzu.Web.Data;
 
 namespace CvHavuzu.Web.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
@@ -25,13 +26,13 @@ namespace CvHavuzu.Web.Controllers
         private readonly ILogger _logger;
         private readonly string _externalCookieScheme;
 
-        public AccountController(
+        public AccountController(ApplicationDbContext context,
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IOptions<IdentityCookieOptions> identityCookieOptions,
             IEmailSender emailSender,
             ISmsSender smsSender,
-            ILoggerFactory loggerFactory)
+            ILoggerFactory loggerFactory):base(context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -39,6 +40,7 @@ namespace CvHavuzu.Web.Controllers
             _emailSender = emailSender;
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
+
         }
 
         //
@@ -403,11 +405,11 @@ namespace CvHavuzu.Web.Controllers
         public async Task<IActionResult> VerifyCode(string provider, bool rememberMe, string returnUrl = null)
         {
             // Require that the user has already logged in via username/password or external login
-            //var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
-            //if (user == null)
-            //{
-            //    return View("Error");
-            //}
+            var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
+            if (user == null)
+            {
+                return View("Error");
+            }
             return View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe });
         }
 

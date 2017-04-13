@@ -7,17 +7,15 @@ using CvHavuzu.Web.Data;
 
 namespace CvHavuzu.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : ControllerBase
     {
-        private ApplicationDbContext context;
-        public HomeController(ApplicationDbContext _context)
+        public HomeController(ApplicationDbContext context):base(context)
         {
-            this.context = _context;
+
         }
         public IActionResult Index()
         {
-            var setting = context.Settings.FirstOrDefault();
-            ViewBag.Setting = setting;
+            
             return View();
         }
 

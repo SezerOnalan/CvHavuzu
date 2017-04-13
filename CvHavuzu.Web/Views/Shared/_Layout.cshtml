@@ -143,12 +143,12 @@
     <!-- END Back to top button -->
     <!-- Scripts -->
     <environment names="Development">
-        <script src="/assets/js/app.min.js"></script>
-        <script src="/assets/js/custom.js"></script>
+        <script src="~/assets/js/app.min.js"></script>
+        <script src="~/assets/js/custom.js"></script>
     </environment>
     <environment names="Staging,Production">
-        <script src="/assets/js/app.min.js"></script>
-        <script src="/assets/js/custom.js"></script>
+        <script src="~/assets/js/app.min.js"></script>
+        <script src="~/assets/js/custom.js"></script>
     </environment>
     @RenderSection("Scripts", required: false)
     @Html.Raw(ViewBag.Setting.CustomHtml)

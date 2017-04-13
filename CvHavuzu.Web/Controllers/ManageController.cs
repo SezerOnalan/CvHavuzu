@@ -10,11 +10,12 @@ using Microsoft.Extensions.Options;
 using CvHavuzu.Web.Models;
 using CvHavuzu.Web.Models.ManageViewModels;
 using CvHavuzu.Web.Services;
+using CvHavuzu.Web.Data;
 
 namespace CvHavuzu.Web.Controllers
 {
     [Authorize]
-    public class ManageController : Controller
+    public class ManageController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
@@ -23,13 +24,13 @@ namespace CvHavuzu.Web.Controllers
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
 
-        public ManageController(
+        public ManageController(ApplicationDbContext context,
           UserManager<ApplicationUser> userManager,
           SignInManager<ApplicationUser> signInManager,
           IOptions<IdentityCookieOptions> identityCookieOptions,
           IEmailSender emailSender,
           ISmsSender smsSender,
-          ILoggerFactory loggerFactory)
+          ILoggerFactory loggerFactory):base(context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
