@@ -21,10 +21,22 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
         }
 
         // GET: Admin/Resume
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int tab = 1)
         {
-            var applicationDbContext = _context.Resumes.Include(r => r.Consultant).Include(r => r.Department).Include(r => r.EducationLevel).Include(r => r.Profession).Include(r => r.ResumeStatus).Include(r => r.Teacher).Include(r => r.University);
-            return View(await applicationDbContext.ToListAsync());
+            IList<Resume> resumes;
+            if (tab == 1)
+            {
+                resumes = _context.Resumes.Include(r => r.Consultant).Include(r => r.Department).Include(r => r.EducationLevel).Include(r => r.Profession).Include(r => r.ResumeStatus).Include(r => r.Teacher).Include(r => r.University).ToList();
+            }
+            else if (tab == 2)
+            {
+                resumes = _context.Resumes.Include(r => r.Consultant).Include(r => r.Department).Include(r => r.EducationLevel).Include(r => r.Profession).Include(r => r.ResumeStatus).Include(r => r.Teacher).Include(r => r.University).Where(r=>r.ShowInList==true && r.Approved==true).ToList();
+            }
+            else
+            {
+                resumes = _context.Resumes.Include(r => r.Consultant).Include(r => r.Department).Include(r => r.EducationLevel).Include(r => r.Profession).Include(r => r.ResumeStatus).Include(r => r.Teacher).Include(r => r.University).Where(r => r.Approved == false).ToList();
+            }
+            return View(resumes);
         }
 
         // GET: Admin/Resume/Details/5
@@ -193,5 +205,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
         {
             return _context.Resumes.Any(e => e.Id == id);
         }
+
+
     }
 }
