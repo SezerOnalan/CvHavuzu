@@ -1,13 +1,13 @@
-@model CvHavuzu.Web.Models.Resume
+﻿@model CvHavuzu.Web.Models.Resume
 
 @{
-    ViewData["Title"] = "Sil";
+    ViewData["Title"] = "Özgeçmiş Sil";
 }
 
-<h2>Sil</h2>
+<h2>Özgeçmiş Sil</h2>
 
-<h3>Silmek istedi�inize emin misiniz?</h3>
-<div>
+<h3>Silmek istediğinize emin misiniz?</h3>
+<div><form asp-action="Delete">
     <hr />
     <dl class="dl-horizontal">
         <input type="hidden" asp-for="Id" />
@@ -120,13 +120,13 @@
             @Html.DisplayFor(model => model.University.Name)
         </dd>
     </dl>
-    
-    <form asp-action="Delete">
-        <div class="form-actions no-color">
-            <input type="submit" value="Sil" class="btn btn-danger" /> |
-            <a asp-action="Index">Listeye geri d�n</a>
-        </div>
-    </form>
+
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Sil" class="btn btn-danger" /> |
+        <a asp-action="Index">Listeye geri dön</a>
+    </div>
+</form>
 </div>
 @section scripts {
     <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
