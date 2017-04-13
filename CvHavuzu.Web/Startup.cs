@@ -12,6 +12,11 @@ using Microsoft.Extensions.Logging;
 using CvHavuzu.Web.Data;
 using CvHavuzu.Web.Models;
 using CvHavuzu.Web.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http.Authentication;
+using Microsoft.AspNetCore.Authentication.LinkedIn;
 
 namespace CvHavuzu.Web
 {
@@ -47,7 +52,11 @@ namespace CvHavuzu.Web
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddMvc();
+            services.AddMvc(options =>
+            {
+                options.SslPort = 44376;
+                options.Filters.Add(new RequireHttpsAttribute());
+            });
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
@@ -76,7 +85,17 @@ namespace CvHavuzu.Web
             app.UseIdentity();
 
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
-
+            app.UseFacebookAuthentication(new FacebookOptions()
+            {
+                AppId = Configuration["Authentication:Facebook:AppId"],
+                AppSecret = Configuration["Authentication:Facebook:AppSecret"]
+            });
+            app.UseLinkedInAuthentication(new LinkedInOptions()
+            {
+                AppId = Configuration["Authentication:LinkedIn:AppId"],
+                AppSecret = Configuration["Authentication:LinkedIn:AppSecret"],
+                ProfileScheme = LinkedInDefaults.ProfileLoadFormat.AppDefined
+            });
             app.UseMvc(routes =>
             {
                 routes.MapRoute(name: "areaRoute",

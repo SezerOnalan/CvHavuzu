@@ -8,8 +8,16 @@
 <h2>Özgeçmişler</h2>
 
 <p>
-    <a asp-action="Create">Özgeçmiş Oluştur</a>
+    <a class="btn btn-default" asp-action="Create">Özgeçmiş Oluştur</a>
 </p>
+<ul class="nav nav-pills">
+    <li role="presentation" ><a href="?tab=1">Tümü</a></li>
+    <li role="presentation" ><a href="?tab=2">Yayındakiler</a></li>
+    <li role="presentation" ><a href="?tab=3">Onay Bekleyenler</a></li>
+
+
+</ul>
+<br />
 <table id="tblRecords" class="table table-striped table-hover">
     <thead>
         <tr>
