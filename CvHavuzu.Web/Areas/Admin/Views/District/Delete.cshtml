@@ -1,14 +1,13 @@
-@model CvHavuzu.Web.Models.District
+﻿@model CvHavuzu.Web.Models.District
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "İlçe Sil";
 }
 
-<h2>Delete</h2>
+<h2>İlçe Sil</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>District</h4>
+<h3>Silmek istediğinize emin misiniz?</h3>
+<div><form asp-action="Delete">
     <hr />
     <dl class="dl-horizontal">
         <input type="hidden" asp-for="Id" />
@@ -22,14 +21,14 @@
             @Html.DisplayNameFor(model => model.City)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.City.Id)
+            @Html.DisplayFor(model => model.City.Name)
         </dd>
     </dl>
-    
-    <form asp-action="Delete">
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            <a asp-action="Index">Back to List</a>
-        </div>
-    </form>
+
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Sil" class="btn btn-danger" /> 
+        <a asp-action="Index">Listeye geri dön</a>
+    </div>
+</form>
 </div>
