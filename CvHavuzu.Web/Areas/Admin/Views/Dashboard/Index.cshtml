@@ -13,28 +13,32 @@
 else
 {
     <table id="tblRecords" class="table">
-        <tr>
-            <th>Özgeçmiş Id</th>
-            <th>IP</th>
-            <th>İndirilme Tarihi</th>
-            <th>Tam Ad</th>
-            <th>Firma Adı</th>
-            <th>E-posta</th>
-            <th>Telefon</th>
-        </tr>
-        @foreach (var stat in Model)
-        {
-        <tr>
-            <td>@stat.ResumeId</td>
-            <td>@stat.Ip</td>
-            <td>@stat.DownloadDate</td>
-            <td>@stat.Fullname</td>
-            <td>@stat.CompanyName</td>
-            <td>@stat.Email</td>
-            <td>@stat.Phone</td>
-        </tr>
-        }
-    </table>
+        <thead>
+            <tr>
+                <th>Özgeçmiş Id</th>
+                <th>IP</th>
+                <th>İndirilme Tarihi</th>
+                <th>Tam Ad</th>
+                <th>Firma Adı</th>
+                <th>E-posta</th>
+                <th>Telefon</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var stat in Model)
+            {
+                <tr>
+                    <td><a href="/Admin/Resume/Edit/@stat.ResumeId">@stat.ResumeId</a></td>
+                    <td>@stat.Ip</td>
+                    <td>@stat.DownloadDate</td>
+                    <td>@stat.Fullname</td>
+                    <td>@stat.CompanyName</td>
+                    <td>@stat.Email</td>
+                    <td>@stat.Phone</td>
+                </tr>
+            }
+        </tbody>
+</table>
 }
 @section scripts {
 <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
