@@ -1,4 +1,5 @@
 ﻿using CvHavuzu.Web.Data;
+using CvHavuzu.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
@@ -18,8 +19,16 @@ namespace CvHavuzu.Web.Controllers
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            var setting = db.Settings.FirstOrDefault();
-            ViewBag.Setting = setting;
+            if (db.Settings.Any())
+            {
+                var setting = db.Settings.FirstOrDefault();
+                ViewBag.Setting = setting;
+            } else
+            {
+                var setting = new Setting();
+                ViewBag.Setting = setting;
+            }
+            
         }
         
     
