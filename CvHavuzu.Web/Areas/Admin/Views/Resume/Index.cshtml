@@ -11,9 +11,9 @@
     <a class="btn btn-default" asp-action="Create">Özgeçmiş Oluştur</a>
 </p>
 <ul class="nav nav-pills">
-    <li role="presentation"><a href="?tab=1">Tümü</a></li>
-    <li role="presentation"><a href="?tab=2">Yayındakiler</a></li>
-    <li role="presentation"><a href="?tab=3">Onay Bekleyenler</a></li>
+    <li @(ViewBag.tab == 1?"class=active":"") role="presentation" ><a href="?tab=1">Tümü</a></li>
+    <li @(ViewBag.tab == 2?"class=active":"") role="presentation" ><a href="?tab=2">Yayındakiler</a></li>
+    <li @(ViewBag.tab == 3?"class=active":"") role="presentation" ><a href="?tab=3">Onay Bekleyenler</a></li>
 
 
 </ul>
@@ -24,7 +24,7 @@
             <th class="none">
                 @Html.DisplayNameFor(model => model.ImagePath)
             </th>
-            <th class="all">
+            <th class="none">
                 @Html.DisplayNameFor(model => model.UserName)
             </th>
             <th class="all">
@@ -48,10 +48,10 @@
             <th class="none">
                 @Html.DisplayNameFor(model => model.ShowInList)
             </th>
-            <th class="all">
+            <th >
                 @Html.DisplayNameFor(model => model.City)
             </th>
-            <th class="all">
+            <th class="none">
                 @Html.DisplayNameFor(model => model.District)
             </th>
 
@@ -64,7 +64,7 @@
             <th class="none">
                 @Html.DisplayNameFor(model => model.UpdateDate)
             </th>
-            <th class="none">
+            <th >
                 @Html.DisplayNameFor(model => model.Consultant)
             </th>
             <th class="none">
@@ -73,7 +73,7 @@
             <th class="none">
                 @Html.DisplayNameFor(model => model.EducationLevel)
             </th>
-            <th>
+            <th class="all">
                 @Html.DisplayNameFor(model => model.Profession)
             </th>
             <th class="none">
@@ -82,10 +82,10 @@
             <th class="none">
                 @Html.DisplayNameFor(model => model.Teacher)
             </th>
-            <th>
+            <th class="all">
                 @Html.DisplayNameFor(model => model.University)
             </th>
-            <th data-orderable="false" class="all dt-right">Eylemler</th>
+            <th data-orderable="false" class="all dt-right ">Eylemler</th>
         </tr>
     </thead>
     <tbody>
@@ -156,7 +156,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.University.Name)
                 </td>
-                <td class="dt-right">
+                <td class="dt-right text-nowrap">
                     <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Düzenle</a>
                     <a class="btn btn-default" asp-action="Details" asp-route-id="@item.Id">Detaylar</a>
                     <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Sil</a>
@@ -178,4 +178,5 @@
             });
         });
     </script>
+
 }

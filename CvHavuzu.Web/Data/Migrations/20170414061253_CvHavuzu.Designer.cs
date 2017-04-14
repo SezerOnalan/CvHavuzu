@@ -9,9 +9,10 @@ using CvHavuzu.Web.Models;
 namespace CvHavuzu.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170414061253_CvHavuzu")]
+    partial class CvHavuzu
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
@@ -67,20 +68,6 @@ namespace CvHavuzu.Web.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("CvHavuzu.Web.Models.City", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("City");
-                });
-
             modelBuilder.Entity("CvHavuzu.Web.Models.Consultant", b =>
                 {
                     b.Property<int>("Id")
@@ -95,35 +82,6 @@ namespace CvHavuzu.Web.Data.Migrations
                     b.ToTable("Consultants");
                 });
 
-            modelBuilder.Entity("CvHavuzu.Web.Models.Contact", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(200);
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasMaxLength(200);
-
-                    b.Property<string>("Ip")
-                        .IsRequired()
-                        .HasMaxLength(200);
-
-                    b.Property<string>("Message")
-                        .IsRequired();
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasMaxLength(200);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Contacts");
-                });
-
             modelBuilder.Entity("CvHavuzu.Web.Models.Department", b =>
                 {
                     b.Property<int>("Id")
@@ -136,24 +94,6 @@ namespace CvHavuzu.Web.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Departments");
-                });
-
-            modelBuilder.Entity("CvHavuzu.Web.Models.District", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("CityId");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CityId");
-
-                    b.ToTable("District");
                 });
 
             modelBuilder.Entity("CvHavuzu.Web.Models.EducationLevel", b =>
@@ -482,14 +422,6 @@ namespace CvHavuzu.Web.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("CvHavuzu.Web.Models.District", b =>
-                {
-                    b.HasOne("CvHavuzu.Web.Models.City", "City")
-                        .WithMany("Districts")
-                        .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("CvHavuzu.Web.Models.Resume", b =>
