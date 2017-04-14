@@ -1,0 +1,158 @@
+﻿@model IEnumerable<CvHavuzu.Web.Models.Resume>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.min.css" />
+<header class="page-header bg-img size-lg">
+    <div class="container">
+        <h1 class="text-center">Özgeçmişlerim</h1>
+        <p class="lead text-center">@Html.Raw(ViewBag.Setting.WelcomeText)</p>
+    </div>
+</header>
+<h3>Özgeçmişlerim</h3>
+
+<p>
+    <a asp-action="Create">Oluştur</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Gender)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BirthDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ResumeFile)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Skills)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ShowInList)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Location)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Approved)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreateDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UpdateDate)
+                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Consultant)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EducationLevel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Profession)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResumeStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Teacher)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.University)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirthDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResumeFile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Skills)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowInList)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Approved)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Consultant.Fullname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EducationLevel.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Profession.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResumeStatus.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Teacher.Fullname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.University.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@section scripts {
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $('#tblRecords').DataTable({
+            "responsive": true,
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.13/i18n/Turkish.json"
+            }
+        });
+    });
+    </script>
+    }

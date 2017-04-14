@@ -7,40 +7,32 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CvHavuzu.Web.Data;
 using CvHavuzu.Web.Models;
+using CvHavuzu.Web.Controllers;
+using Microsoft.AspNetCore.Authorization;
 
-namespace CvHavuzu.Web.Areas.Admin.Controllers
+namespace CvHavuzu.Web.Controllers
 {
-    [Area("Admin")]
-    public class ResumeController : Controller
+    [Authorize]
+    public class MyResumeController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly AccountController newAccountController;
 
-        public ResumeController(ApplicationDbContext context)
+        public MyResumeController(ApplicationDbContext context) : base(context)
         {
             _context = context;    
         }
 
-        // GET: Admin/Resume
-        public async Task<IActionResult> Index(int tab = 1)
+        // GET: MyResume
+        public async Task<IActionResult> Index()
         {
-            IList<Resume> resumes;
-            if (tab == 1)
-            {
-                resumes = _context.Resumes.Include(r => r.Consultant).Include(r => r.Department).Include(r => r.EducationLevel).Include(r => r.Profession).Include(r => r.ResumeStatus).Include(r => r.Teacher).Include(r => r.University).ToList();
-            }
-            else if (tab == 2)
-            {
-                resumes = _context.Resumes.Include(r => r.Consultant).Include(r => r.Department).Include(r => r.EducationLevel).Include(r => r.Profession).Include(r => r.ResumeStatus).Include(r => r.Teacher).Include(r => r.University).Where(r=>r.ShowInList==true && r.Approved==true).ToList();
-            }
-            else
-            {
-                resumes = _context.Resumes.Include(r => r.Consultant).Include(r => r.Department).Include(r => r.EducationLevel).Include(r => r.Profession).Include(r => r.ResumeStatus).Include(r => r.Teacher).Include(r => r.University).Where(r => r.Approved == false).ToList();
-            }
-            ViewBag.tab = tab;
-            return View(resumes);
+            
+                var applicationDbContext = _context.Resumes.Include(r => r.Consultant).Include(r => r.Department).Include(r => r.EducationLevel).Include(r => r.Profession).Include(r => r.ResumeStatus).Include(r => r.Teacher).Include(r => r.University)/*.Where(r=>r.UserName==User.Identity.UserName)*/;
+                return View(await applicationDbContext.ToListAsync());
+          
         }
 
-        // GET: Admin/Resume/Details/5
+        // GET: MyResume/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -65,7 +57,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
             return View(resume);
         }
 
-        // GET: Admin/Resume/Create
+        // GET: MyResume/Create
         public IActionResult Create()
         {
             ViewData["ConsultantId"] = new SelectList(_context.Consultants, "Id", "Fullname");
@@ -78,15 +70,17 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
             return View();
         }
 
-        // POST: Admin/Resume/Create
+        // POST: MyResume/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ImagePath,UserName,FirstName,LastName,Gender,ProfessionId,EducationLevelId,UniversityId,DepartmentId,BirthDate,ResumeFile,ResumeStatusId,Skills,ShowInList,City,District,TeacherId,ConsultantId,Approved,CreateDate,UpdateDate")] Resume resume)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Gender,ProfessionId,EducationLevelId,UniversityId,DepartmentId,BirthDate,ResumeFile,ResumeStatusId,Skills,ShowInList,Location,TeacherId,ConsultantId,Approved,CreateDate,UpdateDate")] Resume resume)
         {
             if (ModelState.IsValid)
             {
+                //resume.UserName = User.Identity.Name;
+                resume.Approved = false;
                 _context.Add(resume);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -101,7 +95,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
             return View(resume);
         }
 
-        // GET: Admin/Resume/Edit/5
+        // GET: MyResume/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -124,12 +118,12 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
             return View(resume);
         }
 
-        // POST: Admin/Resume/Edit/5
+        // POST: MyResume/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ImagePath,UserName,FirstName,LastName,Gender,ProfessionId,EducationLevelId,UniversityId,DepartmentId,BirthDate,ResumeFile,ResumeStatusId,Skills,ShowInList,City,District,TeacherId,ConsultantId,Approved,CreateDate,UpdateDate")] Resume resume)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Gender,ProfessionId,EducationLevelId,UniversityId,DepartmentId,BirthDate,ResumeFile,ResumeStatusId,Skills,ShowInList,Location,TeacherId,ConsultantId,Approved,CreateDate,UpdateDate")] Resume resume)
         {
             if (id != resume.Id)
             {
@@ -140,6 +134,8 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
             {
                 try
                 {
+                    //resume.UserName = User.Identity.Name;
+                    resume.Approved = false;
                     _context.Update(resume);
                     await _context.SaveChangesAsync();
                 }
@@ -166,7 +162,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
             return View(resume);
         }
 
-        // GET: Admin/Resume/Delete/5
+        // GET: MyResume/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -191,7 +187,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
             return View(resume);
         }
 
-        // POST: Admin/Resume/Delete/5
+        // POST: MyResume/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -206,7 +202,5 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
         {
             return _context.Resumes.Any(e => e.Id == id);
         }
-
-
     }
 }

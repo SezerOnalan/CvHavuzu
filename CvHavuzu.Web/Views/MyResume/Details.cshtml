@@ -1,26 +1,22 @@
-﻿@model CvHavuzu.Web.Models.Resume
+@model CvHavuzu.Web.Models.Resume
 
 @{
-    ViewData["Title"] = "Özgeçmiş Detayları";
+    ViewData["Title"] = "Details";
 }
-
-<h2>Özgeçmiş Detayları</h2>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.min.css" />
+<header class="page-header bg-img size-lg">
+    <div class="container">
+        <h1 class="text-center">�zge�mi�lerim</h1>
+        <p class="lead text-center">@Html.Raw(ViewBag.Setting.WelcomeText)</p>
+    </div>
+</header>
+<h2>Details</h2>
 
 <div>
+    <h4>Resume</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ImagePath)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ImagePath)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.FirstName)
         </dt>
@@ -64,18 +60,11 @@
             @Html.DisplayFor(model => model.ShowInList)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.City)
+            @Html.DisplayNameFor(model => model.Location)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.City)
+            @Html.DisplayFor(model => model.Location)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.District)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.District)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Approved)
         </dt>
@@ -139,22 +128,6 @@
     </dl>
 </div>
 <div>
-    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Düzenle</a> |
-    <a asp-action="Index">Listeye geri dön</a>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
 </div>
-
-@section Scripts {
-    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#tblRecords').DataTable({
-                "responsive": true,
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.10.13/i18n/Turkish.json"
-                }
-            });
-        });
-    </script>
-
-}

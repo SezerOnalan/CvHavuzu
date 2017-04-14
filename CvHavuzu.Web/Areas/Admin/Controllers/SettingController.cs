@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CvHavuzu.Web.Models;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace CvHavuzu.Web.Areas.Admin.Controllers
 {
@@ -11,9 +14,11 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
     public class SettingController : Controller
     {
         private Data.ApplicationDbContext context;
-        public SettingController(Data.ApplicationDbContext _context)
+        private IHostingEnvironment env;
+        public SettingController(IHostingEnvironment _env, Data.ApplicationDbContext _context)
         {
             this.context = _context;
+            this.env = _env;
         }
         public IActionResult Index()
         {
@@ -27,7 +32,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(Setting setting)
+        public IActionResult Index(Setting setting, IFormFile logoUpload)
         {
             if (ModelState.IsValid)
             {
@@ -47,9 +52,31 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
                     s.SeoTitle = setting.SeoTitle;
                     s.SeoDescription = setting.SeoDescription;
                     s.SeoKeywords = setting.SeoKeywords;
+
+                    // file upload iþlemi yapýlýr
+                    
+                    if (logoUpload.Length > 0)
+                    {
+                        var filePath = new Random().Next(9999).ToString() + logoUpload.FileName;
+                        using (var stream = new FileStream(env.WebRootPath + "\\uploads\\" + filePath, FileMode.Create))
+                        {
+                            logoUpload.CopyTo(stream);
+                        }
+                        s.Logo = filePath;
+                    }
                     context.SaveChanges();
                 } else
                 {
+                    // file upload iþlemi yapýlýr
+                    var filePath = Path.GetTempFileName();
+                    if (logoUpload.Length > 0)
+                    {
+                        using (var stream = new FileStream(env.WebRootPath + "/uploads/" + filePath, FileMode.Create))
+                        {
+                            logoUpload.CopyTo(stream);
+                        }
+                        setting.Logo = filePath;
+                    }
                     context.Settings.Add(setting);
                     context.SaveChanges();
                 }
