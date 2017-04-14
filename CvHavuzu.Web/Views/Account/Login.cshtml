@@ -1,6 +1,7 @@
 ﻿@using System.Collections.Generic
 @using Microsoft.AspNetCore.Http
 @using Microsoft.AspNetCore.Http.Authentication
+@using System.Globalization
 @model LoginViewModel
 @inject SignInManager<ApplicationUser> SignInManager
 
@@ -23,7 +24,7 @@
                 <div class="col-md-8">
                     
                         <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
-                            <h4>Giriş yapmak için e-mail'nizi ve şifrenizi giriniz.</h4>
+                            <h4>Giriş yapmak için e-postanızı ve şifrenizi giriniz.</h4>
                             <hr />
                             <div asp-validation-summary="All" class="text-danger"></div>
                             <div class="form-group">
@@ -76,25 +77,11 @@
                             if (loginProviders.Count == 0)
                             {
                                 <div>
-
-                                    <a class="btn btn-block btn-social btn-facebook">
-                                        <span class="fa fa-facebook"></span> Facebook ile giriş yapın.
-                                    </a>
-
-                                    <a class="btn btn-block btn-social btn-twitter">
-                                        <span class="fa fa-twitter"></span>Twitter ile giriş yapın.
-                                    </a>
-
-                                    <a class="btn btn-block btn-social btn-google">
-                                        <span class="fa fa-google"></span> Google ile giriş yapın.
-                                    </a>
-
-                                    <a class="btn btn-block btn-primary btn-linkedin">
-                                        <span class="fa fa-linkedin"></span> Linkedin ile giriş yapın.
-                                    </a>
-
-                                   
+                                    <p>
+                                       Harici oturum sağlayıcı ayarlanmamış.
+                                    </p>
                                 </div>
+                                
                             }
                             else
                             {
@@ -103,7 +90,9 @@
                                         <p>
                                             @foreach (var provider in loginProviders)
                                             {
-                                                <button type="submit" class="btn btn-default" name="provider" value="@provider.AuthenticationScheme" title="Log in using your @provider.DisplayName account">@provider.AuthenticationScheme</button>
+                                                    <button class="btn btn-block @(provider.AuthenticationScheme.ToLowerInvariant()=="linkedin"?"btn-primary":"btn-social") btn-@provider.AuthenticationScheme.ToLowerInvariant()" type="submit" name="provider" value="@provider.AuthenticationScheme" title="@provider.DisplayName ile hesabınıza giriş yapın">
+                                                        <span class="fa fa-@provider.AuthenticationScheme.ToLowerInvariant()"></span> @provider.AuthenticationScheme ile giriş yapın.
+                                                    </button>
                                             }
                                         </p>
                                     </div>

@@ -9,9 +9,10 @@ using CvHavuzu.Web.Models;
 namespace CvHavuzu.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170413073630_SettingsSocialMedia")]
+    partial class SettingsSocialMedia
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
@@ -132,17 +133,11 @@ namespace CvHavuzu.Web.Data.Migrations
 
                     b.Property<DateTime?>("BirthDate");
 
-                    b.Property<string>("City")
-                        .HasMaxLength(200);
-
                     b.Property<int?>("ConsultantId");
 
                     b.Property<DateTime>("CreateDate");
 
                     b.Property<int?>("DepartmentId");
-
-                    b.Property<string>("District")
-                        .HasMaxLength(200);
 
                     b.Property<int?>("EducationLevelId");
 
@@ -152,11 +147,11 @@ namespace CvHavuzu.Web.Data.Migrations
 
                     b.Property<int>("Gender");
 
-                    b.Property<string>("ImagePath")
-                        .HasMaxLength(200);
-
                     b.Property<string>("LastName")
                         .IsRequired()
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Location")
                         .HasMaxLength(200);
 
                     b.Property<int?>("ProfessionId");
@@ -175,10 +170,6 @@ namespace CvHavuzu.Web.Data.Migrations
                     b.Property<int?>("UniversityId");
 
                     b.Property<DateTime>("UpdateDate");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasMaxLength(200);
 
                     b.HasKey("Id");
 
@@ -225,6 +216,8 @@ namespace CvHavuzu.Web.Data.Migrations
                     b.Property<string>("Facebook");
 
                     b.Property<string>("FooterText");
+
+                    b.Property<string>("Instagram");
 
                     b.Property<DateTime?>("LastResumeCreateDate");
 

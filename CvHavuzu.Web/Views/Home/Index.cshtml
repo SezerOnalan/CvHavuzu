@@ -1,11 +1,11 @@
 ﻿@{
-    ViewData["Title"] = "CV Havuzu";
+    ViewData["Title"] = ViewBag.Setting.SeoTitle;
 }
 
  <!-- Page header -->
 <header class="page-header bg-img size-lg">
     <div class="container">
-        <h1 class="text-center">Nitelikli Bilişim Uzmanları CV Havuzu</h1>
+        <h1 class="text-center">@ViewBag.Setting.Title</h1>
         <p class="lead text-center">@Html.Raw(ViewBag.Setting.WelcomeText)</p>
     </div>
 </header>

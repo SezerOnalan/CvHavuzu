@@ -26,6 +26,19 @@ namespace CvHavuzu.Web.Models
         public string FooterText { get; set; }
         [Display(Name="Özel Html")]
         public string CustomHtml { get; set; }
+        [Display(Name = "Başlık")]
+        public string Title { get; set; }
+        [Display(Name = "SEO Başlık")]
+        public string SeoTitle { get; set; }
+        [Display(Name = "SEO Açıklama")]
+        public string SeoDescription { get; set; }
+        [Display(Name = "Anahtar Kelimeler")]
+        public string SeoKeywords { get; set; }
+        public string Logo { get; set; }
+        [Display(Name = "Güncellenme Tarihi")]
         public DateTime UpdateDate { get; set; }
+        public string Facebook { get; set; }
+        public string Twitter { get; set; }
+        public string LinkedIn { get; set; }
     }
 }
