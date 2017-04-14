@@ -20,7 +20,9 @@ namespace CvHavuzu.Web.Data
         public DbSet<University> Universities { get; set; }
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Stat> Stats { get; set; }
-        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<District> Districts { get; set; }
+
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -34,5 +36,9 @@ namespace CvHavuzu.Web.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
+
+        public DbSet<CvHavuzu.Web.Models.City> City { get; set; }
+
+        public DbSet<CvHavuzu.Web.Models.District> District { get; set; }
     }
 }
