@@ -167,10 +167,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
             {
                 try
                 {
-                
-                       
-
-                        // file upload iþlemi yapýlýr
+                    // file upload iþlemi yapýlýr
 
                         if (imageUpload.Length > 0)
                         {
