@@ -33,5 +33,9 @@ namespace CvHavuzu.Web.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
+
+        public DbSet<CvHavuzu.Web.Models.City> City { get; set; }
+
+        public DbSet<CvHavuzu.Web.Models.District> District { get; set; }
     }
 }
