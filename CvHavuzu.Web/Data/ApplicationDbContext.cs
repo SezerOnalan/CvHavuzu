@@ -20,8 +20,7 @@ namespace CvHavuzu.Web.Data
         public DbSet<University> Universities { get; set; }
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Stat> Stats { get; set; }
-        public DbSet<City> Cities { get; set; }
-        public DbSet<District> Districts { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
 
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
