@@ -82,7 +82,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Gender,ProfessionId,EducationLevelId,UniversityId,DepartmentId,BirthDate,ResumeFile,ResumeStatusId,Skills,ShowInList,Location,TeacherId,ConsultantId,Approved,CreateDate,UpdateDate")] Resume resume)
+        public async Task<IActionResult> Create([Bind("Id,ImagePath,UserName,FirstName,LastName,Gender,ProfessionId,EducationLevelId,UniversityId,DepartmentId,BirthDate,ResumeFile,ResumeStatusId,Skills,ShowInList,City,District,TeacherId,ConsultantId,Approved,CreateDate,UpdateDate")] Resume resume)
         {
             if (ModelState.IsValid)
             {
@@ -128,7 +128,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Gender,ProfessionId,EducationLevelId,UniversityId,DepartmentId,BirthDate,ResumeFile,ResumeStatusId,Skills,ShowInList,Location,TeacherId,ConsultantId,Approved,CreateDate,UpdateDate")] Resume resume)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ImagePath,UserName,FirstName,LastName,Gender,ProfessionId,EducationLevelId,UniversityId,DepartmentId,BirthDate,ResumeFile,ResumeStatusId,Skills,ShowInList,City,District,TeacherId,ConsultantId,Approved,CreateDate,UpdateDate")] Resume resume)
         {
             if (id != resume.Id)
             {
