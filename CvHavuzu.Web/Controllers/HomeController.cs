@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CvHavuzu.Web.Data;
 using CvHavuzu.Web.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CvHavuzu.Web.Controllers
 {
@@ -17,9 +18,11 @@ namespace CvHavuzu.Web.Controllers
         }
         public IActionResult Index()
         {
-
-            return View();
+            var resumes = _context.Resumes.ToList();
+            return View(resumes);
         }
+        
+      
 
         public IActionResult About()
         {
@@ -27,7 +30,7 @@ namespace CvHavuzu.Web.Controllers
 
             return View();
         }
-
+       
 
         [HttpPost]
         [Route("iletisim")]
@@ -61,4 +64,4 @@ namespace CvHavuzu.Web.Controllers
             return View();
         }
     }
-}
+}   

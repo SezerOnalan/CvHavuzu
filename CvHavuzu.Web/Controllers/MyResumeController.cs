@@ -16,7 +16,7 @@ namespace CvHavuzu.Web.Controllers
     public class MyResumeController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        private readonly AccountController newAccountController;
+        
 
         public MyResumeController(ApplicationDbContext context) : base(context)
         {
@@ -27,7 +27,7 @@ namespace CvHavuzu.Web.Controllers
         public async Task<IActionResult> Index()
         {
             
-                var applicationDbContext = _context.Resumes.Include(r => r.Consultant).Include(r => r.Department).Include(r => r.EducationLevel).Include(r => r.Profession).Include(r => r.ResumeStatus).Include(r => r.Teacher).Include(r => r.University)/*.Where(r=>r.UserName==User.Identity.UserName)*/;
+                var applicationDbContext = _context.Resumes.Include(r => r.Consultant).Include(r => r.Department).Include(r => r.EducationLevel).Include(r => r.Profession).Include(r => r.ResumeStatus).Include(r => r.Teacher).Include(r => r.University).Where(r=>r.UserName==User.Identity.Name);
                 return View(await applicationDbContext.ToListAsync());
           
         }
@@ -60,6 +60,7 @@ namespace CvHavuzu.Web.Controllers
         // GET: MyResume/Create
         public IActionResult Create()
         {
+            
             ViewData["ConsultantId"] = new SelectList(_context.Consultants, "Id", "Fullname");
             ViewData["DepartmentId"] = new SelectList(_context.Departments, "Id", "Name");
             ViewData["EducationLevelId"] = new SelectList(_context.EducationLevels, "Id", "Name");
@@ -75,11 +76,12 @@ namespace CvHavuzu.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Gender,ProfessionId,EducationLevelId,UniversityId,DepartmentId,BirthDate,ResumeFile,ResumeStatusId,Skills,ShowInList,Location,TeacherId,ConsultantId,Approved,CreateDate,UpdateDate")] Resume resume)
+        public async Task<IActionResult> Create(Resume resume)
         {
+            resume.UserName = User.Identity.Name;
+           
             if (ModelState.IsValid)
             {
-                //resume.UserName = User.Identity.Name;
                 resume.Approved = false;
                 _context.Add(resume);
                 await _context.SaveChangesAsync();
@@ -103,7 +105,7 @@ namespace CvHavuzu.Web.Controllers
                 return NotFound();
             }
 
-            var resume = await _context.Resumes.SingleOrDefaultAsync(m => m.Id == id);
+            var resume = await _context.Resumes.SingleOrDefaultAsync(m => m.Id == id && m.UserName==User.Identity.Name);
             if (resume == null)
             {
                 return NotFound();
@@ -123,18 +125,24 @@ namespace CvHavuzu.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Gender,ProfessionId,EducationLevelId,UniversityId,DepartmentId,BirthDate,ResumeFile,ResumeStatusId,Skills,ShowInList,Location,TeacherId,ConsultantId,Approved,CreateDate,UpdateDate")] Resume resume)
-        {
-            if (id != resume.Id)
+        public async Task<IActionResult> Edit(int id, Resume resume)
+        {   if (id != resume.Id)
             {
                 return NotFound();
             }
-
+            
+            //var resumeOrj = await _context.Resumes.SingleOrDefaultAsync(m => m.Id == id && m.UserName == User.Identity.Name);
+            //if (resumeOrj == null)
+            //{
+            //    return NotFound();
+            //}
+            resume.UserName = User.Identity.Name;
+            
             if (ModelState.IsValid)
             {
                 try
                 {
-                    //resume.UserName = User.Identity.Name;
+                    
                     resume.Approved = false;
                     _context.Update(resume);
                     await _context.SaveChangesAsync();
