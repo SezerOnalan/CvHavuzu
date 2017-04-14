@@ -68,10 +68,10 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
                 } else
                 {
                     // file upload iþlemi yapýlýr
-                    var filePath = Path.GetTempFileName();
                     if (logoUpload.Length > 0)
                     {
-                        using (var stream = new FileStream(env.WebRootPath + "/uploads/" + filePath, FileMode.Create))
+                        var filePath = new Random().Next(9999).ToString() + logoUpload.FileName;
+                        using (var stream = new FileStream(env.WebRootPath + "\\uploads\\" + filePath, FileMode.Create))
                         {
                             logoUpload.CopyTo(stream);
                         }
@@ -79,9 +79,10 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
                     }
                     context.Settings.Add(setting);
                     context.SaveChanges();
+                    ViewBag.Message = "Ayarlar baþarýyla kaydedildi.";
                 }
                 
-                ViewBag.Message = "Ayarlar baþarýyla kaydedildi.";
+               
             }
             return View(setting);
         }

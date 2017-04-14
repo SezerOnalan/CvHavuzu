@@ -1,0 +1,28 @@
+﻿@model CvHavuzu.Web.Models.City
+
+@{
+    ViewData["Title"] = "Şehir Sil";
+}
+
+<h2>Şehir Sil</h2>
+
+<h3>Silmek istediğinize emin misiniz?</h3>
+<div><form asp-action="Delete">
+    <hr />
+    <dl class="dl-horizontal">
+        <input type="hidden" asp-for="Id" />
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Sil" class="btn btn-danger" /> |
+        <a asp-action="Index">Listeye geri dön</a>
+    </div>
+</form>
+</div>
