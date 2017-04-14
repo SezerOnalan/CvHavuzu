@@ -11,9 +11,9 @@
     <a class="btn btn-default" asp-action="Create">Özgeçmiş Oluştur</a>
 </p>
 <ul class="nav nav-pills">
-    <li role="presentation" ><a href="?tab=1">Tümü</a></li>
-    <li role="presentation" ><a href="?tab=2">Yayındakiler</a></li>
-    <li role="presentation" ><a href="?tab=3">Onay Bekleyenler</a></li>
+    <li @(ViewBag.tab == 1?"class=active":"") role="presentation" ><a href="?tab=1">Tümü</a></li>
+    <li @(ViewBag.tab == 2?"class=active":"") role="presentation" ><a href="?tab=2">Yayındakiler</a></li>
+    <li @(ViewBag.tab == 3?"class=active":"") role="presentation" ><a href="?tab=3">Onay Bekleyenler</a></li>
 
 
 </ul>
@@ -157,4 +157,5 @@
         });
     });
     </script>
+
 }

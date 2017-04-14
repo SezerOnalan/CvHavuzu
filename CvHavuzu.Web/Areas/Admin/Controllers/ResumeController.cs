@@ -36,6 +36,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
             {
                 resumes = _context.Resumes.Include(r => r.Consultant).Include(r => r.Department).Include(r => r.EducationLevel).Include(r => r.Profession).Include(r => r.ResumeStatus).Include(r => r.Teacher).Include(r => r.University).Where(r => r.Approved == false).ToList();
             }
+            ViewBag.tab = tab;
             return View(resumes);
         }
 
