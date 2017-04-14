@@ -79,9 +79,10 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
                     }
                     context.Settings.Add(setting);
                     context.SaveChanges();
+                    ViewBag.Message = "Ayarlar baþarýyla kaydedildi.";
                 }
                 
-                ViewBag.Message = "Ayarlar baþarýyla kaydedildi.";
+               
             }
             return View(setting);
         }
