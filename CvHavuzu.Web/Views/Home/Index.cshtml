@@ -29,14 +29,16 @@
                 </div>
                
 
-
-                <!-- Resume item -->
+                @foreach (Resume item in Model)
+                {
+                <!-- Devam Edilecek -->
+                    <!-- Resume item -->
                 <div class="col-xs-12">
                     <div class="item-block">
                         <header>
                             <a href="resume-detail.html"><img class="resume-avatar" src="/assets/img/avatar.jpg" alt=""></a>
                             <div class="hgroup">
-                                <h4><a href="resume-detail.html">Mustafa Fındık</a></h4>
+                                <h4><a href="resume-detail.html">@item.FirstName  @item.LastName </a></h4>
                                 <h5>Front-end developer</h5>
                             </div>
                             <div class="header-meta">
@@ -64,74 +66,8 @@
                     </div>
                 </div>
                 <!-- END Resume item -->
-                <!-- Resume item -->
-                <div class="col-xs-12">
-                    <div class="item-block">
-                        <header>
-                            <a href="resume-detail.html"><img class="resume-avatar" src="/assets/img/avatar.jpg" alt=""></a>
-                            <div class="hgroup">
-                                <h4><a href="resume-detail.html">Mustafa Fındık</a></h4>
-                                <h5>Front-end developer</h5>
-                            </div>
-                            <div class="header-meta">
-                                <span class="location">Kartal</span>
-                                <span class="fa fa-graduation-cap"></span> <span>Dokuz Eylül Üniversitesi - İstatistik</span>
-                            </div>
-                            
-                            <p style="float:left;">
-                                Cinsiyet: Erkek<br />
-                                Yaş: 26<br />
-                                Yetenekler: C#, .NET Core, MVC 6, OOP, Design Patterns, Visual Studio 2017, SQL Server 2016, HTML5, CSS3, JavaScript, jQuery, Bootstrap
-                            </p>
-                            <br style="clear:both" />
-                        </header>
-
-                        <footer>
-                            <p class="status"><strong>Güncellenme Tarihi:</strong> 6 Nisan 2017</p>
-
-                            <div class="action-btn">
-                                <a class="btn btn-xs btn-gray" href="#">CV İndir</a>
-                                <a class="btn btn-xs btn-gray" href="#">Düzenle</a>
-                                <a class="btn btn-xs btn-danger" href="#">Yayından Kaldır</a>
-                            </div>
-                        </footer>
-                    </div>
-                </div>
-                <!-- END Resume item -->
-                <!-- Resume item -->
-                <div class="col-xs-12">
-                    <div class="item-block">
-                        <header>
-                            <a href="resume-detail.html"><img class="resume-avatar" src="/assets/img/avatar.jpg" alt=""></a>
-                            <div class="hgroup">
-                                <h4><a href="resume-detail.html">Mustafa Fındık</a></h4>
-                                <h5>Front-end developer</h5>
-                            </div>
-                            <div class="header-meta">
-                                <span class="location">Kartal</span>
-                                <span class="fa fa-graduation-cap"></span> <span>Dokuz Eylül Üniversitesi - İstatistik</span>
-                            </div>
-                            
-                            <p style="float:left;">
-                                Cinsiyet: Erkek<br />
-                                Yaş: 26<br />
-                                Yetenekler: C#, .NET Core, MVC 6, OOP, Design Patterns, Visual Studio 2017, SQL Server 2016, HTML5, CSS3, JavaScript, jQuery, Bootstrap
-                            </p>
-                            <br style="clear:both" />
-                        </header>
-
-                        <footer>
-                            <p class="status"><strong>Güncellenme Tarihi:</strong> 6 Nisan 2017</p>
-
-                            <div class="action-btn">
-                                <a class="btn btn-xs btn-gray" href="#">CV İndir</a>
-                                <a class="btn btn-xs btn-gray" href="#">Düzenle</a>
-                                <a class="btn btn-xs btn-danger" href="#">Yayından Kaldır</a>
-                            </div>
-                        </footer>
-                    </div>
-                </div>
-                <!-- END Resume item -->
+                }
+                <
 
 
             </div>
