@@ -39,7 +39,7 @@ namespace CvHavuzu.Web.Controllers
             {
                 _context.Add(contact);
                 await _context.SaveChangesAsync();
-                ViewBag.Message = "Ayarlar başarıyla kaydedildi.";
+                ViewBag.Message = "Mesajınız başarıyla gönderildi.";
 
             }
             

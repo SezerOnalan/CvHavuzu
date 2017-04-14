@@ -21,7 +21,8 @@ namespace CvHavuzu.Web.Data
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Stat> Stats { get; set; }
         public DbSet<Contact> Contacts { get; set; }
-
+        public DbSet<CvHavuzu.Web.Models.City> City { get; set; }
+        public DbSet<CvHavuzu.Web.Models.District> District { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -36,8 +37,6 @@ namespace CvHavuzu.Web.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-        public DbSet<CvHavuzu.Web.Models.City> City { get; set; }
 
-        public DbSet<CvHavuzu.Web.Models.District> District { get; set; }
     }
 }
