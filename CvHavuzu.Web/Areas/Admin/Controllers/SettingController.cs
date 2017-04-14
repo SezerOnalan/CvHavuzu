@@ -54,10 +54,11 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
                     s.SeoKeywords = setting.SeoKeywords;
 
                     // file upload iþlemi yapýlýr
-                    var filePath = Path.GetTempFileName();
+                    
                     if (logoUpload.Length > 0)
                     {
-                        using (var stream = new FileStream(env.WebRootPath + "/uploads/" + filePath, FileMode.Create))
+                        var filePath = new Random().Next(9999).ToString() + logoUpload.FileName;
+                        using (var stream = new FileStream(env.WebRootPath + "\\uploads\\" + filePath, FileMode.Create))
                         {
                             logoUpload.CopyTo(stream);
                         }
