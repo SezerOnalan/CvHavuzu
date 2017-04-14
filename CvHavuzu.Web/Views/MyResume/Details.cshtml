@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h2>Detaylar</h2>
-
+            <input type="hidden" asp-for="UserName" value="@User.Identity.Name" />
             <div>
                 <h4>Özgeçmiş</h4>
                 <hr />
@@ -42,7 +42,7 @@
                         @Html.DisplayNameFor(model => model.BirthDate)
                     </dt>
                     <dd>
-                        @Html.DisplayFor(model => model.BirthDate)
+                        @Html.DisplayFor(model => model.BirthDate.Value.Date)
                     </dd>
                     <dt>
                         @Html.DisplayNameFor(model => model.ResumeFile)

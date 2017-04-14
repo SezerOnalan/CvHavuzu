@@ -93,6 +93,7 @@
                                     <select asp-for="DepartmentId" class="form-control" asp-items="ViewBag.DepartmentId">
                                         <option value=""></option>
                                     </select>
+                                    <span asp-validation-for="DepartmentId" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>
@@ -146,9 +147,10 @@
                             <label asp-for="TeacherId" class="col-md-2 control-label"></label>
                             <div class="col-md-10">
                                 <div class="input-group">
-                                    <select asp-for="TeacherId" class="form-control" asp-items="ViewBag.TeacherId">
-                                        <option value=""></option>
-                                    </select> 
+                                    
+                                        <select asp-for="TeacherId" class="form-control" asp-items="ViewBag.TeacherId">
+                                            <option value=""></option>
+                                        </select>
                                 </div>
                             </div>
                         </div>
