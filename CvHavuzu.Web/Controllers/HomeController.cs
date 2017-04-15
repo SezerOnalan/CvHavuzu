@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using CvHavuzu.Web.Data;
 using CvHavuzu.Web.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace CvHavuzu.Web.Controllers
 {
@@ -19,6 +20,13 @@ namespace CvHavuzu.Web.Controllers
         public IActionResult Index()
         {
             var resumes = _context.Resumes.ToList();
+                resumes = _context.Resumes.Include(x => x.Department).ToList();
+                resumes = _context.Resumes.Include(x => x.University).ToList();
+                resumes = _context.Resumes.Include(x => x.Profession).ToList();
+                resumes = _context.Resumes.Include(x => x.ResumeStatus).ToList();
+                resumes = _context.Resumes.Include(x => x.Consultant).ToList();
+                resumes = _context.Resumes.Include(x => x.EducationLevel).ToList();
+                resumes = _context.Resumes.Include(x => x.Teacher).ToList();
             return View(resumes);
         }
         
