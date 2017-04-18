@@ -55,7 +55,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
 
                     // file upload iþlemi yapýlýr
                     
-                    if (logoUpload.Length > 0)
+                    if (logoUpload != null && logoUpload.Length > 0)
                     {
                         var filePath = new Random().Next(9999).ToString() + logoUpload.FileName;
                         using (var stream = new FileStream(env.WebRootPath + "\\uploads\\" + filePath, FileMode.Create))
@@ -68,7 +68,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
                 } else
                 {
                     // file upload iþlemi yapýlýr
-                    if (logoUpload.Length > 0)
+                    if (logoUpload != null && logoUpload.Length > 0)
                     {
                         var filePath = new Random().Next(9999).ToString() + logoUpload.FileName;
                         using (var stream = new FileStream(env.WebRootPath + "\\uploads\\" + filePath, FileMode.Create))

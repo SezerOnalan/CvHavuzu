@@ -94,7 +94,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
             {
                 // file upload iþlemi yapýlýr
 
-                if (imageUpload.Length > 0)
+                if (imageUpload != null && imageUpload.Length > 0)
                 {
                     var filePath = new Random().Next(9999).ToString() + imageUpload.FileName;
                     using (var stream = new FileStream(env.WebRootPath + "\\uploads\\resumes\\images\\" + filePath, FileMode.Create))
@@ -105,7 +105,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
                 }
 
 
-                if (resumeUpload.Length > 0)
+                if (resumeUpload != null && resumeUpload.Length > 0)
                 {
                     var filePath = new Random().Next(9999).ToString() + resumeUpload.FileName;
                     using (var stream = new FileStream(env.WebRootPath + "\\uploads\\resumes\\" + filePath, FileMode.Create))
@@ -169,7 +169,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
                 {
                     // file upload iþlemi yapýlýr
 
-                        if (imageUpload.Length > 0)
+                        if (imageUpload != null && imageUpload.Length > 0)
                         {
                             var filePath = new Random().Next(9999).ToString() + imageUpload.FileName;
                             using (var stream = new FileStream(env.WebRootPath + "\\uploads\\resumes\\images\\" + filePath, FileMode.Create))
@@ -180,7 +180,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
                         }
 
 
-                    if (resumeUpload.Length > 0)
+                    if (resumeUpload != null && resumeUpload.Length > 0)
                     {
                         var filePath = new Random().Next(9999).ToString() + resumeUpload.FileName;
                         using (var stream = new FileStream(env.WebRootPath + "\\uploads\\resumes\\" + filePath, FileMode.Create))
