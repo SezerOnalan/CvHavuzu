@@ -27,6 +27,7 @@ namespace CvHavuzu.Web.Controllers
                 resumes = _context.Resumes.Include(x => x.Consultant).ToList();
                 resumes = _context.Resumes.Include(x => x.EducationLevel).ToList();
                 resumes = _context.Resumes.Include(x => x.Teacher).ToList();
+                
             return View(resumes);
         }
         
