@@ -52,6 +52,10 @@
             @Html.DisplayFor(model => model.ResumeFile)
         </dd>
         <dt>
+            <a id:"cv" href="~/uploads/resumes/@Html.DisplayFor(model => model.ResumeFile)"
+               download="@Html.DisplayFor(model => model.ResumeFile)">Özgeçmiş İndir</a>
+        </dt>
+        <dt>
             @Html.DisplayNameFor(model => model.Skills)
         </dt>
         <dd>
@@ -136,6 +140,10 @@
         <dd>
             @Html.DisplayFor(model => model.University.Name)
         </dd>
+        
+        <dd>
+           
+        </dd>
     </dl>
 </div>
 <div>
@@ -155,6 +163,12 @@
                 }
             });
         });
+    </script>
+    <script>
+        function download() {
+            var x = document.getElementById("cv").download;     
+
+        }
     </script>
 
 }

@@ -45,9 +45,11 @@ namespace CvHavuzu.Web.Models
         public virtual Profession Profession { get; set; }
         [Display(Name = "Eğitim Seviyesi")]
         public int? EducationLevelId { get; set; }
+   
         [ForeignKey("EducationLevelId")]
         [Display(Name = "Eğitim Seviyesi")]
         public virtual EducationLevel EducationLevel { get; set; }
+
         [Display(Name = "Üniversite")]
         public int? UniversityId { get; set; }
         [ForeignKey("UniversityId")]
@@ -80,11 +82,13 @@ namespace CvHavuzu.Web.Models
         [Display(Name = "Listede Göster")]
         public bool ShowInList { get; set; }
 
-
+       
         [StringLength(200)]
         [Display(Name = "Şehir")]
         public string City { get; set; }
 
+      
+        
         [StringLength(200)]
         [Display(Name = "İlçe")]
         public string District { get; set; }

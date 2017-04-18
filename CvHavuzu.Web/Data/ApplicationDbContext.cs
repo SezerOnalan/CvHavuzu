@@ -37,6 +37,8 @@ namespace CvHavuzu.Web.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
+        public DbSet<CvHavuzu.Web.Models.ApplicationUser> ApplicationUser { get; set; }
+
 
     }
 }
