@@ -1,64 +1,66 @@
-@model IEnumerable<CvHavuzu.Web.Models.ApplicationUser>
+﻿@model IEnumerable<CvHavuzu.Web.Models.ApplicationUser>
 
 @{
     ViewData["Title"] = "Users";
 }
-
-<h2>Users</h2>
-
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.min.css" />
+<h2>Kullanıcılar</h2>
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-primary" href="/Account/Register"> Kullanıcı Ekle</a>
 </p>
-<table class="table">
+
+<table id="tblRecords" class="table table-striped table-hover">
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.UserName)
+                  Kullanıcı Adı
                 </th>
+                <th class="none">
+                Normalize Kullanıcı Adı
+            </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.NormalizedUserName)
+                   Email
                 </th>
+            <th class="none">
+               Normalize Email
+            </th>
+            <th class="none">
+             Email(Tekrar)
+            </th>
+            <th class="none">
+                Şifre(Hash)
+            </th>
+            <th class="none">
+                @Html.DisplayNameFor(model => model.SecurityStamp)
+            </th>
+            <th class="none">
+                @Html.DisplayNameFor(model => model.ConcurrencyStamp)
+            </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Email)
+                 Telefon Numarası
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.NormalizedEmail)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.EmailConfirmed)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PasswordHash)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SecurityStamp)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ConcurrencyStamp)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PhoneNumber)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TwoFactorEnabled)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.LockoutEnd)
-                </th>
-                <th>
+            <th class="none">
+               Telefon Numarası(Tekrar)
+            </th>
+            <th class="none">
+                @Html.DisplayNameFor(model => model.TwoFactorEnabled)
+            </th>
+            <th class="none">
+                @Html.DisplayNameFor(model => model.LockoutEnd)
+            </th>
+               <th class="none">
                     @Html.DisplayNameFor(model => model.LockoutEnabled)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.AccessFailedCount)
-                </th>
+            <th class="none">
+                @Html.DisplayNameFor(model => model.AccessFailedCount)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.UserName)
@@ -102,12 +104,25 @@
             <td>
                 @Html.DisplayFor(modelItem => item.AccessFailedCount)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            <td class="dt-right text-nowrap">
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Detaylar</a>
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Sil</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+@section scripts {
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#tblRecords').DataTable({
+                "responsive": true,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.13/i18n/Turkish.json"
+                }
+            });
+        });
+    </script>
+    }

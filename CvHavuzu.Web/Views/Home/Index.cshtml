@@ -41,11 +41,11 @@
 
                                     <div class="hgroup">
                                         <h4><a href="resume-detail.html">@(item.FirstName != null ? item.FirstName : string.Empty)  @(item.LastName != null ? item.LastName : string.Empty) </a></h4>
-                                        <h5>@(item.Profession.Name != null?item.Profession.Name:string.Empty)</h5>
+                                        <h5>@(item.Profession != null?item.Profession.Name:string.Empty)</h5>
                                     </div>
                                     <div class="header-meta">
                                         <span class="location">@(item.City != null?item.City:string.Empty) / @(item.District != null ? item.District : string.Empty)</span>
-                                        <span class="fa fa-graduation-cap"></span> <span> @(item.University.Name != null ? item.University.Name : string.Empty) - @(item.Department.Name != null ? item.Department.Name : string.Empty)</span>
+                                        <span class="fa fa-graduation-cap"></span> <span> @(item.University != null ? item.University.Name : string.Empty) - @(item.Department != null ? item.Department.Name : string.Empty)</span>
                                     </div>
                                 </div>
 
