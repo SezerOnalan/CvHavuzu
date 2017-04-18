@@ -61,8 +61,7 @@ namespace CvHavuzu.Web.Models
         [Display(Name = "Bölüm")]
         public virtual Department Department { get; set; }
         [Display(Name = "Doğum Tarihi")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, ConvertEmptyStringToNull = true, DataFormatString = "dd.MM.yyyy", NullDisplayText = "")]
+        [DataType("datetime-local")]
         public DateTime? BirthDate { get; set; }
 
         [Display(Name = "Özgeçmiş Dosyası")]
