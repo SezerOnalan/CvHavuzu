@@ -50,9 +50,18 @@
                                 </div>
 
                                 <p style="padding-top:10px">
-                                 
-                                    <b>Cinsiyet : </b> @item.Gender<br />
-                                    <b> Yaş : </b> @item.BirthDate<br />
+                                 @{
+                                     var now = DateTime.Now;
+                                     int age = now.Year - item.BirthDate.Value.Year;
+                                     if (now.Month < item.BirthDate.Value.Month || (now.Month == item.BirthDate.Value.Month && now.Day < item.BirthDate.Value.Day))
+                                     { age--; }
+
+                                }
+                                    <b>Cinsiyet : </b> @Html.DisplayFor(modelItem => item.Gender)<br />
+                                    <b> Yaş : @age</b> 
+
+
+                                        <br />
                                     <b>   Yetenekler : </b> @item.Skills
 </p>
 
