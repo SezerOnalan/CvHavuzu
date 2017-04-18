@@ -19,19 +19,17 @@ namespace CvHavuzu.Web.Controllers
         }
         public IActionResult Index()
         {
-            var resumes = _context.Resumes.ToList();
-                resumes = _context.Resumes.Include(x => x.Department).ToList();
-                resumes = _context.Resumes.Include(x => x.University).ToList();
-                resumes = _context.Resumes.Include(x => x.Profession).ToList();
-                resumes = _context.Resumes.Include(x => x.ResumeStatus).ToList();
-                resumes = _context.Resumes.Include(x => x.Consultant).ToList();
-                resumes = _context.Resumes.Include(x => x.EducationLevel).ToList();
-                resumes = _context.Resumes.Include(x => x.Teacher).ToList();
-                
+            var resumes = _context.Resumes.Include(x => x.Department).Include(x => x.University).Include(x => x.Profession).Include(x => x.ResumeStatus).Include(x => x.Consultant).Include(x => x.EducationLevel).Include(x => x.Teacher).ToList();
             return View(resumes);
         }
-        
-      
+
+        public IActionResult Search(string query)
+        {
+            var resumes = _context.Resumes.Include(x => x.Department).Include(x => x.University).Include(x => x.Profession).Include(x => x.ResumeStatus).Include(x => x.Consultant).Include(x => x.EducationLevel).Include(x => x.Teacher).Where(r => r.FirstName.Contains(query)).ToList();
+            return View(resumes);
+        }
+
+
 
         public IActionResult About()
         {
