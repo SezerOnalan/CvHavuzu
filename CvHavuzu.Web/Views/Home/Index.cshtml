@@ -40,12 +40,12 @@
                                     <a href="resume-detail.html"><img class="resume-avatar" src="/assets/img/avatar.jpg" alt=""></a>
 
                                     <div class="hgroup">
-                                        <h4><a href="resume-detail.html">@item.FirstName  @item.LastName </a></h4>
-                                        <h5>@item.Profession.Name</h5>
+                                        <h4><a href="resume-detail.html">@(item.FirstName != null ? item.FirstName : string.Empty)  @(item.LastName != null ? item.LastName : string.Empty) </a></h4>
+                                        <h5>@(item.Profession.Name != null?item.Profession.Name:string.Empty)</h5>
                                     </div>
                                     <div class="header-meta">
-                                        <span class="location">@item.City / @item.District</span>
-                                        <span class="fa fa-graduation-cap"></span> <span> @item.University.Name - @item.Department.Name</span>
+                                        <span class="location">@(item.City != null?item.City:string.Empty) / @(item.District != null ? item.District : string.Empty)</span>
+                                        <span class="fa fa-graduation-cap"></span> <span> @(item.University.Name != null ? item.University.Name : string.Empty) - @(item.Department.Name != null ? item.Department.Name : string.Empty)</span>
                                     </div>
                                 </div>
 
@@ -62,7 +62,7 @@
 
 
                                         <br />
-                                    <b>   Yetenekler : </b> @item.Skills
+                                    <b>   Yetenekler : </b> @(item.Skills != null ? item.Skills : string.Empty)
 </p>
 
                                 <br style="clear:both" />
