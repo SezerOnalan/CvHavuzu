@@ -40,7 +40,7 @@ namespace CvHavuzu.Web.Controllers
             _emailSender = emailSender;
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
-
+            
         }
 
         //
