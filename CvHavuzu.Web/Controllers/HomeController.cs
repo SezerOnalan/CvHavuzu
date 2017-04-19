@@ -7,6 +7,8 @@ using CvHavuzu.Web.Data;
 using CvHavuzu.Web.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using MimeKit;
+using MailKit.Net.Smtp;
 
 namespace CvHavuzu.Web.Controllers
 {
@@ -68,7 +70,7 @@ namespace CvHavuzu.Web.Controllers
 
             return View();
         }
-       
+
 
         [HttpPost]
         [Route("iletisim")]
@@ -80,12 +82,42 @@ namespace CvHavuzu.Web.Controllers
             {
                 _context.Add(contact);
                 await _context.SaveChangesAsync();
+
+                MailSetting mailSetting;
+                mailSetting = _context.MailSettings.FirstOrDefault();
+                string FromAddress = mailSetting.FromAddress;
+                string FromAddressTitle = mailSetting.FromAddressTitle;
+
+                string ToAddress = contact.Email;
+                string ToAddressTitle = contact.FullName;
+                string Subject = mailSetting.Subject;
+                string BodyContent = mailSetting.BodyContent;
+
+                string SmptServer = mailSetting.SmptServer;
+                int SmptPortNumber = mailSetting.SmptPortNumber;
+
+                var mimeMessage = new MimeMessage();
+                mimeMessage.From.Add(new MailboxAddress(FromAddressTitle, FromAddress));
+                mimeMessage.To.Add(new MailboxAddress(ToAddressTitle, ToAddress));
+                mimeMessage.Subject = Subject;
+                mimeMessage.Body = new TextPart("plain")
+                {
+                    Text = BodyContent
+                };
+
+                using (var client = new SmtpClient())
+                {
+                    client.Connect(SmptServer, SmptPortNumber, false);
+                    client.Authenticate(mailSetting.FromAddress, mailSetting.FromAddressPassword);
+                    client.Send(mimeMessage);
+                    client.Disconnect(true);
+                }
                 ViewBag.Message = "Mesajınız başarıyla gönderildi.";
 
             }
-            
+
             return View(contact);
-            
+
         }
 
         [Route("iletisim")]

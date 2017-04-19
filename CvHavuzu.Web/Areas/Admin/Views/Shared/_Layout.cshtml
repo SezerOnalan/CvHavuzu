@@ -51,8 +51,10 @@
                             <li><a asp-area="Admin" asp-controller="District" asp-action="index">İlçeler</a></li>
                         </ul>
                     </li>
-                    <li><a href="/Dashboard/Users">Üyeler</a></li>
-                    <li><a href="#">Ayarlar</a></li>
+                    <li><a href="/Admin/Dashboard/Users">Üyeler</a></li>
+                    <li><a asp-area="Admin" asp-controller="Setting" asp-action="index">Ayarlar</a></li>
+                    <li><a asp-area="Admin" asp-controller="MailSetting" asp-action="index">Mail Ayarları</a></li>
+                    <li><a asp-area="Admin" asp-controller="Contact" asp-action="index">Gelen Mesajlar</a></li>
                     
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
