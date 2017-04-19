@@ -38,6 +38,7 @@ namespace CvHavuzu.Web.Controllers
             {
                 // query'den değer geliyorsa where metoduyla filtreleme yap
                 query = query.ToLower();
+                string[] terms =query.Split(' ');
                 var resumes = _context.Resumes
                     .Include(x => x.Department)
                     .Include(x => x.University)
@@ -45,16 +46,20 @@ namespace CvHavuzu.Web.Controllers
                     .Include(x => x.ResumeStatus)
                     .Include(x => x.Consultant)
                     .Include(x => x.EducationLevel)
-                    .Include(x => x.Teacher)
-                    .Where(r => r.FirstName.ToLower().Contains(query) ||
-                    r.LastName.ToLower().Contains(query) ||
-                    r.Gender.ToString().ToLower().Contains(query) ||
-                    r.Profession.Name.ToLower().Contains(query) ||
-                    r.EducationLevel.Name.ToLower().Contains(query) ||
-                    r.University.Name.ToLower().Contains(query) ||
-                    r.Department.Name.ToLower().Contains(query) ||
-                    r.Skills.ToLower().Contains(query))
-                    .Where(r => r.ShowInList == true && r.Approved == true).ToList(); 
+                    .Include(x => x.Teacher).Where(r => r.ShowInList == true && r.Approved == true);
+
+                   foreach (var term in terms)
+                { 
+                    resumes = resumes.Where(r => r.FirstName.ToLower().Contains(term) ||
+                    r.LastName.ToLower().Contains(term) ||
+                    r.Gender.ToString().ToLower().Contains(term) ||
+                    r.Profession.Name.ToLower().Contains(term) ||
+                    r.EducationLevel.Name.ToLower().Contains(term) ||
+                    r.University.Name.ToLower().Contains(term) ||
+                    r.Department.Name.ToLower().Contains(term) ||
+                    r.Skills.ToLower().Contains(term));
+                    }
+                    
                 return View(resumes);
             }
         }
