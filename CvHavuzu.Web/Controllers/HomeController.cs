@@ -20,7 +20,7 @@ namespace CvHavuzu.Web.Controllers
         public IActionResult Index(string query = "")
         {
             ViewBag.Query = query;
-            if (String.IsNullOrEmpty(query)) { 
+            if (String.IsNullOrEmpty(query)) {
                 // query parametresinden değer gelmiyorsa tüm kayıtları getir
                 var resumes = _context.Resumes
                     .Include(x => x.Department)
@@ -29,7 +29,8 @@ namespace CvHavuzu.Web.Controllers
                     .Include(x => x.ResumeStatus)
                     .Include(x => x.Consultant)
                     .Include(x => x.EducationLevel)
-                    .Include(x => x.Teacher).ToList();
+                    .Include(x => x.Teacher)
+                    .Where(r => r.ShowInList == true && r.Approved == true).ToList();
                 return View(resumes);
             } else
             {
@@ -43,7 +44,15 @@ namespace CvHavuzu.Web.Controllers
                     .Include(x => x.Consultant)
                     .Include(x => x.EducationLevel)
                     .Include(x => x.Teacher)
-                    .Where(r => r.FirstName.ToLower().Contains(query) || r.LastName.ToLower().Contains(query)).ToList();
+                    .Where(r => r.FirstName.ToLower().Contains(query) ||
+                    r.LastName.ToLower().Contains(query) ||
+                    r.Gender.ToString().ToLower().Contains(query) ||
+                    r.Profession.Name.ToLower().Contains(query) ||
+                    r.EducationLevel.Name.ToLower().Contains(query) ||
+                    r.University.Name.ToLower().Contains(query) ||
+                    r.Department.Name.ToLower().Contains(query) ||
+                    r.Skills.ToLower().Contains(query))
+                    .Where(r => r.ShowInList == true && r.Approved == true).ToList(); 
                 return View(resumes);
             }
         }
