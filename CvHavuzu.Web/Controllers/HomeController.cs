@@ -17,19 +17,36 @@ namespace CvHavuzu.Web.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+        public IActionResult Index(string query = "")
         {
-            var resumes = _context.Resumes.Include(x => x.Department).Include(x => x.University).Include(x => x.Profession).Include(x => x.ResumeStatus).Include(x => x.Consultant).Include(x => x.EducationLevel).Include(x => x.Teacher).ToList();
-            return View(resumes);
+            ViewBag.Query = query;
+            if (String.IsNullOrEmpty(query)) { 
+                // query parametresinden değer gelmiyorsa tüm kayıtları getir
+                var resumes = _context.Resumes
+                    .Include(x => x.Department)
+                    .Include(x => x.University)
+                    .Include(x => x.Profession)
+                    .Include(x => x.ResumeStatus)
+                    .Include(x => x.Consultant)
+                    .Include(x => x.EducationLevel)
+                    .Include(x => x.Teacher).ToList();
+                return View(resumes);
+            } else
+            {
+                // query'den değer geliyorsa where metoduyla filtreleme yap
+                query = query.ToLower();
+                var resumes = _context.Resumes
+                    .Include(x => x.Department)
+                    .Include(x => x.University)
+                    .Include(x => x.Profession)
+                    .Include(x => x.ResumeStatus)
+                    .Include(x => x.Consultant)
+                    .Include(x => x.EducationLevel)
+                    .Include(x => x.Teacher)
+                    .Where(r => r.FirstName.ToLower().Contains(query) || r.LastName.ToLower().Contains(query)).ToList();
+                return View(resumes);
+            }
         }
-
-        public IActionResult Search(string query)
-        {
-            var resumes = _context.Resumes.Include(x => x.Department).Include(x => x.University).Include(x => x.Profession).Include(x => x.ResumeStatus).Include(x => x.Consultant).Include(x => x.EducationLevel).Include(x => x.Teacher).Where(r => r.FirstName.Contains(query)).ToList();
-            return View(resumes);
-        }
-
-
 
         public IActionResult About()
         {
