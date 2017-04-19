@@ -34,7 +34,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
         {
             
 
-            var user = await context.Users
+     var user = await context.Users
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (user == null)
             {
