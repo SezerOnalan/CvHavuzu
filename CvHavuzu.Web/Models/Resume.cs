@@ -83,15 +83,19 @@ namespace CvHavuzu.Web.Models
         public bool ShowInList { get; set; }
 
        
-        [StringLength(200)]
-        [Display(Name = "Şehir")]
-        public string City { get; set; }
+       
+        [Display(Name = "Sehir")]
+        public int? CityId { get; set; }
+        [ForeignKey("CityId")]
+        [Display(Name = "Sehir")]
+        public virtual City City { get; set; }
 
-      
-        
-        [StringLength(200)]
         [Display(Name = "İlçe")]
-        public string District { get; set; }
+        public int? DistrictId { get; set; }
+        [ForeignKey("DistrictId")]
+        [Display(Name = "İlçe")]
+        public virtual District District { get; set; }
+    
 
         [Display(Name = "Eğitmen")]
         public int? TeacherId { get; set; }

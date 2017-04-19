@@ -7,180 +7,187 @@
 <h2>Özgecmiş Oluştur</h2>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.min.css" />
-<form asp-action="Create">
-    <div class="form-horizontal">
-        <hr />
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group">
+@*<form asp-action="Create"  enctype="multipart/form-data">*@
+    <form asp-area="Admin" role="form" asp-controller="Resume" asp-action="Create" method="post" enctype="multipart/form-data">
+        <div class="form-horizontal">
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="ImagePath" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <input  title="ImageUpload" type="file" name="ImageUpload"class="form-control" />
-                    <span asp-validation-for="ImagePath" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="UserName" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <input asp-for="UserName" class="form-control" />
-                    <span asp-validation-for="UserName" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="FirstName" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <input asp-for="FirstName" class="form-control" />
-                    <span asp-validation-for="FirstName" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="LastName" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <input asp-for="LastName" class="form-control" />
-                    <span asp-validation-for="LastName" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="Gender" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <select asp-for="Gender" class="form-control">
-                        <option value="1">Erkek</option>
-                        <option value="2">Kadın</option>
-                    </select>
-                    <span asp-validation-for="Gender" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProfessionId" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <div class="input-group">
-                        <select asp-for="ProfessionId" class="form-control" asp-items="ViewBag.ProfessionId">
-                            <option value=""></option>
-                        </select> <span class="input-group-btn"><a class="btn btn-sm btn-default" asp-area="Admin" asp-controller="Profession" asp-action="Index">...</a></span>
+                <div class="form-group">
+                    <label asp-for="ImagePath" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input title="ImageUpload" type="file" name="ImageUpload" class="form-control" />
+                        <span asp-validation-for="ImagePath" class="text-danger"></span>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="EducationLevelId" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <div class="input-group">
-                        <select asp-for="EducationLevelId" class="form-control" asp-items="ViewBag.EducationLevelId">
-                            <option value=""></option>
-                        </select> <span class="input-group-btn"><a class="btn btn-sm btn-default" asp-area="Admin" asp-controller="EducationLevels" asp-action="Index">...</a></span>
+                <div class="form-group">
+                    <label asp-for="UserName" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="UserName" class="form-control" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="UniversityId" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <div class="input-group">
-                        <select asp-for="UniversityId" class="form-control" asp-items="ViewBag.UniversityId">
-                            <option value=""></option>
-                        </select> <span class="input-group-btn"><a class="btn btn-sm btn-default" asp-area="Admin" asp-controller="University" asp-action="Index">...</a></span>
+                <div class="form-group">
+                    <label asp-for="FirstName" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="DepartmentId" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <div class="input-group">
-                        <select asp-for="DepartmentId" class="form-control" asp-items="ViewBag.DepartmentId">
-                            <option value=""></option>
-                        </select> <span class="input-group-btn"><a class="btn btn-sm btn-default" asp-area="Admin" asp-controller="Departments" asp-action="Index">...</a></span>
+                <div class="form-group">
+                    <label asp-for="LastName" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="BirthDate" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <input asp-for="BirthDate" class="form-control" />
-                    <span asp-validation-for="BirthDate" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="ResumeFile" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <input title="Özgeçmiş Yükle" type="file" name="resumeUpload"class="form-control" />
-                    <span asp-validation-for="ResumeFile" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="ResumeStatusId" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <div class="input-group">
-                        <select asp-for="ResumeStatusId" class="form-control" asp-items="ViewBag.ResumeStatusId">
-                            <option value=""></option>
-                        </select> <span class="input-group-btn"><a class="btn btn-sm btn-default" asp-area="Admin" asp-controller="ResumeStatus" asp-action="Index">...</a></span>
+                <div class="form-group">
+                    <label asp-for="Gender" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <select asp-for="Gender" class="form-control">
+                            <option value="1">Erkek</option>
+                            <option value="2">Kadın</option>
+                        </select>
+                        <span asp-validation-for="Gender" class="text-danger"></span>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="Skills" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <input asp-for="Skills" class="form-control" />
-                    <span asp-validation-for="Skills" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <div class="checkbox">
-                        <input asp-for="ShowInList" />
-                        <label asp-for="ShowInList"></label>
+                <div class="form-group">
+                    <label asp-for="ProfessionId" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <select asp-for="ProfessionId" class="form-control" asp-items="ViewBag.ProfessionId">
+                                <option value=""></option>
+                            </select> <span class="input-group-btn"><a class="btn btn-sm btn-default" asp-area="Admin" asp-controller="Profession" asp-action="Index">...</a></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="City" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <input asp-for="City" class="form-control" />
-                    <span asp-validation-for="City" class="text-danger"></span>
+                <div class="form-group">
+                    <label asp-for="EducationLevelId" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <select asp-for="EducationLevelId" class="form-control" asp-items="ViewBag.EducationLevelId">
+                                <option value=""></option>
+                            </select> <span class="input-group-btn"><a class="btn btn-sm btn-default" asp-area="Admin" asp-controller="EducationLevels" asp-action="Index">...</a></span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="District" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <input asp-for="District" class="form-control" />
-                    <span asp-validation-for="District" class="text-danger"></span>
+                <div class="form-group">
+                    <label asp-for="UniversityId" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <select asp-for="UniversityId" class="form-control" asp-items="ViewBag.UniversityId">
+                                <option value=""></option>
+                            </select> <span class="input-group-btn"><a class="btn btn-sm btn-default" asp-area="Admin" asp-controller="University" asp-action="Index">...</a></span>
+                        </div>
+                    </div>
                 </div>
-            </div>
+                <div class="form-group">
+                    <label asp-for="DepartmentId" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <select asp-for="DepartmentId" class="form-control" asp-items="ViewBag.DepartmentId">
+                                <option value=""></option>
+                            </select> <span class="input-group-btn"><a class="btn btn-sm btn-default" asp-area="Admin" asp-controller="Departments" asp-action="Index">...</a></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BirthDate" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="BirthDate" class="form-control" />
+                        <span asp-validation-for="BirthDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ResumeFile"  class="col-md-2 control-label" ></label>
+                    <div class="col-md-10">
+                        <input title="Özgeçmiş Yükle" type="file"  name="resumeUpload" class="form-control" />
+                        <span asp-validation-for="ResumeFile" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ResumeStatusId" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <select asp-for="ResumeStatusId" class="form-control" asp-items="ViewBag.ResumeStatusId">
+                                <option value=""></option>
+                            </select> <span class="input-group-btn"><a class="btn btn-sm btn-default" asp-area="Admin" asp-controller="ResumeStatus" asp-action="Index">...</a></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Skills" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Skills" class="form-control" />
+                        <span asp-validation-for="Skills" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <div class="checkbox">
+                            <input asp-for="ShowInList" />
+                            <label asp-for="ShowInList"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CityId" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <select asp-for="CityId" class="form-control" asp-items="ViewBag.CityId">
+                                <option value=""></option>
+                            </select> <span class="input-group-btn"><a class="btn btn-sm btn-default" asp-area="Admin" asp-controller="City" asp-action="Index">...</a></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DistrictId" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <select asp-for="DistrictId" class="form-control" asp-items="ViewBag.DistrictId">
+                                <option value=""></option>
+                            </select> <span class="input-group-btn"><a class="btn btn-sm btn-default" asp-area="Admin" asp-controller="District" asp-action="Index">...</a></span>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="form-group">
-                <label asp-for="TeacherId" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <div class="input-group">
-                        <select asp-for="TeacherId" class="form-control" asp-items="ViewBag.TeacherId">
-                            <option value=""></option>
-                        </select> <span class="input-group-btn"><a class="btn btn-sm btn-default" asp-area="Admin" asp-controller="Teacher" asp-action="Index">...</a></span>
+                <div class="form-group">
+                    <label asp-for="TeacherId" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <select asp-for="TeacherId" class="form-control" asp-items="ViewBag.TeacherId">
+                                <option value=""></option>
+                            </select> <span class="input-group-btn"><a class="btn btn-sm btn-default" asp-area="Admin" asp-controller="Teacher" asp-action="Index">...</a></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="ConsultantId" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <div class="input-group">
-                        <select asp-for="ConsultantId" class="form-control" asp-items="ViewBag.ConsultantId">
-                            <option value=""></option>
-                        </select> <span class="input-group-btn"><a class="btn btn-sm btn-default" asp-area="Admin" asp-controller="Consultant" asp-action="Index">...</a></span>
+                <div class="form-group">
+                    <label asp-for="ConsultantId" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <select asp-for="ConsultantId" class="form-control" asp-items="ViewBag.ConsultantId">
+                                <option value=""></option>
+                            </select> <span class="input-group-btn"><a class="btn btn-sm btn-default" asp-area="Admin" asp-controller="Consultant" asp-action="Index">...</a></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <div class="checkbox">
-                        <input asp-for="Approved" />
-                        <label asp-for="Approved"></label>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <div class="checkbox">
+                            <input asp-for="Approved" />
+                            <label asp-for="Approved"></label>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Kaydet" class="btn btn-primary" />
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Kaydet" class="btn btn-primary" />
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</form>
+    </form>
 
 <div>
     <a asp-action="Index">Listeye geri dön</a>

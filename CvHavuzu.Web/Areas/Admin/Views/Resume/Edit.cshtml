@@ -91,6 +91,7 @@
                 <div class="col-md-10">
                     <input title="Özgeçmiş Yükle" type="file" name="resumeUpload" class="form-control"/>
                     <span asp-validation-for="ResumeFile" class="text-danger"></span>
+                    
                 </div>
             </div>
             <div class="form-group">
@@ -116,17 +117,23 @@
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="City" class="col-md-2 control-label"></label>
+                <label asp-for="CityId" class="col-md-2 control-label"></label>
                 <div class="col-md-10">
-                    <input asp-for="City" class="form-control" />
-                    <span asp-validation-for="City" class="text-danger"></span>
+                    <div class="input-group">
+                        <select asp-for="CityId" class="form-control" asp-items="ViewBag.CityId">
+                            <option value=""></option>
+                        </select> <span class="input-group-btn"><a class="btn btn-sm btn-default" asp-area="Admin" asp-controller="City" asp-action="Index">...</a></span>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="District" class="col-md-2 control-label"></label>
+                <label asp-for="DistrictId" class="col-md-2 control-label"></label>
                 <div class="col-md-10">
-                    <input asp-for="District" class="form-control" />
-                    <span asp-validation-for="District" class="text-danger"></span>
+                    <div class="input-group">
+                        <select asp-for="DistrictId" class="form-control" asp-items="ViewBag.DistrictId">
+                            <option value=""></option>
+                        </select> <span class="input-group-btn"><a class="btn btn-sm btn-default" asp-area="Admin" asp-controller="District" asp-action="Index">...</a></span>
+                    </div>
                 </div>
             </div>
 
