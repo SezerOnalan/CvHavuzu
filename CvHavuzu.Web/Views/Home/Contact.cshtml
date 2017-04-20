@@ -22,7 +22,7 @@
                     <h4>İletişim Formu</h4>
                     @if (!String.IsNullOrEmpty(ViewBag.Message))
                     {
-                        <div class="alert alert-success">@ViewBag.Message</div>
+                    <div class="alert alert-success">@ViewBag.Message</div>
                     }
                     <form asp-controller="Home" asp-action="Contact">
                         <input type="hidden" asp-for="Ip" />

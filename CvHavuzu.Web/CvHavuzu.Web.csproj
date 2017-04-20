@@ -237,6 +237,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="1.1.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.0" />
+    <PackageReference Include="NETCore.MailKit" Version="1.0.1" />
     <PackageReference Include="Twilio" Version="5.2.1" />
   </ItemGroup>
   <ItemGroup>

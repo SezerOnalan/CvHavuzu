@@ -9,9 +9,10 @@ using CvHavuzu.Web.Models;
 namespace CvHavuzu.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170419075813_MailSettingAdded")]
+    partial class MailSettingAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
@@ -78,7 +79,7 @@ namespace CvHavuzu.Web.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cities");
+                    b.ToTable("City");
                 });
 
             modelBuilder.Entity("CvHavuzu.Web.Models.Consultant", b =>
@@ -153,7 +154,7 @@ namespace CvHavuzu.Web.Data.Migrations
 
                     b.HasIndex("CityId");
 
-                    b.ToTable("Districts");
+                    b.ToTable("District");
                 });
 
             modelBuilder.Entity("CvHavuzu.Web.Models.EducationLevel", b =>
@@ -229,7 +230,8 @@ namespace CvHavuzu.Web.Data.Migrations
 
                     b.Property<DateTime?>("BirthDate");
 
-                    b.Property<int?>("CityId");
+                    b.Property<string>("City")
+                        .HasMaxLength(200);
 
                     b.Property<int?>("ConsultantId");
 
@@ -237,7 +239,8 @@ namespace CvHavuzu.Web.Data.Migrations
 
                     b.Property<int?>("DepartmentId");
 
-                    b.Property<int?>("DistrictId");
+                    b.Property<string>("District")
+                        .HasMaxLength(200);
 
                     b.Property<int?>("EducationLevelId");
 
@@ -277,13 +280,9 @@ namespace CvHavuzu.Web.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CityId");
-
                     b.HasIndex("ConsultantId");
 
                     b.HasIndex("DepartmentId");
-
-                    b.HasIndex("DistrictId");
 
                     b.HasIndex("EducationLevelId");
 
@@ -532,10 +531,6 @@ namespace CvHavuzu.Web.Data.Migrations
 
             modelBuilder.Entity("CvHavuzu.Web.Models.Resume", b =>
                 {
-                    b.HasOne("CvHavuzu.Web.Models.City", "City")
-                        .WithMany()
-                        .HasForeignKey("CityId");
-
                     b.HasOne("CvHavuzu.Web.Models.Consultant", "Consultant")
                         .WithMany()
                         .HasForeignKey("ConsultantId");
@@ -543,10 +538,6 @@ namespace CvHavuzu.Web.Data.Migrations
                     b.HasOne("CvHavuzu.Web.Models.Department", "Department")
                         .WithMany()
                         .HasForeignKey("DepartmentId");
-
-                    b.HasOne("CvHavuzu.Web.Models.District", "District")
-                        .WithMany()
-                        .HasForeignKey("DistrictId");
 
                     b.HasOne("CvHavuzu.Web.Models.EducationLevel", "EducationLevel")
                         .WithMany()

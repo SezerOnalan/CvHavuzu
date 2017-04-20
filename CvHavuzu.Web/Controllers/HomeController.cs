@@ -7,6 +7,8 @@ using CvHavuzu.Web.Data;
 using CvHavuzu.Web.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using MimeKit;
+using MailKit.Net.Smtp;
 
 namespace CvHavuzu.Web.Controllers
 {
@@ -20,7 +22,7 @@ namespace CvHavuzu.Web.Controllers
         public IActionResult Index(string query = "")
         {
             ViewBag.Query = query;
-            if (String.IsNullOrEmpty(query)) { 
+            if (String.IsNullOrEmpty(query)) {
                 // query parametresinden değer gelmiyorsa tüm kayıtları getir
                 var resumes = _context.Resumes
                     .Include(x => x.Department)
@@ -29,12 +31,14 @@ namespace CvHavuzu.Web.Controllers
                     .Include(x => x.ResumeStatus)
                     .Include(x => x.Consultant)
                     .Include(x => x.EducationLevel)
-                    .Include(x => x.Teacher).ToList();
+                    .Include(x => x.Teacher)
+                    .Where(r => r.ShowInList == true && r.Approved == true).ToList();
                 return View(resumes);
             } else
             {
                 // query'den değer geliyorsa where metoduyla filtreleme yap
                 query = query.ToLower();
+                string[] terms =query.Split(' ');
                 var resumes = _context.Resumes
                     .Include(x => x.Department)
                     .Include(x => x.University)
@@ -42,8 +46,20 @@ namespace CvHavuzu.Web.Controllers
                     .Include(x => x.ResumeStatus)
                     .Include(x => x.Consultant)
                     .Include(x => x.EducationLevel)
-                    .Include(x => x.Teacher)
-                    .Where(r => r.FirstName.ToLower().Contains(query) || r.LastName.ToLower().Contains(query)).ToList();
+                    .Include(x => x.Teacher).Where(r => r.ShowInList == true && r.Approved == true);
+
+                   foreach (var term in terms)
+                { 
+                    resumes = resumes.Where(r => r.FirstName.ToLower().Contains(term) ||
+                    r.LastName.ToLower().Contains(term) ||
+                    r.Gender.ToString().ToLower().Contains(term) ||
+                    r.Profession.Name.ToLower().Contains(term) ||
+                    r.EducationLevel.Name.ToLower().Contains(term) ||
+                    r.University.Name.ToLower().Contains(term) ||
+                    r.Department.Name.ToLower().Contains(term) ||
+                    r.Skills.ToLower().Contains(term));
+                    }
+                    
                 return View(resumes);
             }
         }
@@ -54,7 +70,7 @@ namespace CvHavuzu.Web.Controllers
 
             return View();
         }
-       
+
 
         [HttpPost]
         [Route("iletisim")]
@@ -66,12 +82,42 @@ namespace CvHavuzu.Web.Controllers
             {
                 _context.Add(contact);
                 await _context.SaveChangesAsync();
+
+                MailSetting mailSetting;
+                mailSetting = _context.MailSettings.FirstOrDefault();
+                string FromAddress = mailSetting.FromAddress;
+                string FromAddressTitle = mailSetting.FromAddressTitle;
+
+                string ToAddress = contact.Email;
+                string ToAddressTitle = contact.FullName;
+                string Subject = mailSetting.Subject;
+                string BodyContent = mailSetting.BodyContent;
+
+                string SmptServer = mailSetting.SmptServer;
+                int SmptPortNumber = mailSetting.SmptPortNumber;
+
+                var mimeMessage = new MimeMessage();
+                mimeMessage.From.Add(new MailboxAddress(FromAddressTitle, FromAddress));
+                mimeMessage.To.Add(new MailboxAddress(ToAddressTitle, ToAddress));
+                mimeMessage.Subject = Subject;
+                mimeMessage.Body = new TextPart("plain")
+                {
+                    Text = BodyContent
+                };
+
+                using (var client = new SmtpClient())
+                {
+                    client.Connect(SmptServer, SmptPortNumber, false);
+                    client.Authenticate(mailSetting.FromAddress, mailSetting.FromAddressPassword);
+                    client.Send(mimeMessage);
+                    client.Disconnect(true);
+                }
                 ViewBag.Message = "Mesajınız başarıyla gönderildi.";
 
             }
-            
+
             return View(contact);
-            
+
         }
 
         [Route("iletisim")]

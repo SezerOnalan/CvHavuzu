@@ -34,10 +34,10 @@
                 <ul class="nav navbar-nav">
                     <li><a asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Anasayfa</a></li>
 
-                    
+
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">Modüller <span class="caret"></span></a>
-                        
+
                         <ul class="dropdown-menu">
                             <li><a asp-area="Admin" asp-controller="Resume" asp-action="index">Özgeçmişler</a></li>
                             <li><a asp-area="Admin" asp-controller="ResumeStatus" asp-action="index">Durumlar</a></li>
@@ -51,12 +51,20 @@
                             <li><a asp-area="Admin" asp-controller="District" asp-action="index">İlçeler</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">Üyeler</a></li>
-                    <li><a href="#">Ayarlar</a></li>
-                    
-                </ul>
-                @await Html.PartialAsync("_LoginPartial")
-            </div>
+                    <li><a href="/Admin/Dashboard/Users">Üyeler</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown">Ayarlar <span class="caret"></span></a>
+
+                        <ul class="dropdown-menu">
+                            
+                            <li><a asp-area="Admin" asp-controller="Setting" asp-action="index">Site Ayarlar</a></li>
+                            <li><a asp-area="Admin" asp-controller="MailSetting" asp-action="index">Mail Ayarları</a></li>
+                            </ul>
+                            <li><a asp-area="Admin" asp-controller="Contact" asp-action="index">Gelen Mesajlar</a></li>
+
+                        </ul>
+                        @await Html.PartialAsync("_LoginPartial")
+</div>
         </div>
     </nav>
     <div class="container body-content">
