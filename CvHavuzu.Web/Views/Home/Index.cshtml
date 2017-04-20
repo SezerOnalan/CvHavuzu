@@ -84,9 +84,9 @@
                                         <footer>
                                             <p class="status"><strong>Güncellenme Tarihi:</strong>@item.UpdateDate</p>
 
-                                            <div class="action-btn">
-                                                <a class="btn btn-xs btn-success" id:"cv" href="~/uploads/resumes/@Html.DisplayFor(model => item.ResumeFile)"
-                                                   download="@Html.DisplayFor(model => item.ResumeFile)">CV İndir</a>
+                                            <div class="action-btn" >
+                                                <a class="btn btn-xs btn-success"  asp-action="DownloadDetails" asp-controller="Home" asp-route-id="@item.Id">Cv İndir</a>
+
                                                 <a class="btn btn-xs btn-gray" href="./Admin/Resume/Edit?id=@item.Id">Düzenle</a>
                                                 <a class="btn btn-xs btn-danger" href="./Admin/Resume/Delete?id=@item.Id">Yayından Kaldır</a>
                                             </div>

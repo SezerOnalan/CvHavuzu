@@ -9,18 +9,43 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MimeKit;
 using MailKit.Net.Smtp;
+using Microsoft.AspNetCore.Hosting;
 
 namespace CvHavuzu.Web.Controllers
 {
     public class HomeController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        public HomeController(ApplicationDbContext context) : base(context)
+        private IHostingEnvironment env;
+        public HomeController(ApplicationDbContext context, IHostingEnvironment _env) : base(context)
         {
             _context = context;
+            this.env = _env;
         }
+
+        public IActionResult DownloadDetails(int Id)
+        {
+            Resume resume = _context.Resumes.FirstOrDefault(r => r.Id == Id);
+            Stat stat = new Stat();
+            stat.Ip = Request.HttpContext.Connection.RemoteIpAddress.ToString();
+            stat.DownloadDate = DateTime.Now;
+            stat.ResumeId =Id;
+            _context.Add(stat);
+            _context.SaveChanges();
+
+            string filename = resume.ResumeFile;
+            string filepath = env.WebRootPath + "\\uploads\\resumes\\" + filename;
+            byte[] filedata = System.IO.File.ReadAllBytes(filepath);
+
+            Response.Headers.Add("Content-Disposition", $"inline; filename={filename}");
+            return File(filedata, "application/octet-stream");
+
+        }
+
         public IActionResult Index(string query = "")
         {
+          
+
             ViewBag.Query = query;
             if (String.IsNullOrEmpty(query)) {
                 // query parametresinden değer gelmiyorsa tüm kayıtları getir
