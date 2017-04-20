@@ -66,8 +66,7 @@ namespace CvHavuzu.Web.Models
 
        
         [Display(Name = "Özgeçmiş Dosyası")]
-        [StringLength(200)]
-        [DataType(DataType.Upload)]
+        [StringLength(200)]   
         public string ResumeFile { get; set; }
 
         [Display(Name = "Durum")]
