@@ -87,6 +87,7 @@
                 @Html.DisplayFor(modelItem => item.AccessFailedCount)
             </td>
             <td class="dt-right text-nowrap">
+                <a class="btn btn-success" asp-action="EditRole" asp-route-id="@item.Id">Rol Değiştir</a>
                 <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Detaylar</a>
                 <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Sil</a>
             </td>

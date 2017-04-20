@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole>
+    @{
+    ViewData["Title"] = "EditRole";
+    }
+   
+
+    <table>
+    <thead>
+        <tr>
+            <th>Kullanıcı Adı:&nbsp;&nbsp;@ViewBag.UserName</th>
+        <tr>
+    </thead>
+        <tbody>
+            <tr>
+                @foreach (var item in Model)
+                {
+                   <input type="checkbox" name="role" value="@item.Name" />@item.Name<br />
+
+                }
+                <td><a class="btn btn-primary" asp-action="/Admin/Dashboard/Users" asp-route-id="@ViewBag.Id">Kaydet</a></td>
+            </tr>
+        </tbody>
+</table>

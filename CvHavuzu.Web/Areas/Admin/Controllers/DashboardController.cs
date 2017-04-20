@@ -27,6 +27,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
         }
         public IActionResult Users()
         {
+          
             var users= _userManager.Users.ToList();
             return View(users);
         }
@@ -63,15 +64,25 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var user = await context.Users.SingleOrDefaultAsync(m => m.Id == id.ToString());
+            var user = await context.Users.SingleOrDefaultAsync(m => m.Id == id);
             context.Users.Remove(user);
             await context.SaveChangesAsync();
             return RedirectToAction("Users");
         }
 
-        private bool ResumeExists(string id)
+        private bool UsersExists(string id)
         {
             return context.Users.Any(e => e.Id == id);
+        }
+        public async Task<IActionResult> EditRole(string id)
+        {
+            var user = await context.Users.SingleOrDefaultAsync(m => m.Id == id);
+            ViewBag.UserName = user.UserName;
+            ViewBag.Id = user.Id;
+            var Roles = context.Roles.ToList();
+            return View(Roles);
+
+
         }
     }
 }
