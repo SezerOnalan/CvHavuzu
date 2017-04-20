@@ -31,7 +31,7 @@ namespace CvHavuzu.Web.Controllers
             stat.Ip = Request.HttpContext.Connection.RemoteIpAddress.ToString();
             stat.DownloadDate = DateTime.Now;
             stat.ResumeId =Id;
-            stat.ResumeFullName = resume.FirstName + resume.LastName;
+            stat.ResumeFullName = resume.FirstName + " " + resume.LastName;
             _context.Add(stat);
             _context.SaveChanges();
 
