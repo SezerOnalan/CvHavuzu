@@ -167,7 +167,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ImagePath,UserName,FirstName,LastName,Gender,ProfessionId,EducationLevelId,UniversityId,DepartmentId,BirthDate,ResumeFile,ResumeStatusId,Skills,ShowInList,CityId,DistrictId,TeacherId,ConsultantId,Approved,CreateDate,UpdateDate")] Resume resume, IFormFile imageUpload, IFormFile resumeUpload)
+        public async Task<IActionResult> Edit(int id, Resume resume, IFormFile imageUpload, IFormFile resumeUpload)
         {
             if (id != resume.Id)
             {
