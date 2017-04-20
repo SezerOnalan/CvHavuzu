@@ -23,7 +23,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
         // GET: Admin/District
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.District.Include(d => d.City);
+            var applicationDbContext = _context.Districts.Include(d => d.City);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -35,7 +35,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var district = await _context.District
+            var district = await _context.Districts
                 .Include(d => d.City)
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (district == null)
@@ -49,7 +49,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
         // GET: Admin/District/Create
         public IActionResult Create()
         {
-            ViewData["CityId"] = new SelectList(_context.City, "Id", "Id");
+            ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Id");
             return View();
         }
 
@@ -66,7 +66,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["CityId"] = new SelectList(_context.City, "Id", "Id", district.CityId);
+            ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Id", district.CityId);
             return View(district);
         }
 
@@ -78,12 +78,12 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var district = await _context.District.SingleOrDefaultAsync(m => m.Id == id);
+            var district = await _context.Districts.SingleOrDefaultAsync(m => m.Id == id);
             if (district == null)
             {
                 return NotFound();
             }
-            ViewData["CityId"] = new SelectList(_context.City, "Id", "Id", district.CityId);
+            ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Id", district.CityId);
             return View(district);
         }
 
@@ -119,7 +119,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["CityId"] = new SelectList(_context.City, "Id", "Id", district.CityId);
+            ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Id", district.CityId);
             return View(district);
         }
 
@@ -131,7 +131,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var district = await _context.District
+            var district = await _context.Districts
                 .Include(d => d.City)
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (district == null)
@@ -147,15 +147,15 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var district = await _context.District.SingleOrDefaultAsync(m => m.Id == id);
-            _context.District.Remove(district);
+            var district = await _context.Districts.SingleOrDefaultAsync(m => m.Id == id);
+            _context.Districts.Remove(district);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
         private bool DistrictExists(int id)
         {
-            return _context.District.Any(e => e.Id == id);
+            return _context.Districts.Any(e => e.Id == id);
         }
     }
 }
