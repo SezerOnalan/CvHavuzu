@@ -9,6 +9,9 @@ using CvHavuzu.Web.Data;
 using CvHavuzu.Web.Models;
 using CvHavuzu.Web.Controllers;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace CvHavuzu.Web.Controllers
 {
@@ -16,11 +19,15 @@ namespace CvHavuzu.Web.Controllers
     public class MyResumeController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        
+        private IHostingEnvironment env;
 
-        public MyResumeController(ApplicationDbContext context) : base(context)
+        private string FDir_AppData = "~/App_Data/";
+
+
+        public MyResumeController(IHostingEnvironment _env, ApplicationDbContext context, ApplicationDbContext _contx) : base(context)
         {
-            _context = context;    
+            _context = context;
+            this.env = _env;
         }
 
         // GET: MyResume
@@ -76,13 +83,35 @@ namespace CvHavuzu.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Resume resume)
+        public async Task<IActionResult> Create(Resume resume, IFormFile imageUpload, IFormFile resumeUpload)
         {
             resume.UserName = User.Identity.Name;
            
             if (ModelState.IsValid)
             {
                 resume.Approved = false;
+                // file upload iþlemi yapýlýr
+
+                if (imageUpload != null && imageUpload.Length > 0)
+                {
+                    var filePath = new Random().Next(9999).ToString() + imageUpload.FileName;
+                    using (var stream = new FileStream(env.WebRootPath + "\\uploads\\resumes\\images\\" + filePath, FileMode.Create))
+                    {
+                        imageUpload.CopyTo(stream);
+                    }
+                    resume.ImagePath = filePath;
+                }
+
+
+                if (resumeUpload != null && resumeUpload.Length > 0)
+                {
+                    var filePath = new Random().Next(9999).ToString() + resumeUpload.FileName;
+                    using (var stream = new FileStream(env.WebRootPath + "\\uploads\\resumes\\" + filePath, FileMode.Create))
+                    {
+                        resumeUpload.CopyTo(stream);
+                    }
+                    resume.ResumeFile = filePath;
+                }
                 _context.Add(resume);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -125,24 +154,42 @@ namespace CvHavuzu.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Resume resume)
+        public async Task<IActionResult> Edit(int id, Resume resume, IFormFile imageUpload, IFormFile resumeUpload)
         {   if (id != resume.Id)
             {
                 return NotFound();
             }
             
-            //var resumeOrj = await _context.Resumes.SingleOrDefaultAsync(m => m.Id == id && m.UserName == User.Identity.Name);
-            //if (resumeOrj == null)
-            //{
-            //    return NotFound();
-            //}
+          
             resume.UserName = User.Identity.Name;
             
             if (ModelState.IsValid)
             {
                 try
                 {
-                    
+                    // file upload iþlemi yapýlýr
+
+                    if (imageUpload != null && imageUpload.Length > 0)
+                    {
+                        var filePath = new Random().Next(9999).ToString() + imageUpload.FileName;
+                        using (var stream = new FileStream(env.WebRootPath + "\\uploads\\resumes\\images\\" + filePath, FileMode.Create))
+                        {
+                            imageUpload.CopyTo(stream);
+                        }
+                        resume.ImagePath = filePath;
+                    }
+
+
+                    if (resumeUpload != null && resumeUpload.Length > 0)
+                    {
+                        var filePath = new Random().Next(9999).ToString() + resumeUpload.FileName;
+                        using (var stream = new FileStream(env.WebRootPath + "\\uploads\\resumes\\" + filePath, FileMode.Create))
+                        {
+                            resumeUpload.CopyTo(stream);
+                        }
+                        resume.ResumeFile = filePath;
+                    }
+
                     resume.Approved = false;
                     _context.Update(resume);
                     await _context.SaveChangesAsync();

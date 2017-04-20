@@ -17,7 +17,7 @@
             <h2>Özgecmiş Oluştur</h2>
             <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
             <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.min.css" />
-            <form asp-action="Create">
+            <form asp-action="Create" enctype="multipart/form-data">
                 <div class="form-horizontal">
                     <hr />
                     <input type="hidden" asp-for="UserName" value="@User.Identity.Name" />
@@ -26,7 +26,7 @@
                         <div class="form-group">
                             <label asp-for="ImagePath" class="col-md-2 control-label"></label>
                             <div class="col-md-10">
-                                <input asp-for="ImagePath" title="Resim Yükle" type="file" name="file" class="form-control" />
+                                <input title="ImageUpload" type="file" name="ImageUpload" class="form-control" />
                                 <span asp-validation-for="ImagePath" class="text-danger"></span>
                             </div>
                         </div>
@@ -107,7 +107,7 @@
                         <div class="form-group">
                             <label asp-for="ResumeFile" class="col-md-2 control-label"></label>
                             <div class="col-md-10">
-                                <input asp-for="ResumeFile" title="Özgeçmiş Yükle" type="file" name="file" class="form-control" />
+                                <input title="Özgeçmiş Yükle" type="file" name="resumeUpload" class="form-control" />
                                 <span asp-validation-for="ResumeFile" class="text-danger"></span>
                             </div>
                         </div>
@@ -177,6 +177,10 @@
             <div>
                 <a asp-action="Index">Listeye geri dön</a>
             </div>
+            </div>
+        </div>
+    </div>
+
 
             @section Scripts {
                 <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
