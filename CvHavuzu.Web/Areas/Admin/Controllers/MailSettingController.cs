@@ -28,6 +28,18 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
             if (cms == null)
             {
                 cms = new MailSetting();
+                cms.FromAddress="denemecvhavuzu@gmail.com";
+                cms.FromAddressPassword="123:Asdfg";
+                cms.FromAddressTitle = "Cv Havuzu";
+                cms.Subject = "Ýletiþim"; 
+                cms.BodyContent = "Mesajýnýz Bize Ýletilmiþtir. Ýlginiz Ýçin Teþekkür Ederiz";
+                cms.SmptServer = "smtp.gmail.com";
+                cms.SmptPortNumber = 587;
+                context.Add(cms);
+                context.SaveChanges();
+
+
+
             }
             return View(cms);
         }
