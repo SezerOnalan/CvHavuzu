@@ -97,6 +97,7 @@ namespace CvHavuzu.Web
                 AppSecret = Configuration["Authentication:LinkedIn:AppSecret"],
                 ProfileScheme = LinkedInDefaults.ProfileLoadFormat.AppDefined
             });
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute(name: "areaRoute",
