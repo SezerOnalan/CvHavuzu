@@ -9,10 +9,11 @@ namespace CvHavuzu.Web.Models
     public class City
     {
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage ="şehir adı alanı zorunludur")]
         [StringLength(200)]
         [Display(Name = "Şehir")]
         public string Name { get; set; }
         public virtual ICollection<District> Districts { get; set; }
+      
     }
 }
