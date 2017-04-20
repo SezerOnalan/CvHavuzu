@@ -16,6 +16,7 @@ else
         <thead>
             <tr>
                 <th>Özgeçmiş Id</th>
+                <th>Özgeçmiş Sahibi</th>
                 <th>IP</th>
                 <th>İndirilme Tarihi</th>
                 <th>Tam Ad</th>
@@ -29,7 +30,8 @@ else
             {
                 <tr>
                     <td><a href="/Admin/Resume/Details/?id=@stat.ResumeId">@stat.ResumeId</a></td>
-                    <td>@stat.Ip</td>
+                    <td>@stat.ResumeFullName</td>
+                    <td>@stat.Ip</td>              
                     <td>@stat.DownloadDate</td>
                     <td>@stat.Fullname</td>
                     <td>@stat.CompanyName</td>

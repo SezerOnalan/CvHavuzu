@@ -25,11 +25,13 @@ namespace CvHavuzu.Web.Controllers
 
         public IActionResult DownloadDetails(int Id)
         {
-            Resume resume = _context.Resumes.FirstOrDefault(r => r.Id == Id);
+            Resume resume = new Resume();
+            resume = _context.Resumes.FirstOrDefault(r => r.Id == Id);
             Stat stat = new Stat();
             stat.Ip = Request.HttpContext.Connection.RemoteIpAddress.ToString();
             stat.DownloadDate = DateTime.Now;
             stat.ResumeId =Id;
+            stat.ResumeFullName = resume.FirstName + resume.LastName;
             _context.Add(stat);
             _context.SaveChanges();
 
