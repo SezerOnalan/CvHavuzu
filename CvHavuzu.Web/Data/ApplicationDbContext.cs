@@ -21,8 +21,8 @@ namespace CvHavuzu.Web.Data
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Stat> Stats { get; set; }
         public DbSet<Contact> Contacts { get; set; }
-        public DbSet<CvHavuzu.Web.Models.City> City { get; set; }
-        public DbSet<CvHavuzu.Web.Models.District> District { get; set; }
+        public DbSet<CvHavuzu.Web.Models.City> Cities { get; set; }
+        public DbSet<CvHavuzu.Web.Models.District> Districts { get; set; }
         public DbSet<MailSetting> MailSettings { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)

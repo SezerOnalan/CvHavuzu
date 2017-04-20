@@ -23,7 +23,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
         // GET: Admin/City
         public async Task<IActionResult> Index()
         {
-            return View(await _context.City.ToListAsync());
+            return View(await _context.Cities.ToListAsync());
         }
 
         // GET: Admin/City/Details/5
@@ -34,7 +34,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var city = await _context.City
+            var city = await _context.Cities
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (city == null)
             {
@@ -74,7 +74,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var city = await _context.City.SingleOrDefaultAsync(m => m.Id == id);
+            var city = await _context.Cities.SingleOrDefaultAsync(m => m.Id == id);
             if (city == null)
             {
                 return NotFound();
@@ -125,7 +125,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var city = await _context.City
+            var city = await _context.Cities
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (city == null)
             {
@@ -140,15 +140,15 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var city = await _context.City.SingleOrDefaultAsync(m => m.Id == id);
-            _context.City.Remove(city);
+            var city = await _context.Cities.SingleOrDefaultAsync(m => m.Id == id);
+            _context.Cities.Remove(city);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
         private bool CityExists(int id)
         {
-            return _context.City.Any(e => e.Id == id);
+            return _context.Cities.Any(e => e.Id == id);
         }
     }
 }
