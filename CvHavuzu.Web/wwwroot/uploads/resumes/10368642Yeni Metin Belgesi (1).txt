@@ -1,0 +1,31 @@
+Ado.net
+aql connection
+sql commqnd
+sql adapter
+dataTable
+dataRow
+DataColum
+DataSet
+
+/////https://www.connectionstrings.com/ databaselere baglanma yöntemleri burda var
+
+
+Kütüphane yazýlýmý
+Kitaplarýn listesini Tutacak, Yeni kitap kaydý alacak
+
+////////////27/03/2017////////////////////////////////
+orm- objet- relation maping
+
+LiNQ-
+
+
+https://themeforest.net/?ref=myrthosster
+
+https://modernpathshala.com/Learn/HTML5/Quiz
+
+
+https://docs.microsoft.com/en-us/aspnet/web-forms/overview/security/create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset
+
+https://docs.microsoft.com/en-us/aspnet/identity/overview/features-api/account-confirmation-and-password-recovery-with-aspnet-identity
+
+

@@ -56,7 +56,7 @@
                                                     <h5>@(item.Profession != null ? item.Profession.Name : string.Empty)</h5>
                                                 </div>
                                                 <div class="header-meta">
-                                                    <span class="location">@(item.City != null ? item.City : string.Empty) / @(item.District != null ? item.District : string.Empty)</span>
+                                                    <span class="location">@(item.City != null ? item.City.Name : string.Empty) / @(item.District != null ? item.District.Name : string.Empty)</span>
                                                     <span class="fa fa-graduation-cap"></span> <span> @(item.University != null ? item.University.Name : string.Empty) - @(item.Department != null ? item.Department.Name : string.Empty)</span>
                                                 </div>
                                             </div>

@@ -9,9 +9,10 @@ using CvHavuzu.Web.Models;
 namespace CvHavuzu.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170419085537_district")]
+    partial class district
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
@@ -168,42 +169,6 @@ namespace CvHavuzu.Web.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("EducationLevels");
-                });
-
-            modelBuilder.Entity("CvHavuzu.Web.Models.MailSetting", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("BodyContent")
-                        .IsRequired()
-                        .HasMaxLength(200);
-
-                    b.Property<string>("FromAddress")
-                        .IsRequired()
-                        .HasMaxLength(200);
-
-                    b.Property<string>("FromAddressPassword")
-                        .IsRequired()
-                        .HasMaxLength(200);
-
-                    b.Property<string>("FromAddressTitle")
-                        .IsRequired()
-                        .HasMaxLength(200);
-
-                    b.Property<int>("SmptPortNumber");
-
-                    b.Property<string>("SmptServer")
-                        .IsRequired()
-                        .HasMaxLength(200);
-
-                    b.Property<string>("Subject")
-                        .IsRequired()
-                        .HasMaxLength(200);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MailSettings");
                 });
 
             modelBuilder.Entity("CvHavuzu.Web.Models.Profession", b =>

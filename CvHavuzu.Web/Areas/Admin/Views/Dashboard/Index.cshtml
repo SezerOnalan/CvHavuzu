@@ -28,7 +28,7 @@ else
             @foreach (var stat in Model)
             {
                 <tr>
-                    <td><a href="/Admin/Resume/Edit/@stat.ResumeId">@stat.ResumeId</a></td>
+                    <td><a href="/Admin/Resume/Details/?id=@stat.ResumeId">@stat.ResumeId</a></td>
                     <td>@stat.Ip</td>
                     <td>@stat.DownloadDate</td>
                     <td>@stat.Fullname</td>
