@@ -63,15 +63,24 @@
 
                                             <p style="padding-top:10px">
                                                 @{
-                                                    var now = DateTime.Now;
-                                                    int age = now.Year - item.BirthDate.Value.Year;
-                                                    if (now.Month < item.BirthDate.Value.Month || (now.Month == item.BirthDate.Value.Month && now.Day < item.BirthDate.Value.Day))
-                                                    { age--;
+                                                    int age;
+                                                    if (!item.BirthDate.HasValue)
+                                                    {
+                                                        age = 0;
+
+                                                    }else {
+
+                                                        var now = DateTime.Now;
+                                                        age = now.Year - item.BirthDate.Value.Year;
+                                                        if (now.Month < item.BirthDate.Value.Month || (now.Month == item.BirthDate.Value.Month && now.Day < item.BirthDate.Value.Day))
+                                                        { age--;
+                                                        }
                                                     }
+
 
                                                 }
                                                 <b>Cinsiyet : </b> @Html.DisplayFor(modelItem => item.Gender)<br />
-                                                <b> Yaş : @age</b>
+                                                <b> Yaş : @(age==0?string.Empty:age.ToString())</b>
 
 
                                                 <br />
