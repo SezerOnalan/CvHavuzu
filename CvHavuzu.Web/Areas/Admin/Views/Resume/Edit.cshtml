@@ -90,6 +90,7 @@
                 <label asp-for="ResumeFile" class="col-md-2 control-label"></label>
                 <div class="col-md-10">
                     <input title="Özgeçmiş Yükle" type="file" name="resumeUpload" class="form-control"/>
+                    <input asp-for="ResumeFile" type="hidden"/>
                     <span asp-validation-for="ResumeFile" class="text-danger"></span>
                     
                 </div>
