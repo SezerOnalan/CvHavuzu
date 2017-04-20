@@ -59,6 +59,8 @@ namespace CvHavuzu.Web.Controllers
                     .Include(x => x.Consultant)
                     .Include(x => x.EducationLevel)
                     .Include(x => x.Teacher)
+                    .Include(x => x.City)
+                    .Include(x => x.District)
                     .Where(r => r.ShowInList == true && r.Approved == true).ToList();
                 return View(resumes);
             } else
@@ -73,7 +75,10 @@ namespace CvHavuzu.Web.Controllers
                     .Include(x => x.ResumeStatus)
                     .Include(x => x.Consultant)
                     .Include(x => x.EducationLevel)
-                    .Include(x => x.Teacher).Where(r => r.ShowInList == true && r.Approved == true);
+                    .Include(x => x.Teacher)
+                    .Include(x => x.City)
+                    .Include(x => x.District)
+                    .Where(r => r.ShowInList == true && r.Approved == true);
 
                    foreach (var term in terms)
                 { 
@@ -84,6 +89,8 @@ namespace CvHavuzu.Web.Controllers
                     r.EducationLevel.Name.ToLower().Contains(term) ||
                     r.University.Name.ToLower().Contains(term) ||
                     r.Department.Name.ToLower().Contains(term) ||
+                    r.City.Name.ToLower().Contains(term) ||
+                    r.District.Name.ToLower().Contains(term) ||
                     r.Skills.ToLower().Contains(term));
                     }
                     
