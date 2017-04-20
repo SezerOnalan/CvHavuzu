@@ -34,7 +34,7 @@ namespace CvHavuzu.Web.Controllers
         public async Task<IActionResult> Index()
         {
             
-                var applicationDbContext = _context.Resumes.Include(r => r.Consultant).Include(r => r.Department).Include(r => r.EducationLevel).Include(r => r.Profession).Include(r => r.ResumeStatus).Include(r => r.Teacher).Include(r => r.University).Where(r=>r.UserName==User.Identity.Name);
+                var applicationDbContext = _context.Resumes.Include(r => r.Consultant).Include(r => r.Department).Include(r => r.EducationLevel).Include(r => r.Profession).Include(r => r.ResumeStatus).Include(r => r.Teacher).Include(r => r.University).Include(r=>r.City).Include(r=>r.District).Where(r=>r.UserName==User.Identity.Name);
                 return View(await applicationDbContext.ToListAsync());
           
         }
@@ -55,6 +55,8 @@ namespace CvHavuzu.Web.Controllers
                 .Include(r => r.ResumeStatus)
                 .Include(r => r.Teacher)
                 .Include(r => r.University)
+                .Include(r => r.City)
+                .Include(r => r.District)
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (resume == null)
             {
@@ -67,12 +69,14 @@ namespace CvHavuzu.Web.Controllers
         // GET: MyResume/Create
         public IActionResult Create()
         {
-            
+
             ViewData["ConsultantId"] = new SelectList(_context.Consultants, "Id", "Fullname");
             ViewData["DepartmentId"] = new SelectList(_context.Departments, "Id", "Name");
             ViewData["EducationLevelId"] = new SelectList(_context.EducationLevels, "Id", "Name");
             ViewData["ProfessionId"] = new SelectList(_context.Professions, "Id", "Name");
             ViewData["ResumeStatusId"] = new SelectList(_context.ResumesStatuses, "Id", "Name");
+            ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Name");
+            ViewData["DistrictId"] = new SelectList(_context.Districts, "Id", "Name");
             ViewData["TeacherId"] = new SelectList(_context.Teachers, "Id", "Fullname");
             ViewData["UniversityId"] = new SelectList(_context.Universities, "Id", "Name");
             return View();
@@ -121,6 +125,8 @@ namespace CvHavuzu.Web.Controllers
             ViewData["EducationLevelId"] = new SelectList(_context.EducationLevels, "Id", "Name", resume.EducationLevelId);
             ViewData["ProfessionId"] = new SelectList(_context.Professions, "Id", "Name", resume.ProfessionId);
             ViewData["ResumeStatusId"] = new SelectList(_context.ResumesStatuses, "Id", "Name", resume.ResumeStatusId);
+            ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Name", resume.CityId);
+            ViewData["DistrictId"] = new SelectList(_context.Districts, "Id", "Name", resume.DistrictId);
             ViewData["TeacherId"] = new SelectList(_context.Teachers, "Id", "Fullname", resume.TeacherId);
             ViewData["UniversityId"] = new SelectList(_context.Universities, "Id", "Name", resume.UniversityId);
             return View(resume);
@@ -144,6 +150,8 @@ namespace CvHavuzu.Web.Controllers
             ViewData["EducationLevelId"] = new SelectList(_context.EducationLevels, "Id", "Name", resume.EducationLevelId);
             ViewData["ProfessionId"] = new SelectList(_context.Professions, "Id", "Name", resume.ProfessionId);
             ViewData["ResumeStatusId"] = new SelectList(_context.ResumesStatuses, "Id", "Name", resume.ResumeStatusId);
+            ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Name", resume.CityId);
+            ViewData["DistrictId"] = new SelectList(_context.Districts, "Id", "Name", resume.DistrictId);
             ViewData["TeacherId"] = new SelectList(_context.Teachers, "Id", "Fullname", resume.TeacherId);
             ViewData["UniversityId"] = new SelectList(_context.Universities, "Id", "Name", resume.UniversityId);
             return View(resume);
@@ -212,6 +220,8 @@ namespace CvHavuzu.Web.Controllers
             ViewData["EducationLevelId"] = new SelectList(_context.EducationLevels, "Id", "Name", resume.EducationLevelId);
             ViewData["ProfessionId"] = new SelectList(_context.Professions, "Id", "Name", resume.ProfessionId);
             ViewData["ResumeStatusId"] = new SelectList(_context.ResumesStatuses, "Id", "Name", resume.ResumeStatusId);
+            ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Name", resume.CityId);
+            ViewData["DistrictId"] = new SelectList(_context.Districts, "Id", "Name", resume.DistrictId);
             ViewData["TeacherId"] = new SelectList(_context.Teachers, "Id", "Fullname", resume.TeacherId);
             ViewData["UniversityId"] = new SelectList(_context.Universities, "Id", "Name", resume.UniversityId);
             return View(resume);
@@ -231,6 +241,8 @@ namespace CvHavuzu.Web.Controllers
                 .Include(r => r.EducationLevel)
                 .Include(r => r.Profession)
                 .Include(r => r.ResumeStatus)
+                .Include(r => r.City)
+                .Include(r => r.District)
                 .Include(r => r.Teacher)
                 .Include(r => r.University)
                 .SingleOrDefaultAsync(m => m.Id == id);
