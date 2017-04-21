@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using MimeKit;
 using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Hosting;
+using PagedList.Core;
 
 namespace CvHavuzu.Web.Controllers
 {
@@ -55,7 +56,7 @@ namespace CvHavuzu.Web.Controllers
 
         }
 
-        public IActionResult Index(string query = "")
+        public IActionResult Index(string query = "", int page = 1)
         {
           
 
@@ -72,7 +73,7 @@ namespace CvHavuzu.Web.Controllers
                     .Include(x => x.Teacher)
                     .Include(x => x.City)
                     .Include(x => x.District)
-                    .Where(r => r.ShowInList == true && r.Approved == true).ToList();
+                    .Where(r => r.ShowInList == true && r.Approved == true).ToPagedList<Resume>(page, 10);
                 return View(resumes);
             } else
             {
@@ -105,7 +106,7 @@ namespace CvHavuzu.Web.Controllers
                     r.Skills.ToLower().Contains(term));
                     }
                     
-                return View(resumes);
+                return View(resumes.ToPagedList<Resume>(page, 10));
             }
         }
 
