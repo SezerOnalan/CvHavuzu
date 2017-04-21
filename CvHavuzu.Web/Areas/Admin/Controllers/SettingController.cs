@@ -59,9 +59,10 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
                     s.Facebook = setting.Facebook;
                     s.Twitter = setting.Twitter;
                     s.LinkedIn = setting.LinkedIn;
+                    s.About = setting.About;
 
                     // file upload iþlemi yapýlýr
-                    
+
                     if (logoUpload != null && logoUpload.Length > 0)
                     {
                         var filePath = new Random().Next(9999).ToString() + logoUpload.FileName;
