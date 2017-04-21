@@ -94,6 +94,7 @@ namespace CvHavuzu.Web.Controllers
             if (ModelState.IsValid)
             {
                 resume.Approved = false;
+                resume.ShowInList = false;
                 // file upload iþlemi yapýlýr
 
                 if (imageUpload != null && imageUpload.Length > 0)
@@ -199,6 +200,7 @@ namespace CvHavuzu.Web.Controllers
                     }
 
                     resume.Approved = false;
+                    resume.ShowInList = false;
                     _context.Update(resume);
                     await _context.SaveChangesAsync();
                 }
