@@ -23,7 +23,18 @@ namespace CvHavuzu.Web.Controllers
             this.env = _env;
         }
 
-        public IActionResult DownloadDetails(int Id)
+        public IActionResult HideInList(int Id)
+        {
+            Resume resume = new Resume();
+            resume = _context.Resumes.FirstOrDefault(r => r.Id == Id);
+            resume.ShowInList = false;
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+
+        }
+
+
+            public IActionResult DownloadDetails(int Id)
         {
             Resume resume = new Resume();
             resume = _context.Resumes.FirstOrDefault(r => r.Id == Id);
