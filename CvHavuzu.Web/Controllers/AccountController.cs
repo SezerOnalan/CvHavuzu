@@ -13,6 +13,7 @@ using CvHavuzu.Web.Models;
 using CvHavuzu.Web.Models.AccountViewModels;
 using CvHavuzu.Web.Services;
 using CvHavuzu.Web.Data;
+using PaulMiami.AspNetCore.Mvc.Recaptcha;
 
 namespace CvHavuzu.Web.Controllers
 {
@@ -25,6 +26,7 @@ namespace CvHavuzu.Web.Controllers
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
         private readonly string _externalCookieScheme;
+        
 
         public AccountController(ApplicationDbContext context,
             UserManager<ApplicationUser> userManager,
@@ -55,20 +57,25 @@ namespace CvHavuzu.Web.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
+       
 
-        //
+        
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [ValidateRecaptcha]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
+            
+            
             if (ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+                
                 if (result.Succeeded)
                 {
                     _logger.LogInformation(1, "User logged in.");
@@ -84,9 +91,9 @@ namespace CvHavuzu.Web.Controllers
                     return View("Lockout");
                 }
                 else
-                {
+                {                
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return View(model);
+                    return View(model);                 
                 }
             }
 
