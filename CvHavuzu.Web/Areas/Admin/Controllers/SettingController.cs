@@ -59,6 +59,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
                     s.Facebook = setting.Facebook;
                     s.Twitter = setting.Twitter;
                     s.LinkedIn = setting.LinkedIn;
+                    s.About = setting.About;
 
                     // file upload iþlemi yapýlýr
 
