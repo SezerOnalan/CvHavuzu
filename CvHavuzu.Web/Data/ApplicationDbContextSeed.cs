@@ -44,7 +44,7 @@ namespace CvHavuzu.Web.Data
         public static void AddSettings(ApplicationDbContext context)
         {
             var s = new Setting();
-            s.Title = "Nitelik Bilişim Uzmanı CV Havuzu";
+            s.Title = "Nitelikli Bilişim Uzmanı CV Havuzu";
             s.SeoTitle = s.Title;
             s.SeoDescription = s.Title;
             s.Logo = "/uploads/logo.png";

@@ -1,7 +1,15 @@
 ﻿@{
     ViewData["Title"] = "About";
 }
-<h2>@ViewData["Title"].</h2>
-<h3>@ViewData["Message"]</h3>
-
-<p>Use this area to provide additional information.</p>
+<header class="page-header bg-img size-lg">
+    <div class="container">
+        <h1 class="text-center">Hakkımızda</h1>
+    </div>
+</header>
+<main>
+    <section>
+        <div class="container">
+            <p>@Html.Raw(ViewBag.Setting.About)</p>
+        </div>
+    </section>
+</main>
