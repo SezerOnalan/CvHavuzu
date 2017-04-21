@@ -52,9 +52,9 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
                     s.SeoTitle = setting.SeoTitle;
                     s.SeoDescription = setting.SeoDescription;
                     s.SeoKeywords = setting.SeoKeywords;
+                    s.Address = setting.Address;
                     s.Phone = setting.Phone;
                     s.Fax = setting.Fax;
-                    s.Address = setting.Address;
                     s.Mail = setting.Mail;
                     s.Facebook = setting.Facebook;
                     s.Twitter = setting.Twitter;
