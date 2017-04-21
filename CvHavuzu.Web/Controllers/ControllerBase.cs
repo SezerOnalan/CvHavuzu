@@ -23,6 +23,8 @@ namespace CvHavuzu.Web.Controllers
             {
                 var setting = db.Settings.FirstOrDefault();
                 ViewBag.Setting = setting;
+                var resume = db.Resumes.OrderByDescending(r => r.UpdateDate).ToList();
+                ViewBag.Resumes = resume;
             } else
             {
                 var setting = new Setting();

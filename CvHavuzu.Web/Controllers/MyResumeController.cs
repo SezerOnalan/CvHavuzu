@@ -22,7 +22,7 @@ namespace CvHavuzu.Web.Controllers
         private IHostingEnvironment env;
 
         private string FDir_AppData = "~/App_Data/";
-
+        private object id;
 
         public MyResumeController(IHostingEnvironment _env, ApplicationDbContext context, ApplicationDbContext _contx) : base(context)
         {
@@ -94,6 +94,7 @@ namespace CvHavuzu.Web.Controllers
             if (ModelState.IsValid)
             {
                 resume.Approved = false;
+                resume.ShowInList = false;
                 // file upload işlemi yapılır
 
                 if (imageUpload != null && imageUpload.Length > 0)
@@ -199,6 +200,7 @@ namespace CvHavuzu.Web.Controllers
                     }
 
                     resume.Approved = false;
+                    resume.ShowInList = false;
                     _context.Update(resume);
                     await _context.SaveChangesAsync();
                 }
@@ -268,6 +270,12 @@ namespace CvHavuzu.Web.Controllers
         private bool ResumeExists(int id)
         {
             return _context.Resumes.Any(e => e.Id == id);
+        }
+        public IActionResult Resumes(int id)
+        {
+
+            var resume = _context.Resumes.SingleOrDefaultAsync(m => m.Id == id);
+            return View(resume);
         }
     }
 }
