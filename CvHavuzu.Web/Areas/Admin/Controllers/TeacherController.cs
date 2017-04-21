@@ -141,9 +141,17 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var teacher = await _context.Teachers.SingleOrDefaultAsync(m => m.Id == id);
-            _context.Teachers.Remove(teacher);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
+            try
+            {
+                _context.Teachers.Remove(teacher);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("Delete", "Silme Ýþlemi Esnasýnda Hata Oluþtu.Bu Kayýdýn Baþka Kayýtlar Tarafýndan Kullanýlmadýðýna Emin Olun !!");
+                return View(teacher);
+            }
         }
 
         private bool TeacherExists(int id)
