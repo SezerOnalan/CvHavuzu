@@ -95,20 +95,30 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ImagePath,UserName,FirstName,LastName,Gender,ProfessionId,EducationLevelId,UniversityId,DepartmentId,BirthDate,ResumeFile,ResumeStatusId,Skills,ShowInList,CityId,DistrictId,TeacherId,ConsultantId,Approved,CreateDate,UpdateDate")] Resume resume, IFormFile imageUpload, IFormFile resumeUpload)
+        public async Task<IActionResult> Create(Resume resume, IFormFile imageUpload, IFormFile resumeUpload)
         {
-            if (ModelState.IsValid)
+            if (imageUpload != null && imageUpload.Length > 0 && ".gif,.jpg,.jpeg,.png".Contains(Path.GetExtension(imageUpload.FileName)) == false || imageUpload == null)
+            {
+                ModelState.AddModelError("ImageUpload", "Resim dosyasý uzantýsý .gif, .jpg, .jpeg ya da .png olmalýdýr ve alan boþ olamaz");
+            }
+            if (resumeUpload != null && resumeUpload.Length > 0 && ".pdf,.doc,.docx".Contains(Path.GetExtension(resumeUpload.FileName)) == false || resumeUpload == null)
+            {
+                ModelState.AddModelError("ResumeUpload", "Cv dosyasý uzantýsý .doc, .docx ya da .pdf olmalýdýr ve alan boþ olamaz");
+            }
+            else if (ModelState.IsValid)
             {
                 // file upload iþlemi yapýlýr
 
                 if (imageUpload != null && imageUpload.Length > 0)
                 {
-                    var filePath = new Random().Next(9999).ToString() + imageUpload.FileName;
-                    using (var stream = new FileStream(env.WebRootPath + "\\uploads\\resumes\\images\\" + filePath, FileMode.Create))
-                    {
-                        imageUpload.CopyTo(stream);
-                    }
-                    resume.ImagePath = filePath;
+                    
+                        var filePath = new Random().Next(9999).ToString() + imageUpload.FileName;
+                        using (var stream = new FileStream(env.WebRootPath + "\\uploads\\resumes\\images\\" + filePath, FileMode.Create))
+                        {
+                            imageUpload.CopyTo(stream);
+                        }
+                        resume.ImagePath = filePath;
+                   
                 }
 
 
@@ -173,9 +183,18 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
-            if (ModelState.IsValid)
+            if (imageUpload != null && imageUpload.Length > 0 && ".gif,.jpg,.jpeg,.png".Contains(Path.GetExtension(imageUpload.FileName)) == false)
             {
+                ModelState.AddModelError("ImageEdit", "Resim dosya uzantýsý .gif, .jpg, .jpeg ya da .png olmalýdýr.");
+            }
+            if (resumeUpload != null && resumeUpload.Length > 0 && ".pdf,.doc,.docx".Contains(Path.GetExtension(resumeUpload.FileName)) == false)
+            {
+                ModelState.AddModelError("ResumeEdit", "Cv dosya uzantýsý .doc, .docx ya da .pdf olmalýdýr.");
+            }
+            else if (ModelState.IsValid)
+            {
+                // file edit iþlemi yapýlýr
+              
                 try
                 {
                     // file upload iþlemi yapýlýr
