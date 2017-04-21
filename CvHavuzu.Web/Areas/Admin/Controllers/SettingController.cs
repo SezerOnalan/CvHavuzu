@@ -60,6 +60,8 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
                     s.Twitter = setting.Twitter;
                     s.LinkedIn = setting.LinkedIn;
                     s.About = setting.About;
+                    s.PrivacyPolicy = setting.PrivacyPolicy;
+                    s.TermsOfUse = setting.TermsOfUse;
 
                     // file upload iþlemi yapýlýr
 
