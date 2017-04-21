@@ -141,9 +141,16 @@ namespace CvHavuzu.Web.Areas.Admin
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var resumeStatus = await _context.ResumesStatuses.SingleOrDefaultAsync(m => m.Id == id);
+            try {
             _context.ResumesStatuses.Remove(resumeStatus);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("Delete", "Silme Ýþlemi Esnasýnda Hata Oluþtu.Bu Kayýdýn Baþka Kayýtlar Tarafýndan Kullanýlmadýðýna Emin Olun !!");
+                return View(resumeStatus);
+            }
         }
 
         private bool ResumeStatusExists(int id)

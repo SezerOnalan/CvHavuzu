@@ -141,9 +141,16 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var profession = await _context.Professions.SingleOrDefaultAsync(m => m.Id == id);
+            try { 
             _context.Professions.Remove(profession);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("Delete", "Silme Ýþlemi Esnasýnda Hata Oluþtu.Bu Kayýdýn Baþka Kayýtlar Tarafýndan Kullanýlmadýðýna Emin Olun !!");
+                return View(profession);
+            }
         }
 
         private bool ProfessionExists(int id)
