@@ -52,9 +52,12 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
                     s.SeoTitle = setting.SeoTitle;
                     s.SeoDescription = setting.SeoDescription;
                     s.SeoKeywords = setting.SeoKeywords;
+                    s.Facebook = setting.Facebook;
+                    s.Twitter = setting.Twitter;
+                    s.LinkedIn = setting.LinkedIn;
 
                     // file upload iþlemi yapýlýr
-                    
+
                     if (logoUpload != null && logoUpload.Length > 0)
                     {
                         var filePath = new Random().Next(9999).ToString() + logoUpload.FileName;
