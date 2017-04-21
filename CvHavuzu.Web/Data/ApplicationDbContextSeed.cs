@@ -47,7 +47,12 @@ namespace CvHavuzu.Web.Data
             s.Title = "Nitelik Bilişim Uzmanı CV Havuzu";
             s.SeoTitle = s.Title;
             s.SeoDescription = s.Title;
+            s.Logo = "/uploads/logo.png";
             s.SeoKeywords = "cv, özgeçmiş, mühendis";
+            s.Address = "Bahariye";
+            s.Phone = "02122121212";
+            s.Fax = "02122122121";
+            s.Mail = "ornek@mail.com";
             // diğer ayarlar yazılır
             context.Settings.Add(s);
             context.SaveChanges();
