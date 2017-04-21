@@ -37,7 +37,6 @@ namespace CvHavuzu.Web.Models
         public string Logo { get; set; }
         [Display(Name = "Güncellenme Tarihi")]
         public DateTime UpdateDate { get; set; }
-
         [Display(Name = "Adres")]
         public string Address { get; set; }
         [Display(Name = "Telefon")]

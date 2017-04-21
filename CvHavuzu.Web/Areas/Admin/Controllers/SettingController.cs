@@ -62,7 +62,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
                     s.About = setting.About;
 
                     // file upload iþlemi yapýlýr
-                    
+
                     if (logoUpload != null && logoUpload.Length > 0)
                     {
                         var filePath = new Random().Next(9999).ToString() + logoUpload.FileName;
