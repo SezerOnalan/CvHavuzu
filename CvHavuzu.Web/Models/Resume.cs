@@ -64,10 +64,9 @@ namespace CvHavuzu.Web.Models
         [DataType("datetime-local")]
         public DateTime? BirthDate { get; set; }
 
-        [Required(ErrorMessage = "Özgeçmiş dosyası upload edilmelidir.")]
+       
         [Display(Name = "Özgeçmiş Dosyası")]
-        [StringLength(200)]
-        [DataType(DataType.Upload)]
+        [StringLength(200)]   
         public string ResumeFile { get; set; }
 
         [Display(Name = "Durum")]

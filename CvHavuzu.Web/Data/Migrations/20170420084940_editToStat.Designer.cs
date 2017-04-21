@@ -9,9 +9,10 @@ using CvHavuzu.Web.Models;
 namespace CvHavuzu.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170420084940_editToStat")]
+    partial class editToStat
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
@@ -257,6 +258,7 @@ namespace CvHavuzu.Web.Data.Migrations
                     b.Property<int?>("ProfessionId");
 
                     b.Property<string>("ResumeFile")
+                        .IsRequired()
                         .HasMaxLength(200);
 
                     b.Property<int?>("ResumeStatusId");

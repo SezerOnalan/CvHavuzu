@@ -49,8 +49,19 @@
                                     <div class="item-block">
                                         <header>
                                             <div class="col-md-pull-12">
-                                                <a href="resume-detail.html"><img class="resume-avatar" src="/assets/img/avatar.jpg" alt=""></a>
 
+                                                @{if (item.ImagePath == null)
+                                                    {
+                                                       <img class="resume-avatar" src="/assets/img/avatar.jpg" alt="">
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <img class="resume-avatar" src="~/uploads/resumes/images/@item.ImagePath" alt="">
+
+                                                    }
+                                                }
+                                              
                                                 <div class="hgroup">
                                                     <h4>@(item.FirstName != null ? item.FirstName : string.Empty)  @(item.LastName != null ? item.LastName : string.Empty) </h4>
                                                     <h5>@(item.Profession != null ? item.Profession.Name : string.Empty)</h5>
@@ -93,12 +104,30 @@
                                         <footer>
                                             <p class="status"><strong>Güncellenme Tarihi:</strong>@item.UpdateDate</p>
 
-                                            <div class="action-btn" >
-                                                <a class="btn btn-xs btn-success"  asp-action="DownloadDetails" asp-controller="Home" asp-route-id="@item.Id">Cv İndir</a>
+                                            @{
+                                                if (item.ResumeFile == null)
+                                                {
+                                                    <div class="action-btn">                                                       
+                                                        <a class="btn btn-xs btn-gray" href="./Admin/Resume/Edit?id=@item.Id">Düzenle</a>
+                                                        <a class="btn btn-xs btn-danger" asp-action="HideInList" asp-controller="Home" asp-route-id="@item.Id">Yayından Kaldır</a>
+                                                    </div>
 
-                                                <a class="btn btn-xs btn-gray" href="./Admin/Resume/Edit?id=@item.Id">Düzenle</a>
-                                                <a class="btn btn-xs btn-danger" href="./Admin/Resume/Delete?id=@item.Id">Yayından Kaldır</a>
-                                            </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="action-btn">
+                                                        <a class="btn btn-xs btn-success" asp-action="DownloadDetails" asp-controller="Home" asp-route-id="@item.Id">Cv İndir</a>
+                                                        <a class="btn btn-xs btn-gray" href="./Admin/Resume/Edit?id=@item.Id">Düzenle</a>
+                                                        <a class="btn btn-xs btn-danger" asp-action="HideInList" asp-controller="Home" asp-route-id="@item.Id">Yayından Kaldır</a>
+                                                    </div>
+
+
+                                                }
+
+                                            }
+
+
+                                            
                                         </footer>
                                     </div>
                                 </div>

@@ -11,6 +11,11 @@ namespace CvHavuzu.Web.Models
     {
         public int Id { get; set; }
         public int ResumeId { get; set; }
+
+        [StringLength(200)]
+        public string ResumeFullName { get; set; }
+
+
         [Required]
         [StringLength(200)]
         public string Ip { get; set; }

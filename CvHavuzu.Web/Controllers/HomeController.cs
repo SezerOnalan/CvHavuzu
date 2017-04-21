@@ -23,13 +23,26 @@ namespace CvHavuzu.Web.Controllers
             this.env = _env;
         }
 
-        public IActionResult DownloadDetails(int Id)
+        public IActionResult HideInList(int Id)
         {
-            Resume resume = _context.Resumes.FirstOrDefault(r => r.Id == Id);
+            Resume resume = new Resume();
+            resume = _context.Resumes.FirstOrDefault(r => r.Id == Id);
+            resume.ShowInList = false;
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+
+        }
+
+
+            public IActionResult DownloadDetails(int Id)
+        {
+            Resume resume = new Resume();
+            resume = _context.Resumes.FirstOrDefault(r => r.Id == Id);
             Stat stat = new Stat();
             stat.Ip = Request.HttpContext.Connection.RemoteIpAddress.ToString();
             stat.DownloadDate = DateTime.Now;
             stat.ResumeId =Id;
+            stat.ResumeFullName = resume.FirstName + " " + resume.LastName;
             _context.Add(stat);
             _context.SaveChanges();
 
@@ -57,6 +70,8 @@ namespace CvHavuzu.Web.Controllers
                     .Include(x => x.Consultant)
                     .Include(x => x.EducationLevel)
                     .Include(x => x.Teacher)
+                    .Include(x => x.City)
+                    .Include(x => x.District)
                     .Where(r => r.ShowInList == true && r.Approved == true).ToList();
                 return View(resumes);
             } else
@@ -71,7 +86,10 @@ namespace CvHavuzu.Web.Controllers
                     .Include(x => x.ResumeStatus)
                     .Include(x => x.Consultant)
                     .Include(x => x.EducationLevel)
-                    .Include(x => x.Teacher).Where(r => r.ShowInList == true && r.Approved == true);
+                    .Include(x => x.Teacher)
+                    .Include(x => x.City)
+                    .Include(x => x.District)
+                    .Where(r => r.ShowInList == true && r.Approved == true);
 
                    foreach (var term in terms)
                 { 
@@ -82,6 +100,8 @@ namespace CvHavuzu.Web.Controllers
                     r.EducationLevel.Name.ToLower().Contains(term) ||
                     r.University.Name.ToLower().Contains(term) ||
                     r.Department.Name.ToLower().Contains(term) ||
+                    r.City.Name.ToLower().Contains(term) ||
+                    r.District.Name.ToLower().Contains(term) ||
                     r.Skills.ToLower().Contains(term));
                     }
                     

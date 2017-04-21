@@ -149,11 +149,11 @@
                             @Html.DisplayFor(modelItem => item.ShowInList)
                         </th>
                         <td class="dt-right text-nowrap">
-                            <a class="btn-sm btn-success" id:"cv" href="~/uploads/resumes/@Html.DisplayFor(model => item.ResumeFile)"
+                            <a class="btn btn-success btn-sm" id:"cv" href="~/uploads/resumes/@Html.DisplayFor(model => item.ResumeFile)"
                                download="@Html.DisplayFor(model => item.ResumeFile)">Cv İndir</a>
-                            <a class="btn-sm btn-primary" asp-action="Edit" asp-route-id="@item.Id">Düzenle</a>
-                            <a class="btn-sm btn-info" asp-action="Details" asp-route-id="@item.Id">Detaylar</a>
-                            <a class="btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+                            <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.Id">Düzenle</a>
+                            <a class="btn btn-default btn-sm" asp-action="Details" asp-route-id="@item.Id">Detaylar</a>
+                            <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Sil</a>
                         </td>
                     </tr>
                 }
