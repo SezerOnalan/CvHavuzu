@@ -179,5 +179,18 @@ namespace CvHavuzu.Web.Controllers
         {
             return View();
         }
+        public IActionResult PrivacyPolicy()
+        {
+            ViewData["Message"] = "Your application Privacy Policy page.";
+
+            return View();
+        }
+        public IActionResult TermsOfUse()
+        {
+            ViewData["Message"] = "Your application Terms Of Use page.";
+
+            return View();
+        }
+
     }
 }   
