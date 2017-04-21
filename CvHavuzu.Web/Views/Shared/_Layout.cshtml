@@ -66,6 +66,9 @@
                     <a class="active" href="/">Anasayfa</a>
                 </li>
                 <li>
+                    <a href="/Home/About">Hakkında</a>
+                </li>
+                <li>
                     <a href="/MyResume">Özgeçmişim</a>
                 </li>
                 <li>
@@ -91,25 +94,27 @@
                 </div>
 
                 <div class="col-xs-6 col-md-3">
-                    <h6>Company</h6>
+                    <h6>Bağlantılar</h6>
                     <ul class="footer-links">
-                        <li><a href="page-about.html">About us</a></li>
-                        <li><a href="page-typography.html">How it works</a></li>
-                        <li><a href="page-faq.html">Help center</a></li>
-                        <li><a href="page-typography.html">Privacy policy</a></li>
-                        <li><a href="page-contact.html">Contact us</a></li>
+                        <li><a href="page-about.html">Hakkında</a></li>
+                        <li><a href="page-typography.html">Özgeçmişim</a></li>
+                        <li><a href="page-faq.html">Kullanım Koşulları</a></li>
+                        <li><a href="page-typography.html">Gizlilik Prensipleri</a></li>
+                        <li><a href="page-contact.html">İletişim</a></li>
                     </ul>
                 </div>
 
                 <div class="col-xs-6 col-md-3">
-                    <h6>Trendeing jobs</h6>
-                    <ul class="footer-links">
-                        <li><a href="job-list.html">Front-end developer</a></li>
-                        <li><a href="job-list.html">Android developer</a></li>
-                        <li><a href="job-list.html">iOS developer</a></li>
-                        <li><a href="job-list.html">Full stack developer</a></li>
-                        <li><a href="job-list.html">Project administrator</a></li>
-                    </ul>
+                    <h6>Son Özgeçmişler</h6>
+                      <ul>
+                          @foreach (var item in ViewBag.Resumes)
+                          {
+                   <li>@item.FirstName @item.LastName-(@(item.Profession != null ? item.Profession.Name : string.Empty))</li> 
+                   
+                          }
+                          
+                      </ul>
+
                 </div>
             </div>
 
@@ -120,16 +125,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-sm-6 col-xs-12">
-                    <p class="copyright-text">Copyrights &copy; 2016 All Rights Reserved by <a href="http://themeforest.net/user/shamsoft">ShaMSofT</a>.</p>
+                    <p class="copyright-text">Copyrights &copy; @DateTime.Now.Year Her Hakkı Saklıdır-<a href="http://www.bilisimegitim.com" target="_blank">Bilişim Eğitim Merkezi</a>.</p>
                 </div>
 
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <ul class="social-icons">
-                        <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
-                        <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
+                        <li><a class="facebook" href="@ViewBag.Setting.Facebook"  target="_blank"><i class="fa fa-facebook"></i></a></li>
+                        <li><a class="twitter" href="@ViewBag.Setting.Twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                        <li><a class="linkedin" href="@ViewBag.Setting.LinkedIn" target="_blank"><i class="fa fa-linkedin"></i></a></li>
                     </ul>
                 </div>
             </div>

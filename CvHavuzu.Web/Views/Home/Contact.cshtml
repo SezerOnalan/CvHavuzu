@@ -50,26 +50,25 @@
                     <div class="highlighted-block">
                         <dl class="icon-holder">
                             <dt><i class="fa fa-map-marker"></i></dt>
-                            <dd>3652 Seventh Avenue, Los Angeles, CA</dd>
+                            <dd>@ViewBag.Setting.Address</dd>
 
                             <dt><i class="fa fa-phone"></i></dt>
-                            <dd>(+1) 987 654 3210</dd>
+                            <dd>@ViewBag.Setting.Phone</dd>
 
                             <dt><i class="fa fa-fax"></i></dt>
-                            <dd>(+1) 123 456 7890</dd>
+                            <dd>@ViewBag.Setting.Fax</dd>
 
                             <dt><i class="fa fa-envelope"></i></dt>
-                            <dd>hi@yoursite.com</dd>
+                            <dd>@ViewBag.Setting.Mail</dd>
                         </dl>
                     </div>
 
                     <br>
 
                     <ul class="social-icons size-sm text-center">
-                        <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
+                        <li><a class="facebook"  target="_blank" href="@ViewBag.Setting.Facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a class="twitter" target="_blank" href="@ViewBag.Setting.Twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li><a class="linkedin" target="_blank" href="@ViewBag.Setting.LinkedIn"><i class="fa fa-linkedin"></i></a></li>
                     </ul>
 
                 </div>

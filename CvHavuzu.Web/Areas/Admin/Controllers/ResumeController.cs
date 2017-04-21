@@ -283,9 +283,17 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var resume = await _context.Resumes.SingleOrDefaultAsync(m => m.Id == id);
+
+            try { 
             _context.Resumes.Remove(resume);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("Delete", "Silme Ýþlemi Esnasýnda Hata Oluþtu.Bu Kayýdýn Baþka Kayýtlar Tarafýndan Kullanýlmadýðýna Emin Olun !!");
+                return View(resume);
+            }
         }
 
         private bool ResumeExists(int id)

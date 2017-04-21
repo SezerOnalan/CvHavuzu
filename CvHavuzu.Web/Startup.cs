@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.AspNetCore.Authentication.LinkedIn;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace CvHavuzu.Web
 {
@@ -44,6 +45,9 @@ namespace CvHavuzu.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
+
+            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             // Add framework services.
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
@@ -84,7 +88,7 @@ namespace CvHavuzu.Web
             app.UseStaticFiles();
 
             app.UseIdentity();
-
+            app.ApplicationServices.GetRequiredService<ApplicationDbContext>().Seed();
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
             app.UseFacebookAuthentication(new FacebookOptions()
             {
@@ -97,6 +101,7 @@ namespace CvHavuzu.Web
                 AppSecret = Configuration["Authentication:LinkedIn:AppSecret"],
                 ProfileScheme = LinkedInDefaults.ProfileLoadFormat.AppDefined
             });
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute(name: "areaRoute",

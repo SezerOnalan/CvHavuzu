@@ -2,6 +2,7 @@
 using CvHavuzu.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,10 @@ namespace CvHavuzu.Web.Controllers
             {
                 var setting = db.Settings.FirstOrDefault();
                 ViewBag.Setting = setting;
+                var resume = db.Resumes
+                       .Include(x => x.Profession)
+                    .OrderByDescending(r => r.CreateDate).ToList();
+                ViewBag.Resumes = resume;
             } else
             {
                 var setting = new Setting();
