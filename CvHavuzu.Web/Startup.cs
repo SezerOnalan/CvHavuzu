@@ -63,6 +63,13 @@ namespace CvHavuzu.Web
                 options.SslPort = 44376;
                 options.Filters.Add(new RequireHttpsAttribute());
             });
+            // Recaptcha Add
+            services.AddRecaptcha(new RecaptchaOptions
+            {
+                SiteKey = Configuration["Recaptcha:SiteKey"],
+                SecretKey = Configuration["Recaptcha:SecretKey"],
+                ValidationMessage = "Are you a robot?"
+            });
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
@@ -127,5 +134,6 @@ namespace CvHavuzu.Web
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+
     }
 }

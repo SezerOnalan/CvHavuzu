@@ -65,7 +65,6 @@ namespace CvHavuzu.Web.Models
         [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? BirthDate { get; set; }
 
-        
         [Display(Name = "Özgeçmiş Dosyası")]
         [StringLength(200)]   
         public string ResumeFile { get; set; }
