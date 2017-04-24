@@ -60,8 +60,9 @@ namespace CvHavuzu.Web.Models
         [ForeignKey("DepartmentId")]
         [Display(Name = "Bölüm")]
         public virtual Department Department { get; set; }
+
         [Display(Name = "Doğum Tarihi")]
-        [DataType(DataType.Date)]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? BirthDate { get; set; }
 
         [Display(Name = "Özgeçmiş Dosyası")]

@@ -9,9 +9,9 @@ namespace CvHavuzu.Web.Models
     public enum Gender
     {
         [Display(Name = "Erkek")]
-        Male = 1,
+        Erkek = 1,
 
         [Display(Name = "Kadın")]
-        Female = 2
+        Kadın = 2
     }
 }

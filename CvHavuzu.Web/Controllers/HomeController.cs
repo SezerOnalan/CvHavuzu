@@ -73,8 +73,8 @@ namespace CvHavuzu.Web.Controllers
                     .Include(x => x.Teacher)
                     .Include(x => x.City)
                     .Include(x => x.District)
-                    .Where(r => r.ShowInList == true && r.Approved == true).ToPagedList<Resume>(page, 10);
-                return View(resumes);
+                    .Where(r => r.ShowInList == true && r.Approved == true);
+                return View(resumes.OrderByDescending(i => i.UpdateDate).ToPagedList<Resume>(page, 10));
             } else
             {
                 // query'den değer geliyorsa where metoduyla filtreleme yap
@@ -93,8 +93,9 @@ namespace CvHavuzu.Web.Controllers
                     .Where(r => r.ShowInList == true && r.Approved == true);
 
                    foreach (var term in terms)
-                { 
-                    resumes = resumes.Where(r => r.FirstName.ToLower().Contains(term) ||
+                   { 
+                    resumes = resumes.Where(r => 
+                    r.FirstName.ToLower().Contains(term) ||
                     r.LastName.ToLower().Contains(term) ||
                     r.Gender.ToString().ToLower().Contains(term) ||
                     r.Profession.Name.ToLower().Contains(term) ||
@@ -106,7 +107,7 @@ namespace CvHavuzu.Web.Controllers
                     r.Skills.ToLower().Contains(term));
                     }
                     
-                return View(resumes.ToPagedList<Resume>(page, 10));
+                return View(resumes.OrderByDescending(i => i.UpdateDate).ToPagedList<Resume>(page, 10));
             }
         }
 
