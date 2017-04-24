@@ -20,6 +20,7 @@ using Microsoft.AspNetCore.Authentication.LinkedIn;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
+using PaulMiami.AspNetCore.Mvc.Recaptcha;
 
 namespace CvHavuzu.Web
 {
