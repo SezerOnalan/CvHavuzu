@@ -52,9 +52,12 @@
             @Html.DisplayFor(model => model.ResumeFile)
         </dd>
         <dt>
-            <a id:"cv" href="~/uploads/resumes/@Html.DisplayFor(model => model.ResumeFile)"
-               download="@Html.DisplayFor(model => model.ResumeFile)">Özgeçmiş İndir</a>
+           Özgeçmiş İndir
         </dt>
+        <dd>
+            <a id:"cv" href="~/uploads/resumes/@Html.DisplayFor(model => model.ResumeFile)"
+               download="@Html.DisplayFor(model => model.ResumeFile)">@Html.DisplayFor(model => model.ResumeFile)</a>
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Skills)
         </dt>
@@ -147,6 +150,7 @@
     </dl>
 </div>
 <div>
+    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.Id">Sil</a> |
     <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Düzenle</a> |
     <a asp-action="Index">Listeye geri dön</a>
 </div>

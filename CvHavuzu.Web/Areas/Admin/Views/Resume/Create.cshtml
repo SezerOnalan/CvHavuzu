@@ -17,7 +17,7 @@
                     <label asp-for="ImagePath" class="col-md-2 control-label"></label>
                     <div class="col-md-10">
                         <input title="ImageUpload" type="file" name="ImageUpload" class="form-control" />
-                        <span asp-validation-for="ImagePath" class="text-danger"></span>
+                        @Html.ValidationMessage("ImageUpload", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
@@ -102,6 +102,7 @@
                     <label asp-for="ResumeFile"  class="col-md-2 control-label" ></label>
                     <div class="col-md-10">
                         <input title="Özgeçmiş Yükle" type="file"  name="resumeUpload" class="form-control" />
+                        @Html.ValidationMessage("ResumeUpload", new { @class = "text-danger" })
                         <span asp-validation-for="ResumeFile" class="text-danger"></span>
                     </div>
                 </div>

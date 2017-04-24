@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.AspNetCore.Authentication.LinkedIn;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using PaulMiami.AspNetCore.Mvc.Recaptcha;
 
 namespace CvHavuzu.Web
@@ -45,6 +46,9 @@ namespace CvHavuzu.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
+
+            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             // Add framework services.
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

@@ -147,10 +147,18 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            
             var district = await _context.Districts.SingleOrDefaultAsync(m => m.Id == id);
+            try { 
             _context.Districts.Remove(district);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("Delete", "Silme Ýþlemi Esnasýnda Hata Oluþtu.Bu Kayýdýn Baþka Kayýtlar Tarafýndan Kullanýlmadýðýna Emin Olun !!");
+                return View(district);
+            }
         }
 
         private bool DistrictExists(int id)

@@ -22,7 +22,7 @@ namespace CvHavuzu.Web.Controllers
         private IHostingEnvironment env;
 
         private string FDir_AppData = "~/App_Data/";
-
+        private object id;
 
         public MyResumeController(IHostingEnvironment _env, ApplicationDbContext context, ApplicationDbContext _contx) : base(context)
         {
@@ -270,6 +270,12 @@ namespace CvHavuzu.Web.Controllers
         private bool ResumeExists(int id)
         {
             return _context.Resumes.Any(e => e.Id == id);
+        }
+        public IActionResult Resumes(int id)
+        {
+
+            var resume = _context.Resumes.SingleOrDefaultAsync(m => m.Id == id);
+            return View(resume);
         }
     }
 }

@@ -239,6 +239,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.0" />
     <PackageReference Include="NETCore.MailKit" Version="1.0.1" />
     <PackageReference Include="PaulMiami.AspNetCore.Mvc.Recaptcha" Version="1.2.0" />
+    <PackageReference Include="PagedList.Core.Mvc" Version="1.0.1" />
     <PackageReference Include="Twilio" Version="5.2.1" />
   </ItemGroup>
   <ItemGroup>
