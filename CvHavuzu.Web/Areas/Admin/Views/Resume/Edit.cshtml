@@ -15,8 +15,9 @@
             <div class="form-group">
                 <label asp-for="ImagePath" class="col-md-2 control-label"></label>
                 <div class="col-md-10">
-                    <input title="ImageUpload" type="file" name="ImageUpload" class="form-control" />
+                    <input title="ImageUpload" type="file" name="ImageUpload" class="form-control" accept="ImageUpload/png, ImageUpload/jpeg" />
                     <input asp-for="ImagePath" type="hidden" />
+                    @Html.ValidationMessage("ImageEdit", new { @class = "text-danger" })
                     <span asp-validation-for="ImagePath" class="text-danger"></span>
                 </div>
             </div>
@@ -52,25 +53,36 @@
                     <span asp-validation-for="Gender" class="text-danger"></span>
                 </div>
             </div>
+          
             <div class="form-group">
-                <label asp-for="ProfessionId" class="control-label col-md-2"></label>
+                <label asp-for="ProfessionId" class="col-md-2 control-label"></label>
                 <div class="col-md-10">
-                    <select asp-for="ProfessionId" class="form-control" asp-items="ViewBag.ProfessionId"></select>
-                    <span asp-validation-for="ProfessionId" class="text-danger"></span>
+                    <div class="input-group">
+                        <select asp-for="ProfessionId" class="form-control" asp-items="ViewBag.ProfessionId">
+                            <option value=""></option>
+                        </select> <span class="input-group-btn"><a class="btn  btn-default" asp-area="Admin" asp-controller="Profession" asp-action="Index">...</a></span>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="EducationLevelId" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <div class="input-group">
+                        <select asp-for="EducationLevelId" class="form-control" asp-items="ViewBag.EducationLevelId">
+                            <option value=""></option>
+                        </select> <span class="input-group-btn"><a class="btn  btn-default" asp-area="Admin" asp-controller="EducationLevel" asp-action="Index">...</a></span>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="EducationLevelId" class="control-label col-md-2"></label>
+                <label asp-for="UniversityId" class="col-md-2 control-label"></label>
                 <div class="col-md-10">
-                    <select asp-for="EducationLevelId" class="form-control" asp-items="ViewBag.EducationLevelId"></select>
-                    <span asp-validation-for="EducationLevelId" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="UniversityId" class="control-label col-md-2"></label>
-                <div class="col-md-10">
-                    <select asp-for="UniversityId" class="form-control" asp-items="ViewBag.UniversityId"></select>
-                    <span asp-validation-for="UniversityId" class="text-danger"></span>
+                    <div class="input-group">
+                        <select asp-for="UniversityId" class="form-control" asp-items="ViewBag.UniversityId">
+                            <option value=""></option>
+                        </select> <span class="input-group-btn"><a class="btn  btn-default" asp-area="Admin" asp-controller="University" asp-action="Index">...</a></span>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
@@ -92,7 +104,8 @@
                 <div class="col-md-10">
                     <input title="Özgeçmiş Yükle" type="file" name="resumeUpload" class="form-control"/>
                     <input asp-for="ResumeFile" type="hidden"/>
-                    <span asp-validation-for="ResumeFile" class="text-danger"></span>
+                    @Html.ValidationMessage("ResumeEdit", new { @class = "text-danger" })
+                    <span asp-validation-for="ResumeFile" class="text-danger" ></span>
                     
                 </div>
             </div>
@@ -124,7 +137,7 @@
                     <div class="input-group">
                         <select asp-for="CityId" class="form-control" asp-items="ViewBag.CityId">
                             <option value=""></option>
-                        </select> <span class="input-group-btn"><a class="btn btn-sm btn-default" asp-area="Admin" asp-controller="City" asp-action="Index">...</a></span>
+                        </select> <span class="input-group-btn"><a class="btn  btn-default" asp-area="Admin" asp-controller="City" asp-action="Index">...</a></span>
                     </div>
                 </div>
             </div>
@@ -134,7 +147,7 @@
                     <div class="input-group">
                         <select asp-for="DistrictId" class="form-control" asp-items="ViewBag.DistrictId">
                             <option value=""></option>
-                        </select> <span class="input-group-btn"><a class="btn btn-sm btn-default" asp-area="Admin" asp-controller="District" asp-action="Index">...</a></span>
+                        </select> <span class="input-group-btn"><a class="btn  btn-default" asp-area="Admin" asp-controller="District" asp-action="Index">...</a></span>
                     </div>
                 </div>
             </div>

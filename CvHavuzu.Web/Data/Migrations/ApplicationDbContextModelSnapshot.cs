@@ -256,8 +256,7 @@ namespace CvHavuzu.Web.Data.Migrations
 
                     b.Property<int?>("ProfessionId");
 
-                    b.Property<string>("ResumeFile")
-                        .HasMaxLength(200);
+                    b.Property<string>("ResumeFile");
 
                     b.Property<int?>("ResumeStatusId");
 
@@ -343,6 +342,8 @@ namespace CvHavuzu.Web.Data.Migrations
 
                     b.Property<string>("Phone");
 
+                    b.Property<string>("PrivacyPolicy");
+
                     b.Property<int>("ResumeDownloadSecurity");
 
                     b.Property<string>("SeoDescription");
@@ -350,6 +351,8 @@ namespace CvHavuzu.Web.Data.Migrations
                     b.Property<string>("SeoKeywords");
 
                     b.Property<string>("SeoTitle");
+
+                    b.Property<string>("TermsOfUse");
 
                     b.Property<string>("Title");
 

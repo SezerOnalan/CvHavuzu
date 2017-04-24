@@ -47,6 +47,10 @@ namespace CvHavuzu.Web.Models
         public string Mail { get; set; }
         [Display(Name = "Hakkında")]
         public string About { get; set; }
+        [Display(Name = "Gizlilik Prensipleri")]
+        public string PrivacyPolicy { get; set; }
+        [Display(Name = "Kullanım Koşulları")]
+        public string TermsOfUse { get; set; }
 
         public string Facebook { get; set; }
         public string Twitter { get; set; }

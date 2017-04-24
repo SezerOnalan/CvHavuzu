@@ -141,9 +141,16 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var educationLevel = await _context.EducationLevels.SingleOrDefaultAsync(m => m.Id == id);
+            try { 
             _context.EducationLevels.Remove(educationLevel);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("Delete", "Silme Ýþlemi Esnasýnda Hata Oluþtu.Bu Kayýdýn Baþka Kayýtlar Tarafýndan Kullanýlmadýðýna Emin Olun !!");
+                return View(educationLevel);
+            }
         }
 
         private bool EducationLevelExists(int id)

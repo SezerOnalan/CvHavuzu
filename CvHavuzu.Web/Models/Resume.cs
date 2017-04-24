@@ -64,7 +64,7 @@ namespace CvHavuzu.Web.Models
         [DataType("datetime-local")]
         public DateTime? BirthDate { get; set; }
 
-       
+        
         [Display(Name = "Özgeçmiş Dosyası")]
         [StringLength(200)]   
         public string ResumeFile { get; set; }
