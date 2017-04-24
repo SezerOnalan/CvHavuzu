@@ -18,7 +18,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.AspNetCore.Authentication.LinkedIn;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
-using PaulMiami.AspNetCore.Mvc.Recaptcha;
+using Microsoft.AspNetCore.Localization;
+using System.Globalization;
 
 namespace CvHavuzu.Web
 {
@@ -81,6 +82,19 @@ namespace CvHavuzu.Web
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture(new CultureInfo("tr-TR")),
+                SupportedCultures = new List<CultureInfo>
+                {
+                    new CultureInfo("tr-TR")
+                },
+                SupportedUICultures = new List<CultureInfo>
+                {
+                    new CultureInfo("tr-TR")
+                }
+            });
 
             if (env.IsDevelopment())
             {
