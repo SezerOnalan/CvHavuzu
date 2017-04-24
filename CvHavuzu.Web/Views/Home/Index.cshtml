@@ -97,8 +97,9 @@
                                         <b> Yaş : @(age == 0 ? string.Empty : age.ToString())</b>
 
 
-                                        <br />
-                                        <b>   Yetenekler : </b> @(item.Skills != null ? item.Skills : string.Empty)
+                                        <br /><div class="tag-list">
+                                            <b>   Yetenekler : </b> <span>@(item.Skills != null ? item.Skills : string.Empty)</span>
+                                        </div>
                                     </p>
                                 </header>
 
@@ -138,7 +139,7 @@
                 <div class="text-center">
 
                     <pager class="pager-container" list="@Model" options="@PagedListRenderOptions.ClassicPlusFirstAndLast" asp-action="Index" asp-controller="Home" />
-                </div>           
+                </div>
             </div>
         </div>
     </section>

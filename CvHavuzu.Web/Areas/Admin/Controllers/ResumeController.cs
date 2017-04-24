@@ -34,15 +34,15 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
             IList<Resume> resumes;
             if (tab == 1)
             {
-                resumes = _context.Resumes.Include(r => r.Consultant).Include(r => r.Department).Include(r => r.EducationLevel).Include(r => r.Profession).Include(r => r.ResumeStatus).Include(r => r.City).Include(r => r.District).Include(r => r.Teacher).Include(r => r.University).ToList();
+                resumes = _context.Resumes.Include(r => r.Consultant).Include(r => r.Department).Include(r => r.EducationLevel).Include(r => r.Profession).Include(r => r.ResumeStatus).Include(r => r.City).Include(r => r.District).Include(r => r.Teacher).Include(r => r.University).OrderByDescending(x => x.CreateDate).ToList();
             }
             else if (tab == 2)
             {
-                resumes = _context.Resumes.Include(r => r.Consultant).Include(r => r.Department).Include(r => r.EducationLevel).Include(r => r.Profession).Include(r => r.ResumeStatus).Include(r => r.City).Include(r => r.District).Include(r => r.Teacher).Include(r => r.University).Where(r=>r.ShowInList==true && r.Approved==true).ToList();
+                resumes = _context.Resumes.Include(r => r.Consultant).Include(r => r.Department).Include(r => r.EducationLevel).Include(r => r.Profession).Include(r => r.ResumeStatus).Include(r => r.City).Include(r => r.District).Include(r => r.Teacher).Include(r => r.University).Where(r=>r.ShowInList==true && r.Approved==true).OrderByDescending(x => x.CreateDate).ToList();
             }
             else
             {
-                resumes = _context.Resumes.Include(r => r.Consultant).Include(r => r.Department).Include(r => r.EducationLevel).Include(r => r.Profession).Include(r => r.ResumeStatus).Include(r => r.City).Include(r=>r.District).Include(r => r.Teacher).Include(r => r.University).Where(r => r.Approved == false).ToList();
+                resumes = _context.Resumes.Include(r => r.Consultant).Include(r => r.Department).Include(r => r.EducationLevel).Include(r => r.Profession).Include(r => r.ResumeStatus).Include(r => r.City).Include(r=>r.District).Include(r => r.Teacher).Include(r => r.University).Where(r => r.Approved == false).OrderByDescending(x => x.CreateDate).ToList();
             }
             ViewBag.tab = tab;
             return View(resumes);
