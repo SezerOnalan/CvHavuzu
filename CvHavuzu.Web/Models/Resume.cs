@@ -61,10 +61,9 @@ namespace CvHavuzu.Web.Models
         [Display(Name = "Bölüm")]
         public virtual Department Department { get; set; }
         [Display(Name = "Doğum Tarihi")]
-        [DataType("datetime-local")]
+        [DataType(DataType.Date)]
         public DateTime? BirthDate { get; set; }
 
-        
         [Display(Name = "Özgeçmiş Dosyası")]
         [StringLength(200)]   
         public string ResumeFile { get; set; }
