@@ -26,7 +26,7 @@ namespace CvHavuzu.Web.Controllers
                 ViewBag.Setting = setting;
                 var resume = db.Resumes
                        .Include(x => x.Profession)
-                    .OrderByDescending(r => r.CreateDate).ToList();
+                    .OrderByDescending(r => r.CreateDate).Take(5).ToList();
                 ViewBag.Resumes = resume;
             } else
             {
