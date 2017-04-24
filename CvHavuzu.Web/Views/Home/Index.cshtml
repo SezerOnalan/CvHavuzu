@@ -100,8 +100,6 @@
                                         <br />
                                         <b>   Yetenekler : </b> @(item.Skills != null ? item.Skills : string.Empty)
                                     </p>
-
-                                    <br style="clear:both" />
                                 </header>
 
                                 <footer>
@@ -137,17 +135,10 @@
                     <br />
 
                 </div>
-            <div class="text-center">
+                <div class="text-center">
 
-            <pager class="pager-container" list="@Model" options="@PagedListRenderOptions.ClassicPlusFirstAndLast" asp-action="Index" asp-controller="Home" />
-        </div>
-                <script>
-         function download() {
-             var x = document.getElementById("cv").download;
-
-         }
-                </script>
-
+                    <pager class="pager-container" list="@Model" options="@PagedListRenderOptions.ClassicPlusFirstAndLast" asp-action="Index" asp-controller="Home" />
+                </div>           
             </div>
         </div>
     </section>
