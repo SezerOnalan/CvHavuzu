@@ -96,10 +96,15 @@
                                         <b>Cinsiyet : </b> @Html.DisplayFor(modelItem => item.Gender)<br />
                                         <b> Yaş : @(age == 0 ? string.Empty : age.ToString())</b>
 
-
                                         <br /><div class="tag-list">
-                                            <b>   Yetenekler : </b> <span>@(item.Skills != null ? item.Skills : string.Empty)</span>
-                                        </div>
+                                                  <b>   Yetenekler : </b>
+                                                 @{ List<string> skils = item.Skills.Split(',').ToList();
+                                                     }
+                                                       @foreach (var tag in skils)
+                                                       {
+                                                      <span><a href="/?query=@tag.Trim().ToLower()">@(tag.Trim() != null ? tag.Trim() : string.Empty)</a></span>
+                                                       }
+</div>
                                     </p>
                                 </header>
 
