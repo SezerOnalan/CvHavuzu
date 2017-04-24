@@ -90,8 +90,16 @@ namespace CvHavuzu.Web.Controllers
         public async Task<IActionResult> Create(Resume resume, IFormFile imageUpload, IFormFile resumeUpload)
         {
             resume.UserName = User.Identity.Name;
-           
-            if (ModelState.IsValid)
+
+            if (imageUpload != null && imageUpload.Length > 0 && ".gif,.jpg,.jpeg,.png".Contains(Path.GetExtension(imageUpload.FileName)) == false || imageUpload == null)
+            {
+                ModelState.AddModelError("ImageUpload", "Resim dosyasý uzantýsý .gif, .jpg, .jpeg ya da .png olmalýdýr ve alan boþ olamaz");
+            }
+            if (resumeUpload != null && resumeUpload.Length > 0 && ".pdf,.doc,.docx".Contains(Path.GetExtension(resumeUpload.FileName)) == false || resumeUpload == null)
+            {
+                ModelState.AddModelError("ResumeUpload", "Cv dosyasý uzantýsý .doc, .docx ya da .pdf olmalýdýr ve alan boþ olamaz");
+            }
+            else if (ModelState.IsValid)
             {
                 resume.Approved = false;
                 resume.ShowInList = false;
@@ -164,15 +172,23 @@ namespace CvHavuzu.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Resume resume, IFormFile imageUpload, IFormFile resumeUpload)
-        {   if (id != resume.Id)
+        {
+            resume.UserName = User.Identity.Name;
+            resume = await _context.Resumes.SingleOrDefaultAsync(m => m.Id == id && m.UserName == User.Identity.Name);
+            if (id != resume.Id)
             {
                 return NotFound();
             }
             
-          
-            resume.UserName = User.Identity.Name;
-            
-            if (ModelState.IsValid)
+            if (imageUpload != null && imageUpload.Length > 0 && ".gif,.jpg,.jpeg,.png".Contains(Path.GetExtension(imageUpload.FileName)) == false)
+            {
+                ModelState.AddModelError("ImageEdit", "Resim dosya uzantýsý .gif, .jpg, .jpeg ya da .png olmalýdýr.");
+            }
+            if (resumeUpload != null && resumeUpload.Length > 0 && ".pdf,.doc,.docx".Contains(Path.GetExtension(resumeUpload.FileName)) == false)
+            {
+                ModelState.AddModelError("ResumeEdit", "Cv dosya uzantýsý .doc, .docx ya da .pdf olmalýdýr.");
+            } 
+            else if (ModelState.IsValid)
             {
                 try
                 {
