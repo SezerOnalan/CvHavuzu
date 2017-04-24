@@ -15,7 +15,8 @@
             <div class="form-group">
                 <label asp-for="ImagePath" class="col-md-2 control-label"></label>
                 <div class="col-md-10">
-                    <input title="ImageUpload" type="file" name="ImageUpload" class="form-control" accept="ImageUpload/png, ImageUpload/jpeg" />
+                    <input title="ImageUpload" type="file" name="ImageUpload" class="form-control" accept="image/gif,image/jpg,image/jpeg,image/png" />
+                    @Html.DisplayFor(model => model.ImagePath)
                     <input asp-for="ImagePath" type="hidden" />
                     @Html.ValidationMessage("ImageEdit", new { @class = "text-danger" })
                     <span asp-validation-for="ImagePath" class="text-danger"></span>
@@ -105,8 +106,9 @@
             <div class="form-group">
                 <label asp-for="ResumeFile" class="col-md-2 control-label"></label>
                 <div class="col-md-10">
-                    <input title="Özgeçmiş Yükle" type="file" name="resumeUpload" class="form-control"/>
+                    <input title="Özgeçmiş Yükle" type="file" name="resumeUpload" class="form-control" accept=".pdf,.doc,.docx"/>
                     <input asp-for="ResumeFile" type="hidden"/>
+                    @Html.DisplayFor(model => model.ResumeFile)
                     @Html.ValidationMessage("ResumeEdit", new { @class = "text-danger" })
                     <span asp-validation-for="ResumeFile" class="text-danger" ></span>
                     
