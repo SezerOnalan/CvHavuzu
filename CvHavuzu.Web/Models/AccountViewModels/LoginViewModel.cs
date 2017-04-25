@@ -8,10 +8,7 @@ namespace CvHavuzu.Web.Models.AccountViewModels
 {
     public class LoginViewModel
     {
-        public LoginViewModel()
-        {
-            RememberMe = true;
-        }
+       
         [Required]
         [EmailAddress]
         [Display(Name = "E-Posta")]

@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 
+
 namespace CvHavuzu.Web.Controllers
 {
     [Authorize]
@@ -90,7 +91,7 @@ namespace CvHavuzu.Web.Controllers
         {
             resume.UserName = User.Identity.Name;
 
-            if (imageUpload != null && imageUpload.Length > 0 && ".gif,.jpg,.jpeg,.png".Contains(Path.GetExtension(imageUpload.FileName)) == false || imageUpload == null)
+            if (imageUpload != null && imageUpload.Length > 0 && ".gif,.jpg,.jpeg,.png".Contains(Path.GetExtension(imageUpload.FileName)) == false)
             {
                 ModelState.AddModelError("ImageUpload", "Resim dosyasý uzantýsý .gif, .jpg, .jpeg ya da .png olmalýdýr ve alan boþ olamaz");
             }
@@ -210,7 +211,7 @@ namespace CvHavuzu.Web.Controllers
                         using (var stream = new FileStream(env.WebRootPath + "\\uploads\\resumes\\" + filePath, FileMode.Create))
                         {
                             resumeUpload.CopyTo(stream);
-                        }
+                        }                        
                         resume.ResumeFile = filePath;
                     }
 
