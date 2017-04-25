@@ -8,6 +8,10 @@ namespace CvHavuzu.Web.Models.AccountViewModels
 {
     public class LoginViewModel
     {
+        public LoginViewModel()
+        {
+            RememberMe = true;
+        }
         [Required]
         [EmailAddress]
         [Display(Name = "E-Posta")]
@@ -18,7 +22,7 @@ namespace CvHavuzu.Web.Models.AccountViewModels
         [Display(Name = "Şifre")]
         public string Password { get; set; }
 
-        [Display(Name = "Beni Hatırla ?")]
+        [Display(Name = "Beni Hatırla")]
         public bool RememberMe { get; set; }
     }
 }
