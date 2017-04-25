@@ -21,8 +21,7 @@ namespace CvHavuzu.Web.Controllers
         private readonly ApplicationDbContext _context;
         private IHostingEnvironment env;
 
-        private string FDir_AppData = "~/App_Data/";
-        private object id;
+        
 
         public MyResumeController(IHostingEnvironment _env, ApplicationDbContext context, ApplicationDbContext _contx) : base(context)
         {
