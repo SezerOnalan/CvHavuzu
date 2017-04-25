@@ -47,7 +47,7 @@ namespace CvHavuzu.Web.Data
             s.Title = "Nitelikli Bilişim Uzmanı CV Havuzu";
             s.SeoTitle = s.Title;
             s.SeoDescription = s.Title;
-            s.Logo = "/uploads/logo.png";
+            s.Logo = "logo.png";
             s.SeoKeywords = "cv, özgeçmiş, mühendis";
             s.Address = "Bahariye";
             s.Phone = "02122121212";

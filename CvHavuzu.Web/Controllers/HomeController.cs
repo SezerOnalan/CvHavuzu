@@ -110,11 +110,9 @@ namespace CvHavuzu.Web.Controllers
                 return View(resumes.OrderByDescending(i => i.UpdateDate).ToPagedList<Resume>(page, 10));
             }
         }
-
+        [Route("hakkinda")]
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
-
             return View();
         }
 

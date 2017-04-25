@@ -19,3 +19,14 @@ color:black;
 #tblRecords {
     font-size: 15px !important;
 }
+
+.tag-list{
+    margin-top:-9px !important;
+}
+
+@media (max-width: 767px) {
+    .btn-xs {
+        padding: 0 10px !important;
+        font-size: 10px !important;
+    }
+}
