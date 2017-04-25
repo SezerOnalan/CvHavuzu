@@ -98,7 +98,7 @@
 
                                         <br /><div class="tag-list">
                                                   <b>   Yetenekler : </b>
-                                                 @{ List<string> skils = item.Skills.Split(',').ToList();
+                                                 @{ List<string> skils = (!String.IsNullOrEmpty(item.Skills)?item.Skills.Split(',').ToList():new List<string>());
                                                      }
                                                        @foreach (var tag in skils)
                                                        {
