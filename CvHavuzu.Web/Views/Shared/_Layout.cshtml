@@ -65,16 +65,16 @@
             <!-- Navigation menu -->
             <ul class="nav-menu">
                 <li>
-                    <a class="active" href="/">Anasayfa</a>
+                    <a @(ViewContext.RouteData.Values["controller"].ToString() == "Home" && ViewContext.RouteData.Values["action"].ToString() == "Index"?"class=active":string.Empty) href="/">Anasayfa</a>
                 </li>
                 <li>
-                    <a href="/Home/About">Hakkında</a>
+                    <a @(ViewContext.RouteData.Values["controller"].ToString() == "Home" && ViewContext.RouteData.Values["action"].ToString() == "About"?"class=active":string.Empty)  href="/hakkinda">Hakkında</a>
                 </li>
                 <li>
-                    <a href="/MyResume">Özgeçmişim</a>
+                    <a @(ViewContext.RouteData.Values["controller"].ToString() == "MyResume" && ViewContext.RouteData.Values["action"].ToString() == "Index"?"class=active":string.Empty) href="/ozgecmisim">Özgeçmişim</a>
                 </li>
                 <li>
-                    <a href="/iletisim">İletişim</a>
+                    <a @(ViewContext.RouteData.Values["controller"].ToString() == "Home" && ViewContext.RouteData.Values["action"].ToString() == "Contact"?"class=active":string.Empty) href="/iletisim">İletişim</a>
                 </li>
                 
             </ul>

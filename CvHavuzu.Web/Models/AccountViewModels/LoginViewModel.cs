@@ -8,7 +8,7 @@ namespace CvHavuzu.Web.Models.AccountViewModels
 {
     public class LoginViewModel
     {
-        [Required]
+        [Required (ErrorMessage = "E-posta alanı gereklidir.")]
         [EmailAddress]
         [Display(Name = "E-Posta")]
         public string Email { get; set; }
