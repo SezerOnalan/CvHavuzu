@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 
+
 namespace CvHavuzu.Web.Controllers
 {
     [Authorize]
@@ -21,15 +22,14 @@ namespace CvHavuzu.Web.Controllers
         private readonly ApplicationDbContext _context;
         private IHostingEnvironment env;
 
-        private string FDir_AppData = "~/App_Data/";
-        private object id;
+        
 
         public MyResumeController(IHostingEnvironment _env, ApplicationDbContext context, ApplicationDbContext _contx) : base(context)
         {
             _context = context;
             this.env = _env;
         }
-
+        [Route("ozgecmisim")]
         // GET: MyResume
         public async Task<IActionResult> Index()
         {
@@ -38,7 +38,7 @@ namespace CvHavuzu.Web.Controllers
                 return View(await applicationDbContext.ToListAsync());
           
         }
-
+        [Route("ozgecmisim/detaylar")]
         // GET: MyResume/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -65,7 +65,7 @@ namespace CvHavuzu.Web.Controllers
 
             return View(resume);
         }
-
+        [Route("ozgecmisim/olustur")]
         // GET: MyResume/Create
         public IActionResult Create()
         {
@@ -86,12 +86,13 @@ namespace CvHavuzu.Web.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Route("ozgecmisim/olustur")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Resume resume, IFormFile imageUpload, IFormFile resumeUpload)
         {
             resume.UserName = User.Identity.Name;
 
-            if (imageUpload != null && imageUpload.Length > 0 && ".gif,.jpg,.jpeg,.png".Contains(Path.GetExtension(imageUpload.FileName)) == false || imageUpload == null)
+            if (imageUpload != null && imageUpload.Length > 0 && ".gif,.jpg,.jpeg,.png".Contains(Path.GetExtension(imageUpload.FileName)) == false)
             {
                 ModelState.AddModelError("ImageUpload", "Resim dosyasý uzantýsý .gif, .jpg, .jpeg ya da .png olmalýdýr ve alan boþ olamaz");
             }
@@ -140,7 +141,7 @@ namespace CvHavuzu.Web.Controllers
             ViewData["UniversityId"] = new SelectList(_context.Universities, "Id", "Name", resume.UniversityId);
             return View(resume);
         }
-
+        [Route("ozgecmisim/duzenle")]
         // GET: MyResume/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -170,6 +171,7 @@ namespace CvHavuzu.Web.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Route("ozgecmisim/duzenle")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Resume resume, IFormFile imageUpload, IFormFile resumeUpload)
         {
@@ -211,7 +213,7 @@ namespace CvHavuzu.Web.Controllers
                         using (var stream = new FileStream(env.WebRootPath + "\\uploads\\resumes\\" + filePath, FileMode.Create))
                         {
                             resumeUpload.CopyTo(stream);
-                        }
+                        }                        
                         resume.ResumeFile = filePath;
                     }
 
@@ -244,7 +246,7 @@ namespace CvHavuzu.Web.Controllers
             ViewData["UniversityId"] = new SelectList(_context.Universities, "Id", "Name", resume.UniversityId);
             return View(resume);
         }
-
+        [Route("ozgecmisim/sil")]
         // GET: MyResume/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -271,9 +273,10 @@ namespace CvHavuzu.Web.Controllers
 
             return View(resume);
         }
-
+        
         // POST: MyResume/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Route("ozgecmisim/sil")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
@@ -287,6 +290,7 @@ namespace CvHavuzu.Web.Controllers
         {
             return _context.Resumes.Any(e => e.Id == id);
         }
+        [Route("ozgecmisim/ozgecmisler")]
         public IActionResult Resumes(int id)
         {
 

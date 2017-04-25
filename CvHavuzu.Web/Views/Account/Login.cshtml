@@ -7,7 +7,7 @@
 @using PaulMiami.AspNetCore.Mvc.Recaptcha
 
 @{
-    ViewData["Title"] = "Log in";
+    ViewData["Title"] = "Giriş";
 }
 
 <header class="page-header bg-img size-lg">
@@ -44,11 +44,9 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-                                <div class="checkbox" >
-                                    <label asp-for="RememberMe">
-                                        <input asp-for="RememberMe" />
-                                        @Html.DisplayNameFor(m => m.RememberMe)
-                                    </label>
+                                <div class="checkbox">
+                                    <input asp-for="RememberMe"/>
+                                    <label asp-for="RememberMe"></label>
                                 </div>
                             </div>
                         </div>

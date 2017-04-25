@@ -35,7 +35,13 @@
                     </div>
                 </div>
                 <div id="searchResults">
-                    @if (Model.Count() == 0)
+                    @if (String.IsNullOrEmpty(ViewBag.Query) && Model.Count() == 0)
+                    {
+                        <div class="col-xs-12">
+                            <div class="alert alert-danger">Sistem yayında olan hiç özgeçmiş yok.</div>
+                        </div>
+                    }
+                    else if (!String.IsNullOrEmpty(ViewBag.Query) && Model.Count() == 0)
                     {
                         <div class="col-xs-12">
                             <div class="alert alert-danger">Aradığınız özgeçmiş bulunamadı.</div>
