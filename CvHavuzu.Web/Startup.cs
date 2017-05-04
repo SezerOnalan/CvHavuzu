@@ -48,8 +48,21 @@ namespace CvHavuzu.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            
+            services.AddMvc(options =>
+            {
+                options.SslPort = 44376;
+                options.Filters.Add(new RequireHttpsAttribute());
+            });
+            // Adds a default in-memory implementation of IDistributedCache.
+            services.AddDistributedMemoryCache();
 
+            services.AddSession(options =>
+            {
+                // Set a short timeout for easy testing.
+                options.IdleTimeout = TimeSpan.FromSeconds(1800);
+                options.CookieHttpOnly = true;
+            });
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             // Add framework services.
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -59,11 +72,7 @@ namespace CvHavuzu.Web
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddMvc(options =>
-            {
-                options.SslPort = 44376;
-                options.Filters.Add(new RequireHttpsAttribute());
-            });
+            
             // Recaptcha Add
             services.AddRecaptcha(new RecaptchaOptions
             {
@@ -124,7 +133,7 @@ namespace CvHavuzu.Web
                 AppSecret = Configuration["Authentication:LinkedIn:AppSecret"],
                 ProfileScheme = LinkedInDefaults.ProfileLoadFormat.AppDefined
             });
-            
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(name: "areaRoute",

@@ -11,6 +11,7 @@ using MimeKit;
 using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Hosting;
 using PagedList.Core;
+using Microsoft.AspNetCore.Http;
 
 namespace CvHavuzu.Web.Controllers
 {
@@ -35,25 +36,46 @@ namespace CvHavuzu.Web.Controllers
         }
 
 
-            public IActionResult DownloadDetails(int Id)
+            public IActionResult DownloadResume(int Id)
         {
-            Resume resume = new Resume();
-            resume = _context.Resumes.FirstOrDefault(r => r.Id == Id);
-            Stat stat = new Stat();
-            stat.Ip = Request.HttpContext.Connection.RemoteIpAddress.ToString();
-            stat.DownloadDate = DateTime.Now;
-            stat.ResumeId =Id;
-            stat.ResumeFullName = resume.FirstName + " " + resume.LastName;
-            _context.Add(stat);
-            _context.SaveChanges();
+            if (((Setting)ViewBag.Setting).ResumeDownloadSecurity == ResumeDownloadSecurity.FreeDownload)
+            { 
+                Resume resume = _context.Resumes.FirstOrDefault(r => r.Id == Id);
+                Stat stat = new Stat();
+                stat.Ip = Request.HttpContext.Connection.RemoteIpAddress.ToString();
+                stat.DownloadDate = DateTime.Now;
+                stat.ResumeId =Id;
+                stat.ResumeFullName = resume.FirstName + " " + resume.LastName;
+                _context.Add(stat);
+                _context.SaveChanges();
 
-            string filename = resume.ResumeFile;
-            string filepath = env.WebRootPath + "\\uploads\\resumes\\" + filename;
-            byte[] filedata = System.IO.File.ReadAllBytes(filepath);
+                string filename = resume.ResumeFile;
+                string filepath = env.WebRootPath + "\\uploads\\resumes\\" + filename;
+                byte[] filedata = System.IO.File.ReadAllBytes(filepath);
 
-            Response.Headers.Add("Content-Disposition", $"inline; filename={filename}");
-            return File(filedata, "application/octet-stream");
+                Response.Headers.Add("Content-Disposition", $"inline; filename={filename}");
+                return File(filedata, "application/octet-stream");
+            } else if (((Setting)ViewBag.Setting).ResumeDownloadSecurity == ResumeDownloadSecurity.NamePhoneEmailRequired)
+            {
+                return View("EnterNamePhoneEmail", new Stat());
+            }
+            return RedirectToAction("Login", "Account");
 
+        }
+        [HttpPost]
+        public IActionResult DownloadResume(int Id, Stat stat)
+        {
+            
+            if (((Setting)ViewBag.Setting).ResumeDownloadSecurity == ResumeDownloadSecurity.NamePhoneEmailRequired)
+            {
+                HttpContext.Session.SetString("Fullname", stat.Fullname);
+                HttpContext.Session.SetString("Email", stat.Email);
+                HttpContext.Session.SetString("Phone", stat.Phone);
+                HttpContext.Session.SetString("CompanyName", stat.CompanyName);
+                // girilen bilgileri stats'a kaydet
+                // özgeçmiş indir
+            }
+            return NotFound();
         }
 
         public IActionResult Index(string query = "", int page = 1)
