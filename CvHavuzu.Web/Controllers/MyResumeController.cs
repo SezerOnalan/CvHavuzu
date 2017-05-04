@@ -29,7 +29,7 @@ namespace CvHavuzu.Web.Controllers
             _context = context;
             this.env = _env;
         }
-        [Route("ozgecmisim")]
+
         // GET: MyResume
         public async Task<IActionResult> Index()
         {
@@ -38,7 +38,7 @@ namespace CvHavuzu.Web.Controllers
                 return View(await applicationDbContext.ToListAsync());
           
         }
-        [Route("ozgecmisim/detaylar")]
+
         // GET: MyResume/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -65,7 +65,7 @@ namespace CvHavuzu.Web.Controllers
 
             return View(resume);
         }
-        [Route("ozgecmisim/olustur")]
+
         // GET: MyResume/Create
         public IActionResult Create()
         {
@@ -86,7 +86,6 @@ namespace CvHavuzu.Web.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Route("ozgecmisim/olustur")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Resume resume, IFormFile imageUpload, IFormFile resumeUpload)
         {
@@ -120,6 +119,7 @@ namespace CvHavuzu.Web.Controllers
                 if (resumeUpload != null && resumeUpload.Length > 0)
                 {
                     var filePath = new Random().Next(9999).ToString() + resumeUpload.FileName;
+                    filePath = Areas.Admin.Controllers.ResumeController.ReplaceTurksihEnglishCharacter(filePath);
                     using (var stream = new FileStream(env.WebRootPath + "\\uploads\\resumes\\" + filePath, FileMode.Create))
                     {
                         resumeUpload.CopyTo(stream);
@@ -141,7 +141,7 @@ namespace CvHavuzu.Web.Controllers
             ViewData["UniversityId"] = new SelectList(_context.Universities, "Id", "Name", resume.UniversityId);
             return View(resume);
         }
-        [Route("ozgecmisim/duzenle")]
+        
         // GET: MyResume/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -150,7 +150,8 @@ namespace CvHavuzu.Web.Controllers
                 return NotFound();
             }
 
-            var resume = await _context.Resumes.SingleOrDefaultAsync(m => m.Id == id && m.UserName==User.Identity.Name);
+            //var resume = await _context.Resumes.SingleOrDefaultAsync(m => m.Id == id && m.UserName==User.Identity.Name);
+            var resume = await _context.Resumes.Where(m => m.UserName == User.Identity.Name).SingleOrDefaultAsync(m => m.Id == id);
             if (resume == null)
             {
                 return NotFound();
@@ -171,12 +172,13 @@ namespace CvHavuzu.Web.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Route("ozgecmisim/duzenle")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Resume resume, IFormFile imageUpload, IFormFile resumeUpload)
         {
+           
             resume.UserName = User.Identity.Name;
-            resume = await _context.Resumes.SingleOrDefaultAsync(m => m.Id == id && m.UserName == User.Identity.Name);
+            resume.UpdateDate = DateTime.Now;
+
             if (id != resume.Id)
             {
                 return NotFound();
@@ -210,6 +212,7 @@ namespace CvHavuzu.Web.Controllers
                     if (resumeUpload != null && resumeUpload.Length > 0)
                     {
                         var filePath = new Random().Next(9999).ToString() + resumeUpload.FileName;
+                        filePath = Areas.Admin.Controllers.ResumeController.ReplaceTurksihEnglishCharacter(filePath);
                         using (var stream = new FileStream(env.WebRootPath + "\\uploads\\resumes\\" + filePath, FileMode.Create))
                         {
                             resumeUpload.CopyTo(stream);
@@ -246,7 +249,7 @@ namespace CvHavuzu.Web.Controllers
             ViewData["UniversityId"] = new SelectList(_context.Universities, "Id", "Name", resume.UniversityId);
             return View(resume);
         }
-        [Route("ozgecmisim/sil")]
+
         // GET: MyResume/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -276,7 +279,7 @@ namespace CvHavuzu.Web.Controllers
         
         // POST: MyResume/Delete/5
         [HttpPost, ActionName("Delete")]
-        [Route("ozgecmisim/sil")]
+
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
@@ -290,7 +293,7 @@ namespace CvHavuzu.Web.Controllers
         {
             return _context.Resumes.Any(e => e.Id == id);
         }
-        [Route("ozgecmisim/ozgecmisler")]
+
         public IActionResult Resumes(int id)
         {
 

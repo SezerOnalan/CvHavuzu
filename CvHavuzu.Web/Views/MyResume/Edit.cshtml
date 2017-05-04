@@ -17,7 +17,7 @@
             <h2>Özgecmiş Düzenle</h2>
             <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
             <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.min.css" />
-            <form asp-action="Edit" enctype="multipart/form-data">
+            <form asp-controller="MyResume" asp-action="Edit" method="post" enctype="multipart/form-data">
                 <div class="form-horizontal">
                     <hr />
                     <input type="hidden" asp-for="UserName" value="@User.Identity.Name" />
