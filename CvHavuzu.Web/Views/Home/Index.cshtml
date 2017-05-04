@@ -118,9 +118,10 @@
                                     <p class="status"><strong>Güncellenme Tarihi:</strong>@item.UpdateDate</p>
 
                                     @{
-                                        if (item.ResumeFile == null)
+                                        if (User.IsInRole("Admin") == true)
                                         {
                                             <div class="action-btn">
+                                                <a class="btn btn-xs btn-success" asp-action="DownloadResume" asp-controller="Home" asp-route-id="@item.Id">Cv İndir</a>
                                                 <a class="btn btn-xs btn-gray" href="/Admin/Resume/Edit?id=@item.Id">Düzenle</a>
                                                 <a class="btn btn-xs btn-danger" asp-action="HideInList" asp-controller="Home" asp-route-id="@item.Id">Yayından Kaldır</a>
                                             </div>
@@ -129,9 +130,7 @@
                                         else
                                         {
                                             <div class="action-btn">
-                                                <a class="btn btn-xs btn-success" asp-action="DownloadResume" asp-controller="Home" asp-route-id="@item.Id">Cv İndir</a>
-                                                <a class="btn btn-xs btn-gray" href="/Admin/Resume/Edit?id=@item.Id">Düzenle</a>
-                                                <a class="btn btn-xs btn-danger" asp-action="HideInList" asp-controller="Home" asp-route-id="@item.Id">Yayından Kaldır</a>
+                                                <a class="btn btn-xs btn-success" asp-action="DownloadResume" asp-controller="Home" asp-route-id="@item.Id">Cv İndir</a>                                            
                                             </div>
 
 
