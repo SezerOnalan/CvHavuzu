@@ -12,8 +12,8 @@
         <dt>
             @Html.DisplayNameFor(model => model.ImagePath)
         </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ImagePath)
+        <dd>            
+            <a id:"cv" target="_blank" href="~/uploads/resumes/images/@Html.DisplayFor(model => model.ImagePath)">@Html.DisplayFor(model => model.ImagePath)</a>          
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.UserName)
