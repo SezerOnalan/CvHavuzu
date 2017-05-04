@@ -37,8 +37,8 @@ namespace CvHavuzu.Web.Controllers
 
 
             public IActionResult DownloadResume(int Id)
-        {
-            if (((Setting)ViewBag.Setting).ResumeDownloadSecurity == ResumeDownloadSecurity.FreeDownload)
+            {
+            if (((Setting)ViewBag.Setting).ResumeDownloadSecurity == ResumeDownloadSecurity.FreeDownload || ((Setting)ViewBag.Setting).ResumeDownloadSecurity == ResumeDownloadSecurity.MembershipRequired && User.Identity.IsAuthenticated) 
             { 
                 Resume resume = _context.Resumes.FirstOrDefault(r => r.Id == Id);
                 Stat stat = new Stat();
@@ -57,8 +57,30 @@ namespace CvHavuzu.Web.Controllers
                 return File(filedata, "application/octet-stream");
             } else if (((Setting)ViewBag.Setting).ResumeDownloadSecurity == ResumeDownloadSecurity.NamePhoneEmailRequired)
             {
+                if (HttpContext.Session.GetString("Fullname") == null)
+                {
+                    return View("EnterNamePhoneEmail", new StatViewModel());
+                }
 
-                return View("EnterNamePhoneEmail", new StatViewModel());
+                Resume resume = _context.Resumes.FirstOrDefault(r => r.Id == Id);              
+                var s = new Stat();
+                s.Fullname = HttpContext.Session.GetString("Fullname");
+                s.Email = HttpContext.Session.GetString("Email");
+                s.Phone = HttpContext.Session.GetString("Phone");
+                s.CompanyName = HttpContext.Session.GetString("CompanyName");
+                s.ResumeId = Id;
+                s.DownloadDate = DateTime.Now;
+                s.ResumeFullName = resume.FirstName + " " + resume.LastName;
+                s.Ip = Request.HttpContext.Connection.RemoteIpAddress.ToString();
+                _context.Add(s);
+                _context.SaveChanges();
+                string filename = resume.ResumeFile;
+                string filepath = env.WebRootPath + "\\uploads\\resumes\\" + filename;
+                byte[] filedata = System.IO.File.ReadAllBytes(filepath);
+
+                Response.Headers.Add("Content-Disposition", $"inline; filename={filename}");
+                return File(filedata, "application/octet-stream");
+
             }
             return RedirectToAction("Login", "Account");
 
@@ -69,7 +91,7 @@ namespace CvHavuzu.Web.Controllers
             
             if (((Setting)ViewBag.Setting).ResumeDownloadSecurity == ResumeDownloadSecurity.NamePhoneEmailRequired)
             {
-                Resume resume = _context.Resumes.FirstOrDefault(r => r.Id == Id);
+                Resume resume = _context.Resumes.FirstOrDefault(r => r.Id == Id);                             
                 HttpContext.Session.SetString("Fullname", stat.Fullname);
                 HttpContext.Session.SetString("Email", stat.Email);
                 HttpContext.Session.SetString("Phone", stat.Phone);
@@ -91,6 +113,7 @@ namespace CvHavuzu.Web.Controllers
 
                 Response.Headers.Add("Content-Disposition", $"inline; filename={filename}");
                 return File(filedata, "application/octet-stream");
+               
             }
             return NotFound();
         }

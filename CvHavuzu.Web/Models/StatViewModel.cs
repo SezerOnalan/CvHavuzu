@@ -8,19 +8,19 @@ namespace CvHavuzu.Web.Models
 {
     public class StatViewModel
     {
-        [Required]
-        [Display(Name = "İsim Soyisim")]
+        [Required(ErrorMessage = "Ad Soyad Alanı Gereklidir")]
+        [Display(Name = "Ad Soyad")]
         [StringLength(200)]
         public string Fullname { get; set; }
-        [Required]
+        [Required(ErrorMessage = "E-mail Alanı Gereklidir")]
         [Display(Name = "E-mail")]
         [StringLength(200)]
         public string Email { get; set; }
-        [Required]
-        [Display(Name = "Şirket İsmi")]
+        [Required(ErrorMessage = "Firma Adı Alanı Gereklidir")]
+        [Display(Name = "Firma Adı")]
         [StringLength(200)]
         public string CompanyName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Telefon Numarası Alanı Gereklidir")]
         [Display(Name = "Telefon Numarası")]
         [StringLength(200)]
         public string Phone { get; set; }
