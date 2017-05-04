@@ -57,23 +57,40 @@ namespace CvHavuzu.Web.Controllers
                 return File(filedata, "application/octet-stream");
             } else if (((Setting)ViewBag.Setting).ResumeDownloadSecurity == ResumeDownloadSecurity.NamePhoneEmailRequired)
             {
-                return View("EnterNamePhoneEmail", new Stat());
+
+                return View("EnterNamePhoneEmail", new StatViewModel());
             }
             return RedirectToAction("Login", "Account");
 
         }
         [HttpPost]
-        public IActionResult DownloadResume(int Id, Stat stat)
+        public IActionResult DownloadResume(int Id, StatViewModel stat)
         {
             
             if (((Setting)ViewBag.Setting).ResumeDownloadSecurity == ResumeDownloadSecurity.NamePhoneEmailRequired)
             {
+                Resume resume = _context.Resumes.FirstOrDefault(r => r.Id == Id);
                 HttpContext.Session.SetString("Fullname", stat.Fullname);
                 HttpContext.Session.SetString("Email", stat.Email);
                 HttpContext.Session.SetString("Phone", stat.Phone);
                 HttpContext.Session.SetString("CompanyName", stat.CompanyName);
-                // girilen bilgileri stats'a kaydet
-                // özgeçmiş indir
+                var s = new Stat();
+                s.Fullname = stat.Fullname;
+                s.Email = stat.Email;
+                s.Phone = stat.Phone;
+                s.CompanyName = stat.CompanyName;
+                s.ResumeId = Id;
+                s.DownloadDate = DateTime.Now;
+                s.ResumeFullName = resume.FirstName + " " + resume.LastName;
+                s.Ip = Request.HttpContext.Connection.RemoteIpAddress.ToString();
+                _context.Add(s);
+                _context.SaveChanges();
+                string filename = resume.ResumeFile;
+                string filepath = env.WebRootPath + "\\uploads\\resumes\\" + filename;
+                byte[] filedata = System.IO.File.ReadAllBytes(filepath);
+
+                Response.Headers.Add("Content-Disposition", $"inline; filename={filename}");
+                return File(filedata, "application/octet-stream");
             }
             return NotFound();
         }
