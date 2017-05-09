@@ -107,6 +107,7 @@ namespace CvHavuzu.Web.Controllers
                 if (imageUpload != null && imageUpload.Length > 0)
                 {
                     var filePath = new Random().Next(9999).ToString() + imageUpload.FileName;
+                    filePath = Areas.Admin.Controllers.ResumeController.ReplaceTurksihEnglishCharacter(filePath);
                     using (var stream = new FileStream(env.WebRootPath + "\\uploads\\resumes\\images\\" + filePath, FileMode.Create))
                     {
                         imageUpload.CopyTo(stream);
@@ -200,6 +201,7 @@ namespace CvHavuzu.Web.Controllers
                     if (imageUpload != null && imageUpload.Length > 0)
                     {
                         var filePath = new Random().Next(9999).ToString() + imageUpload.FileName;
+                        filePath = Areas.Admin.Controllers.ResumeController.ReplaceTurksihEnglishCharacter(filePath);
                         using (var stream = new FileStream(env.WebRootPath + "\\uploads\\resumes\\images\\" + filePath, FileMode.Create))
                         {
                             imageUpload.CopyTo(stream);
