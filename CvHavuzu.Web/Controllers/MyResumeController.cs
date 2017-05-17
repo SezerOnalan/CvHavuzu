@@ -188,7 +188,7 @@ namespace CvHavuzu.Web.Controllers
             {
                 ModelState.AddModelError("ImageEdit", "Resim dosya uzantýsý .gif, .jpg, .jpeg ya da .png olmalýdýr.");
             }
-            if (resumeUpload != null && resumeUpload.Length > 0 && ".pdf,.doc,.docx".Contains(Path.GetExtension(resumeUpload.FileName)) == false)
+            if ((resumeUpload != null && resumeUpload.Length > 0 && ".pdf,.doc,.docx".Contains(Path.GetExtension(resumeUpload.FileName)) == false)  || resumeUpload == null)
             {
                 ModelState.AddModelError("ResumeEdit", "Cv dosya uzantýsý .doc, .docx ya da .pdf olmalýdýr.");
             } 

@@ -9,7 +9,6 @@
     <UserSecretsId>aspnet-CvHavuzu.Web-bb79cc52-48d5-4fd2-a57f-af9aef66d4ce</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="C:\Users\Admin\Desktop\Index.cshtml" Link="Index.cshtml" />
     <Content Include="wwwroot\assets\css\app.min.css" />
     <Content Include="wwwroot\assets\css\custom.css" />
     <Content Include="wwwroot\assets\fonts\dropify.eot" />
