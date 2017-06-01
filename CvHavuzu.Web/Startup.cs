@@ -21,6 +21,8 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
 using PaulMiami.AspNetCore.Mvc.Recaptcha;
+using System.IO;
+using Microsoft.Extensions.FileProviders;
 
 namespace CvHavuzu.Web
 {
@@ -51,8 +53,8 @@ namespace CvHavuzu.Web
             
             services.AddMvc(options =>
             {
-                options.SslPort = 44376;
-                options.Filters.Add(new RequireHttpsAttribute());
+                options.SslPort = 443;
+                //options.Filters.Add(new RequireHttpsAttribute());
             });
             // Adds a default in-memory implementation of IDistributedCache.
             services.AddDistributedMemoryCache();
@@ -118,7 +120,12 @@ namespace CvHavuzu.Web
             }
 
             app.UseStaticFiles();
-
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @".well-known")),
+                RequestPath = new PathString("/.well-known"),
+                ServeUnknownFileTypes = true // serve extensionless file
+            }); ;
             app.UseIdentity();
             app.ApplicationServices.GetRequiredService<ApplicationDbContext>().Seed();
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715

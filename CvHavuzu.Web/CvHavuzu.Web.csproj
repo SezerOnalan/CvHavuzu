@@ -248,6 +248,7 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include=".well-known\" />
     <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 </Project>
