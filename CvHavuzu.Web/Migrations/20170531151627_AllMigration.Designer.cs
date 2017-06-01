@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using CvHavuzu.Web.Data;
 using CvHavuzu.Web.Models;
 
-namespace CvHavuzu.Web.Data.Migrations
+namespace CvHavuzu.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170421084949_about")]
-    partial class about
+    [Migration("20170531151627_AllMigration")]
+    partial class AllMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -344,6 +344,8 @@ namespace CvHavuzu.Web.Data.Migrations
 
                     b.Property<string>("Phone");
 
+                    b.Property<string>("PrivacyPolicy");
+
                     b.Property<int>("ResumeDownloadSecurity");
 
                     b.Property<string>("SeoDescription");
@@ -351,6 +353,8 @@ namespace CvHavuzu.Web.Data.Migrations
                     b.Property<string>("SeoKeywords");
 
                     b.Property<string>("SeoTitle");
+
+                    b.Property<string>("TermsOfUse");
 
                     b.Property<string>("Title");
 

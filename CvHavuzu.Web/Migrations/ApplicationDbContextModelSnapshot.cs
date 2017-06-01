@@ -6,13 +6,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using CvHavuzu.Web.Data;
 using CvHavuzu.Web.Models;
 
-namespace CvHavuzu.Web.Data.Migrations
+namespace CvHavuzu.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170420084940_editToStat")]
-    partial class editToStat
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
@@ -258,7 +257,6 @@ namespace CvHavuzu.Web.Data.Migrations
                     b.Property<int?>("ProfessionId");
 
                     b.Property<string>("ResumeFile")
-                        .IsRequired()
                         .HasMaxLength(200);
 
                     b.Property<int?>("ResumeStatusId");
@@ -321,9 +319,15 @@ namespace CvHavuzu.Web.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("About");
+
+                    b.Property<string>("Address");
+
                     b.Property<string>("CustomHtml");
 
                     b.Property<string>("Facebook");
+
+                    b.Property<string>("Fax");
 
                     b.Property<string>("FooterText");
 
@@ -333,7 +337,13 @@ namespace CvHavuzu.Web.Data.Migrations
 
                     b.Property<string>("Logo");
 
+                    b.Property<string>("Mail");
+
                     b.Property<string>("MembershipAgreement");
+
+                    b.Property<string>("Phone");
+
+                    b.Property<string>("PrivacyPolicy");
 
                     b.Property<int>("ResumeDownloadSecurity");
 
@@ -342,6 +352,8 @@ namespace CvHavuzu.Web.Data.Migrations
                     b.Property<string>("SeoKeywords");
 
                     b.Property<string>("SeoTitle");
+
+                    b.Property<string>("TermsOfUse");
 
                     b.Property<string>("Title");
 

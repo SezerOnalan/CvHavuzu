@@ -249,6 +249,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include=".well-known\" />
+    <Folder Include="Data\Migrations\" />
     <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 </Project>
