@@ -28,6 +28,7 @@ namespace CvHavuzu.Web.Data
             AddDepartments(context);
             AddDistricts(context);
             AddCities(context);
+            AddResumeStatus(context);
             context.SaveChanges();
 
 
@@ -1581,6 +1582,23 @@ namespace CvHavuzu.Web.Data
                  new District { Name = "Zeytinburnu", CityId = 2 }
                  );
 
+
+        }
+
+        public static void AddResumeStatus(ApplicationDbContext context)
+        {
+
+            context.AddRange(
+
+                new ResumeStatus { Name ="İş Arıyor"},
+                new ResumeStatus { Name = "Rezerve" },
+                 new ResumeStatus { Name = "İşe Başladı" },
+                  new ResumeStatus { Name = "Kayıp" },
+                   new ResumeStatus { Name = "Alternatif İstihdam" },
+                     new ResumeStatus { Name = "Diğer" }
+
+
+                );
 
         }
     }
