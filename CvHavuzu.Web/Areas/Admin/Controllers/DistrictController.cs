@@ -83,7 +83,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Id", district.CityId);
+            ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Name", district.CityId);
             return View(district);
         }
 
@@ -119,7 +119,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Id", district.CityId);
+            ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Name", district.CityId);
             return View(district);
         }
 
