@@ -38,6 +38,7 @@ namespace CvHavuzu.Web.Data
             cms.BodyContent = "Mesajınız Bize İletilmiştir. İlginiz İçin Teşekkür Ederiz";
             cms.SmptServer = "smtp.gmail.com";
             cms.SmptPortNumber = 587;
+            cms.UseSSL = false;
             context.MailSettings.Add(cms);
             context.SaveChanges();
         }
