@@ -120,12 +120,12 @@ namespace CvHavuzu.Web
             }
 
             app.UseStaticFiles();
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @".well-known")),
-                RequestPath = new PathString("/.well-known"),
-                ServeUnknownFileTypes = true // serve extensionless file
-            }); ;
+            //app.UseStaticFiles(new StaticFileOptions
+            //{
+            //    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @".well-known")),
+            //    RequestPath = new PathString("/.well-known"),
+            //    ServeUnknownFileTypes = true // serve extensionless file
+            //});
             app.UseIdentity();
             app.ApplicationServices.GetRequiredService<ApplicationDbContext>().Seed();
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715

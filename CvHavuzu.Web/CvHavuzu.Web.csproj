@@ -9,6 +9,12 @@
     <UserSecretsId>aspnet-CvHavuzu.Web-bb79cc52-48d5-4fd2-a57f-af9aef66d4ce</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove=".well-known\**" />
+    <Content Remove=".well-known\**" />
+    <EmbeddedResource Remove=".well-known\**" />
+    <None Remove=".well-known\**" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="wwwroot\assets\css\app.min.css" />
     <Content Include="wwwroot\assets\css\custom.css" />
     <Content Include="wwwroot\assets\fonts\dropify.eot" />
@@ -248,7 +254,6 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include=".well-known\" />
     <Folder Include="Data\Migrations\" />
     <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
