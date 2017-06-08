@@ -7,10 +7,12 @@ using CvHavuzu.Web.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CvHavuzu.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "ADMIN")]
     public class SettingController : Controller
     {
         private Data.ApplicationDbContext context;

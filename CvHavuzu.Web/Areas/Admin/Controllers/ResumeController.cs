@@ -10,10 +10,12 @@ using CvHavuzu.Web.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CvHavuzu.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "ADMIN")]
     public class ResumeController : Controller
     {
         private readonly ApplicationDbContext _context;
