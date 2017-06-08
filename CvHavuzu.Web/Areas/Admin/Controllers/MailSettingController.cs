@@ -8,10 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using CvHavuzu.Web.Data;
 using CvHavuzu.Web.Models;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CvHavuzu.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "ADMIN")]
     public class MailSettingController : Controller
     {
         private Data.ApplicationDbContext context;

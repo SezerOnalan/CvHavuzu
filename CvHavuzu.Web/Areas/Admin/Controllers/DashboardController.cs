@@ -7,10 +7,12 @@ using CvHavuzu.Web.Data;
 using Microsoft.AspNetCore.Identity;
 using CvHavuzu.Web.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CvHavuzu.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "ADMIN")]
     public class DashboardController : Controller
     {
         private ApplicationDbContext context;
