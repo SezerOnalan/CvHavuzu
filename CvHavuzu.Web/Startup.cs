@@ -23,6 +23,7 @@ using System.Globalization;
 using PaulMiami.AspNetCore.Mvc.Recaptcha;
 using System.IO;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.Identity;
 
 namespace CvHavuzu.Web
 {
@@ -70,11 +71,11 @@ namespace CvHavuzu.Web
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+            services.AddIdentity<ApplicationUser, Role>()
+               .AddEntityFrameworkStores<ApplicationDbContext>()
+               .AddDefaultTokenProviders();
 
-            
+
             // Recaptcha Add
             services.AddRecaptcha(new RecaptchaOptions
             {
@@ -127,7 +128,7 @@ namespace CvHavuzu.Web
             //    ServeUnknownFileTypes = true // serve extensionless file
             //});
             app.UseIdentity();
-            app.ApplicationServices.GetRequiredService<ApplicationDbContext>().Seed();
+            app.ApplicationServices.GetRequiredService<ApplicationDbContext>().Seed(app.ApplicationServices.GetRequiredService<UserManager<ApplicationUser>>(), app.ApplicationServices.GetRequiredService<RoleManager<Role>>());
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
             app.UseFacebookAuthentication(new FacebookOptions()
             {
