@@ -8,7 +8,7 @@ namespace CvHavuzu.Web.Models.AccountViewModels
 {
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessage ="Lütfen Mail Adresi Giriniz.")]
         [EmailAddress]
         [Display(Name = "E-Posta")]
         public string Email { get; set; }
