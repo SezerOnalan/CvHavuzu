@@ -54,6 +54,7 @@ namespace CvHavuzu.Web.Data
             s.Phone = "02122121212";
             s.Fax = "02122122121";
             s.Mail = "ornek@mail.com";
+            s.FooterText = "Bu site Bilişim Eğitim Merkezi öğrencileri tarafından geliştirilmiştir.";
             // diğer ayarlar yazılır
             context.Settings.Add(s);
             context.SaveChanges();
