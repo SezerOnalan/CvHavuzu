@@ -41,6 +41,7 @@ namespace CvHavuzu.Web.Data
             cms.BodyContent = "Mesajınız Bize İletilmiştir. İlginiz İçin Teşekkür Ederiz";
             cms.SmptServer = "smtp.gmail.com";
             cms.SmptPortNumber = 587;
+            cms.UseSSL = false;
             context.MailSettings.Add(cms);
             context.SaveChanges();
         }
@@ -56,6 +57,7 @@ namespace CvHavuzu.Web.Data
             s.Phone = "02122121212";
             s.Fax = "02122122121";
             s.Mail = "ornek@mail.com";
+            s.FooterText = "Bu site Bilişim Eğitim Merkezi öğrencileri tarafından geliştirilmiştir.";
             // diğer ayarlar yazılır
             context.Settings.Add(s);
             context.SaveChanges();
