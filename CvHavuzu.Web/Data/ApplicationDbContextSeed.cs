@@ -29,6 +29,7 @@ namespace CvHavuzu.Web.Data
             AddDistricts(context);
             AddCities(context);
             AddResumeStatus(context);
+            AddEducationLevels(context);
             context.SaveChanges();
 
 
@@ -1597,6 +1598,20 @@ namespace CvHavuzu.Web.Data
                    new ResumeStatus { Name = "Alternatif İstihdam" },
                      new ResumeStatus { Name = "Diğer" }
 
+
+                );
+
+        }
+
+        public static void AddEducationLevels(ApplicationDbContext context)
+        {
+
+            context.AddRange(
+
+                new EducationLevel { Name = "Ön Lisans" },
+                new EducationLevel { Name = "Lisans" },
+                new EducationLevel { Name = "Yüksek Lisans" },
+                new EducationLevel { Name = "Doktora" }
 
                 );
 
