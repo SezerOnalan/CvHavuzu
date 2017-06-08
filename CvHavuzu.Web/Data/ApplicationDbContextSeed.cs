@@ -11,7 +11,9 @@ namespace CvHavuzu.Web.Data
 {
     public static class ApplicationDbContextSeed
     {
-        public static void Seed(this ApplicationDbContext context)
+
+
+        public static void Seed(this ApplicationDbContext context, UserManager<ApplicationUser> userManager, RoleManager<Role> roleManager)
         {
             // migration'ları veritabanına uygula
             context.Database.Migrate();
@@ -21,11 +23,46 @@ namespace CvHavuzu.Web.Data
             {
                 return;   // DB has been seeded
             }
+
+
             // Perform seed operations
             AddMailSettings(context);
             AddSettings(context);
+            AddUsers(userManager);
+            AddRoles(roleManager);
+            AddRoleToUser(userManager);
 
         }
+
+
+
+        private static ApplicationUser user;
+
+        private static void AddUsers(UserManager<ApplicationUser> _userManager)
+        {
+            user = new ApplicationUser { Id = Guid.NewGuid().ToString(), UserName = "denemecvhavuzu@gmail.com", Email = "denemecvhavuzu@gmail.com", EmailConfirmed = true, NormalizedEmail = "DENEMECVHAVUZU@GMAİL.COM", NormalizedUserName = "DENEMECVHAVUZU@GMAİL.COM" };
+            var task1 = Task.Run(() => _userManager.CreateAsync(user, "123:Asd"));
+            task1.Wait();
+        }
+
+        private static void AddRoles(RoleManager<Role> _roleManager)
+        {
+            string[] roles = { "ADMIN"};
+            string[] stamp = { "Yönetici"};
+
+            for (int i = 0; i < roles.Count(); i++)
+            {
+                var role = new Role { Id = Guid.NewGuid().ToString(), Name = roles[i], NormalizedName = roles[i], ConcurrencyStamp = stamp[i] };
+                var task1 = Task.Run(() => _roleManager.CreateAsync(role));
+                task1.Wait();
+            }
+        }
+        private static void AddRoleToUser(UserManager<ApplicationUser> _userManager)
+        {
+            var task1 = Task.Run(() => _userManager.AddToRoleAsync(user, "ADMIN"));
+            task1.Wait();
+        }
+
 
         public static void AddMailSettings(ApplicationDbContext context)
         {
