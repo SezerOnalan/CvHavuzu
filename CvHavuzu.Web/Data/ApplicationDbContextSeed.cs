@@ -26,7 +26,10 @@ namespace CvHavuzu.Web.Data
             AddSettings(context);
             AddUniversity(context);
             AddDepartments(context);
+            AddDistricts(context);
+            AddCities(context);
             context.SaveChanges();
+
 
         }
 
@@ -965,7 +968,7 @@ namespace CvHavuzu.Web.Data
                );
 
 
-            
+
 
 
 
@@ -975,7 +978,7 @@ namespace CvHavuzu.Web.Data
         {
 
             context.AddRange(
-                      new Department { Name = "Acil Yardım ve Afet Yönetimi"},
+                      new Department { Name = "Acil Yardım ve Afet Yönetimi" },
                       new Department { Name = "Acil Yardım ve Afet Yönetimi" },
                       new Department { Name = "Adli Bilişim MühendisliğI (M.T.O.K.)" },
                       new Department { Name = "Adli Bilişim Mühendisliği" },
@@ -1518,6 +1521,67 @@ namespace CvHavuzu.Web.Data
 
 
                      );
+
+        }
+
+        public static void AddCities(ApplicationDbContext context)
+        {
+
+            context.AddRange(
+                new City { Name="İstanbul Anadolu" },
+                new City { Name = "İstanbul Avrupa" }
+                );
+
+        }
+
+        public static void AddDistricts(ApplicationDbContext context)
+        {
+
+            context.AddRange(
+                 new District { Name = "Adalar", CityId = 1 },
+                 new District { Name = "Ataşehir", CityId = 1 },
+                 new District { Name = "Beykoz", CityId = 1 },
+                 new District { Name = "Çekmeköy", CityId = 1 },
+                 new District { Name = "Kadıköy", CityId = 1 },
+                 new District { Name = "Kartal", CityId = 1 },
+                 new District { Name = "Maltepe", CityId = 1 },
+                 new District { Name = "Pendik", CityId = 1 },
+                 new District { Name = "Sancaktepe", CityId = 1 },
+                 new District { Name = "Sultanbeyli", CityId = 1 },
+                 new District { Name = "Şile", CityId = 1 },
+                 new District { Name = "Tuzla", CityId = 1 },
+                 new District { Name = "Ümraniye", CityId = 1 },
+                 new District { Name = "Üsküdar", CityId = 1 },
+
+
+
+                 new District { Name = "Avcılar", CityId = 2 },
+                 new District { Name = "Bağcılar", CityId = 2 },
+                 new District { Name = "Bahçelievler", CityId = 2 },
+                 new District { Name = "Bakırköy", CityId = 2 },
+                 new District { Name = "Başakşehir", CityId = 2 },
+                 new District { Name = "Bayrampaşa", CityId = 2 },
+                 new District { Name = "Beşiktaş", CityId = 2 },
+                 new District { Name = "Beylikdüzü", CityId = 2 },
+                 new District { Name = "Beyoğlu", CityId = 2 },
+                 new District { Name = "Büyükçekmece", CityId = 2 },
+                 new District { Name = "Çatalca", CityId = 2 },
+                 new District { Name = "Esenler", CityId = 2 },
+                 new District { Name = "Esenyurt", CityId = 2 },
+                 new District { Name = "Eyüp", CityId = 2 },
+                 new District { Name = "Fatih", CityId = 2 },
+                 new District { Name = "Gaziosmanpaşa", CityId = 2 },
+                 new District { Name = "Güngören", CityId = 2 },
+                 new District { Name = "Kâğıthane", CityId = 2 },
+                 new District { Name = "Küçükçekmece", CityId = 2 },
+                 new District { Name = "Sarıyer", CityId = 2 },
+                 new District { Name = "Silivri", CityId = 2 },
+                 new District { Name = "Sultangazi", CityId = 2 },
+                 new District { Name = "Şişli", CityId = 2 },
+                 new District { Name = "Zeytinburnu", CityId = 2 }
+                 );
+
+
         }
     }
 }
