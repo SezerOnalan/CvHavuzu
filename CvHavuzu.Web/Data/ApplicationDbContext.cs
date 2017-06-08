@@ -24,6 +24,8 @@ namespace CvHavuzu.Web.Data
         public DbSet<CvHavuzu.Web.Models.City> Cities { get; set; }
         public DbSet<CvHavuzu.Web.Models.District> Districts { get; set; }
         public DbSet<MailSetting> MailSettings { get; set; }
+        public DbSet<Role> ApplicationRole { get; set; }
+
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

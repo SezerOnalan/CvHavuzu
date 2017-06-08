@@ -36,5 +36,6 @@ namespace CvHavuzu.Web.Models
         [Required]
         [Display(Name = "Port Numarası")]
         public int SmptPortNumber { get; set; }
+        public bool UseSSL { get; set; }
     }
 }
