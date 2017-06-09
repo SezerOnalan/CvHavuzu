@@ -49,7 +49,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
         // GET: Admin/District/Create
         public IActionResult Create()
         {
-            ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Id");
+            ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Name");
             return View();
         }
 
@@ -66,7 +66,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Id", district.CityId);
+            ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Name", district.CityId);
             return View(district);
         }
 
