@@ -8,10 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using CvHavuzu.Web.Data;
 using CvHavuzu.Web.Models;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CvHavuzu.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "ADMIN")]
     public class MailSettingController : Controller
     {
         private Data.ApplicationDbContext context;
@@ -35,6 +37,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
                 cms.BodyContent = "Mesajýnýz Bize Ýletilmiþtir. Ýlginiz Ýçin Teþekkür Ederiz";
                 cms.SmptServer = "smtp.gmail.com";
                 cms.SmptPortNumber = 587;
+                cms.UseSSL = false;
                 context.Add(cms);
                 context.SaveChanges();
 
@@ -60,6 +63,7 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
                     cms.SmptPortNumber = mailSetting.SmptPortNumber;
                     cms.SmptServer = mailSetting.SmptServer;
                     cms.Subject = mailSetting.Subject;
+                    cms.UseSSL = mailSetting.UseSSL;
                     context.SaveChanges();
                 }
             }
