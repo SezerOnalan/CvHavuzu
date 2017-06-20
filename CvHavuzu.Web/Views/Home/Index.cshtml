@@ -103,7 +103,7 @@
                                         <b> Yaş : @(age == 0 ? string.Empty : age.ToString())</b>
 
                                         <br /><div class="tag-list">
-                                                  <b>   Yetenekler : </b>
+                                                  <b>   Yetkinlikler : </b>
                                                  @{ List<string> skils = (!String.IsNullOrEmpty(item.Skills)?item.Skills.Split(',').ToList():new List<string>());
                                                      }
                                                        @foreach (var tag in skils)
