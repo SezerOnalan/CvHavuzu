@@ -61,6 +61,9 @@
                 @Html.DisplayNameFor(model => model.Approved)
             </th>
             <th class="none">
+                @Html.DisplayNameFor(model=>model.WithoutIncentives)
+            </th>
+            <th class="none">
                 @Html.DisplayNameFor(model => model.CreateDate)
             </th>
             <th class="none">
@@ -131,6 +134,9 @@
 
                 <td>
                     @Html.DisplayFor(modelItem => item.Approved)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem=>item.WithoutIncentives)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CreateDate)

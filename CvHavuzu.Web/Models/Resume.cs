@@ -15,6 +15,7 @@ namespace CvHavuzu.Web.Models
             UpdateDate = DateTime.Now;
             Approved = false;
             ShowInList = true;
+            WithoutIncentives = false;
         }
 
         public int Id { get; set; }
@@ -109,6 +110,8 @@ namespace CvHavuzu.Web.Models
         public virtual Consultant Consultant { get; set; }
         [Display(Name = "Onaylandı")]
         public bool Approved { get; set; }
+        [Display(Name = "Teşviksiz mi?")]
+        public bool WithoutIncentives { get; set; }
         [Display(Name = "Oluşturulma Tarihi")]
         public DateTime CreateDate { get; set; }
         [Display(Name = "Güncellenme Tarihi")]

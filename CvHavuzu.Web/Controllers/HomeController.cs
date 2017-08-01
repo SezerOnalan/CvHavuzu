@@ -118,59 +118,88 @@ namespace CvHavuzu.Web.Controllers
             return NotFound();
         }
 
-        public IActionResult Index(string query = "", int page = 1)
+        public IActionResult Index(string query = "", int page = 1, int sirala=0)
         {
-          
+           
+                ViewBag.Query = query;
+            ViewBag.Sirala = sirala;
+                var resumes = _context.Resumes.Include(x => x.Department)
+                    .Include(x => x.University)
+                    .Include(x => x.Profession)
+                    .Include(x => x.ResumeStatus)
+                    .Include(x => x.Consultant)
+                    .Include(x => x.EducationLevel)
+                    .Include(x => x.Teacher)
+                    .Include(x => x.City)
+                    .Include(x => x.District).Where(r => r.ShowInList == true && r.Approved == true);
 
-            ViewBag.Query = query;
-            if (String.IsNullOrEmpty(query)) {
+                if (String.IsNullOrEmpty(query))
+                {
                 // query parametresinden değer gelmiyorsa tüm kayıtları getir
-                var resumes = _context.Resumes
-                    .Include(x => x.Department)
-                    .Include(x => x.University)
-                    .Include(x => x.Profession)
-                    .Include(x => x.ResumeStatus)
-                    .Include(x => x.Consultant)
-                    .Include(x => x.EducationLevel)
-                    .Include(x => x.Teacher)
-                    .Include(x => x.City)
-                    .Include(x => x.District)
-                    .Where(r => r.ShowInList == true && r.Approved == true);
-                return View(resumes.OrderByDescending(i => i.UpdateDate).ToPagedList<Resume>(page, 10));
-            } else
-            {
-                // query'den değer geliyorsa where metoduyla filtreleme yap
-                query = query.ToLower();
-                string[] terms =query.Split(' ');
-                var resumes = _context.Resumes
-                    .Include(x => x.Department)
-                    .Include(x => x.University)
-                    .Include(x => x.Profession)
-                    .Include(x => x.ResumeStatus)
-                    .Include(x => x.Consultant)
-                    .Include(x => x.EducationLevel)
-                    .Include(x => x.Teacher)
-                    .Include(x => x.City)
-                    .Include(x => x.District)
-                    .Where(r => r.ShowInList == true && r.Approved == true);
-
-                   foreach (var term in terms)
-                   { 
-                    resumes = resumes.Where(r => 
-                    r.FirstName.ToLower().Contains(term) ||
-                    r.LastName.ToLower().Contains(term) ||
-                    r.Gender.ToString().ToLower().Contains(term) ||
-                    r.Profession.Name.ToLower().Contains(term) ||
-                    r.EducationLevel.Name.ToLower().Contains(term) ||
-                    r.University.Name.ToLower().Contains(term) ||
-                    r.Department.Name.ToLower().Contains(term) ||
-                    r.City.Name.ToLower().Contains(term) ||
-                    r.District.Name.ToLower().Contains(term) ||
-                    r.Skills.ToLower().Contains(term));
-                    }
+                
                     
-                return View(resumes.OrderByDescending(i => i.UpdateDate).ToPagedList<Resume>(page, 10));
+                    resumes = resumes.OrderByDescending(i => i.UpdateDate);
+                }
+                else
+                {
+                    // query'den değer geliyorsa where metoduyla filtreleme yap
+                    query = query.ToLower();
+                    string[] terms = query.Split(' ');
+                    
+
+                    foreach (var term in terms)
+                    {
+                        resumes = resumes.Where(r =>
+                        r.FirstName.ToLower().Contains(term) ||
+                        r.LastName.ToLower().Contains(term) ||
+                        r.Profession.Name.ToLower().Contains(term) ||
+                        r.EducationLevel.Name.ToLower().Contains(term) ||
+                        r.University.Name.ToLower().Contains(term) ||
+                        r.Department.Name.ToLower().Contains(term) ||
+                        r.City.Name.ToLower().Contains(term) ||
+                        r.District.Name.ToLower().Contains(term) ||
+                        r.Skills.ToLower().Contains(term));
+                    }
+
+                    resumes = resumes.OrderByDescending(i => i.UpdateDate);
+                }
+
+            /* 0:Güncel olan önce
+             * 1:Ada göre artan
+             * 2:Ada göre azalan
+             * 3:Konuma göre artan
+             * 4:Konuma göre azalan
+             * 5:Üniversite adına göre artan
+             * 6:Üniversite adına göre azalan
+             * */
+
+            switch (sirala)
+            {
+                case 0:
+                    break;
+                case 1:
+                    resumes = resumes.OrderBy(x => x.FirstName).ThenBy(y=>y.LastName);
+                    break;
+                case 2:
+                    resumes = resumes.OrderByDescending(x => x.FirstName).ThenByDescending(y => y.LastName);
+                    break;
+                case 3:
+                    resumes = resumes.OrderBy(x => x.City.Name).ThenBy(y => y.District.Name);
+                    break;
+                case 4:
+                    resumes = resumes.OrderByDescending(x => x.City.Name).ThenByDescending(y => y.District.Name);
+                    break;
+                case 5:
+                    resumes = resumes.OrderBy(x => x.University.Name).ThenBy(y=>y.Department.Name);
+                    break;
+                case 6:
+                    resumes = resumes.OrderByDescending(x => x.University.Name).ThenByDescending(y => y.Department.Name);
+                    break;
+
             }
+            return View(resumes.ToPagedList<Resume>(page, 10));
+
+           
         }
         [Route("hakkinda")]
         public IActionResult About()

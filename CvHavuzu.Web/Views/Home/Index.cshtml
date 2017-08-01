@@ -22,12 +22,24 @@
 
                         <div class="col-xs-12">
                             <br />
-                            <form role="form" asp-action="Index" asp-controller="Home" method="get">
+                            <form role="form" asp-action="Index" asp-controller="Home" method="get" id="resumesForm">
                                 <div class="input-group">
                                     <input type="text" name="query" id="query" value="@ViewBag.Query" placeholder="Özgeçmiş adı, konumu, yetenekleri, vs. ara.." class="form-control" />
+                                    
                                     <span class="input-group-btn">
                                         <button class="btn btn-primary" type="submit">Ara</button>
-                                    </span>
+                                    </span>                                   
+                                </div>
+                                <div class="text-right">
+                                    @Html.DropDownList("Sirala", new SelectListItem[]
+                               { new SelectListItem() { Text = "Güncel Olan Önce", Value = "0" }
+                               , new SelectListItem() { Text="Ada Göre Artan", Value="1"}
+                               , new SelectListItem() { Text = "Ada Göre Azalan", Value = "2" }
+                               , new SelectListItem() { Text = "Konuma Göre Artan", Value = "3" }
+                               , new SelectListItem() { Text = "Konuma Göre Azalan", Value = "4" }
+                               , new SelectListItem() { Text = "Üniversite Adına Göre artan", Value = "5" }
+                               , new SelectListItem() { Text = "Üniversite Adına Göre Azalan", Value = "6" }}
+                               , new { @class = "form-control text-right pull-right", @onchange = "document.getElementById('resumesForm').submit();", @style="width:200px;" })
                                 </div>
                             </form>
                         </div>
@@ -116,6 +128,10 @@
 
                                 <footer>
                                     <p class="status"><strong>Güncellenme Tarihi:</strong>@item.UpdateDate</p>
+                                     @if (item.WithoutIncentives == true)
+                                    { 
+                                      <p class="status"><strong> &nbsp; Teşviksiz</strong></p>
+                                    }
 
                                     @{
                                         if (User.IsInRole("Admin") == true)
