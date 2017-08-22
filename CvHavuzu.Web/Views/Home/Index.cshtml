@@ -30,6 +30,7 @@
                                         <button class="btn btn-primary" type="submit">Ara</button>
                                     </span>                                   
                                 </div>
+                                
                                 <div class="text-right">
                                     @Html.DropDownList("Sirala", new SelectListItem[]
                                { new SelectListItem() { Text = "Güncel Olan Önce", Value = "0" }
@@ -40,6 +41,9 @@
                                , new SelectListItem() { Text = "Üniversite Adına Göre artan", Value = "5" }
                                , new SelectListItem() { Text = "Üniversite Adına Göre Azalan", Value = "6" }}
                                , new { @class = "form-control text-right pull-right", @onchange = "document.getElementById('resumesForm').submit();", @style="width:200px;" })
+                                </div>
+                                <div class="text-left">
+                                    <small style="color:#cccccc;">Bulunan özgeçmiş sayısı: @Model.TotalItemCount</small>
                                 </div>
                             </form>
                         </div>
@@ -75,7 +79,7 @@
                                             }
                                             else
                                             {
-                                                <img class="resume-avatar" src="~/uploads/resumes/images/@item.ImagePath" alt="">
+                                                <img class="resume-avatar" src="/uploads/resumes/images/@item.ImagePath" alt="">
 
                                             }
                                         }
