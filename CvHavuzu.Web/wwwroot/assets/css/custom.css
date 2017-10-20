@@ -4,30 +4,105 @@ body {
 }
 .demo-btn-margin .btn{margin-bottom:6px}
 .page-header {
-    padding-top: 0px !important;
-    background-image: url(/images/blue-bg.jpg) !important;
-}
-    .page-header > .container {
-        -webkit-box-shadow: 0px 3px 20px 1px rgba(0,0,0,0.3);
-        -moz-box-shadow: 0px 3px 20px 1px rgba(0,0,0,0.3);
-        box-shadow: 0px 2px 10px 1px #d3d3d3;
-    }
-h1 {font-size:28px !important;}
-label {
-color:black;
-}
-#tblRecords {
-    font-size: 15px !important;
+    padding-top: 60px !important;
+    /* background-image: url(/images/blue-bg.jpg) !important;*/
+    background-color:transparent;
 }
 
-.tag-list{
-    margin-top:-9px !important;
-}
 
-@media (max-width: 767px) {
-    .btn-xs {
-        padding: 0 10px !important;
-        font-size: 10px !important;
+@media screen and (max-width: 767px) {
+    .logo-wrapper {
+        width: 50%
     }
-}
+
+    .useraccountdiv {
+        display: inline-block;
+    }
+
+    .logodiv {
+        width: 85%;
+        text-align: center;
+    }
+    .page-header {
+        padding-top: 0px !important;
+    }
+    .logo-alt {
+        display:inline !important;
+    }
+    }
+
+    @media screen and (min-width: 768px) {
+        .logodiv {
+            margin-top: 20px;
+            margin-left: 90px;
+        }
+
+        .page-header > .container {
+            -webkit-box-shadow: 0px 3px 20px 1px rgba(0,0,0,0.3);
+            -moz-box-shadow: 0px 3px 20px 1px rgba(0,0,0,0.3);
+            box-shadow: 0px 2px 10px 1px #d3d3d3;
+            background-image: url('/images/cvhavuzu_logo.jpg');
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-color: rgb(22,171,184);
+            padding-left: 320px;
+            font-style: italic;
+            color: white;
+            font-weight: bold;
+        }
+
+        .logo-alt {
+            width:300px;
+        }
+
+        .nav-menu {
+            margin-top: 60px;
+            text-align: right;
+            margin-right: 70px;
+        }
+
+        .useraccountdiv {
+            margin-top: 60px;
+        }
+
+
+        .bg-alt {
+            background-image: url('/images/arka-plan_v1.jpg');
+            background-repeat: no-repeat;
+            background-size: contain
+        }
+    }
+
+    .nav-on-header .navbar .nav-menu a, .nav-on-header .navbar .navbar-toggle {
+        color: black;
+        font-weight: bold;
+    }
+
+        .nav-on-header .navbar .nav-menu a.active, .nav-on-header .navbar .nav-menu a:focus, .nav-on-header .navbar .nav-menu a:hover, .nav-on-header .navbar .navbar-toggle.active, .nav-on-header .navbar .navbar-toggle:focus, .nav-on-header .navbar .navbar-toggle:hover {
+            color: black !important;
+            text-decoration: underline;
+        }
+
+    h1 {
+        font-size: 28px !important;
+    }
+
+    label {
+        color: black;
+    }
+
+    #tblRecords {
+        font-size: 15px !important;
+    }
+
+    .tag-list {
+        margin-top: -9px !important;
+    }
+
+    @media (max-width: 767px) {
+        .btn-xs {
+            padding: 0 10px !important;
+            font-size: 10px !important;
+        }
+    }
 

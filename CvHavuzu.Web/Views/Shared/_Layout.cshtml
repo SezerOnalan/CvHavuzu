@@ -33,7 +33,7 @@
     @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
 
-<body class="nav-on-header smart-nav bg-alt">
+<body class="nav-on-header bg-alt">
     <!-- Global Site Tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-67182253-32"></script>
     <script>
@@ -48,18 +48,20 @@
         <div class="container">
 
             <!-- Logo -->
-            <div class="pull-left">
+            <div class="pull-left logodiv">
                 <a class="navbar-toggle" href="#" data-toggle="offcanvas"><i class="ti-menu"></i></a>
 
                 <div class="logo-wrapper">
-                    <a class="logo" href="/"><img src="/uploads/@ViewBag.Setting.Logo" alt="logo"></a>
-                    <a class="logo-alt" href="/"><img src="/uploads/@ViewBag.Setting.Logo" alt="logo-alt"></a>
+              
+                    <a  href="/"><img src="/images/logo_bilisimkariyer.png" alt="logo-alt" class="logo-alt"></a>
+                    @*<a class="logo" href="/"><img src="/uploads/@ViewBag.Setting.Logo" alt="logo"></a>
+                    <a class="logo-alt" href="/"><img src="/uploads/@ViewBag.Setting.Logo" alt="logo-alt"></a>*@
                 </div>
 
             </div>
             <!-- END Logo -->
             <!-- User account -->
-            <div class="pull-right">
+            <div class="pull-right useraccountdiv">
 
                 <div class="dropdown user-account">
                    
