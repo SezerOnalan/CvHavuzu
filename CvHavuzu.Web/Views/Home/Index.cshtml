@@ -27,7 +27,7 @@
                             <br />
                             <form role="form" asp-action="Index" asp-controller="Home" method="get" id="resumesForm">
                                 <div class="input-group">
-                                    <input type="text" name="query" id="query" value="@ViewBag.Query" placeholder="Özgeçmiş adı, konumu, yetkinlikleri, vs. ara.." class="form-control" />
+                                    <input type="text" name="query" id="query" value="@ViewBag.Query" placeholder="Özgeçmiş adı, konumu, yetkinlikleri, vb. ara.." class="form-control" />
                                     
                                     <span class="input-group-btn">
                                         <button class="btn btn-primary" type="submit">Ara</button>
@@ -127,7 +127,7 @@
                                                      }
                                                        @foreach (var tag in skils)
                                                        {
-                                                      <span><a href="/?query=@tag.Trim().ToLower()">@(tag.Trim() != null ? tag.Trim() : string.Empty)</a></span>
+                                                      <span style="white-space: normal;"><a href="/?query=@tag.Trim().ToLower()">@(tag.Trim() != null ? tag.Trim() : string.Empty)</a></span>
                                                        }
 </div>
                                     </p>
