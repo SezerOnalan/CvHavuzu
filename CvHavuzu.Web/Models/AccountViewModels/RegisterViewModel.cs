@@ -4,24 +4,24 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CvHavuzu.Web.Models.AccountViewModels
+namespace CvHavuzu.Models.AccountViewModels
 {
     public class RegisterViewModel
     {
-        [Required(ErrorMessage ="Lütfen Mail Adresi Giriniz.")]
+        [Required]
         [EmailAddress]
-        [Display(Name = "E-Posta")]
+        [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "{0}  {2} karakter ile {1} karakter arasında olmalıdır.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Şifre")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Şifre(Tekrar)")]
-        [Compare("Password", ErrorMessage = "Şifre ve Şifre(Tekrar) eşleşmiyor.")]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
 }

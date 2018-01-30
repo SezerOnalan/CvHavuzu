@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CvHavuzu.Web.Models.AccountViewModels
+namespace CvHavuzu.Models.AccountViewModels
 {
     public class ForgotPasswordViewModel
     {

@@ -4,22 +4,19 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CvHavuzu.Web.Models.AccountViewModels
+namespace CvHavuzu.Models.AccountViewModels
 {
     public class LoginViewModel
     {
-       
         [Required]
         [EmailAddress]
-        [Display(Name = "E-Posta")]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Şifre")]
         public string Password { get; set; }
 
-        [Display(Name = "Beni Hatırla")]
+        [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
     }
 }

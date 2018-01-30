@@ -8,7 +8,7 @@ using CvHavuzu.Web.Models;
 
 namespace CvHavuzu.Web.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext
     {
         public DbSet<Resume> Resumes { get; set; }
         public DbSet<Consultant> Consultants { get; set; }

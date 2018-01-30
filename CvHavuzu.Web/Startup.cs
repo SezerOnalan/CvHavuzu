@@ -24,6 +24,7 @@ using PaulMiami.AspNetCore.Mvc.Recaptcha;
 using System.IO;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Facebook;
 
 namespace CvHavuzu.Web
 {
@@ -64,7 +65,7 @@ namespace CvHavuzu.Web
             {
                 // Set a short timeout for easy testing.
                 options.IdleTimeout = TimeSpan.FromSeconds(1800);
-                options.CookieHttpOnly = true;
+                
             });
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             // Add framework services.
@@ -127,20 +128,20 @@ namespace CvHavuzu.Web
             //    RequestPath = new PathString("/.well-known"),
             //    ServeUnknownFileTypes = true // serve extensionless file
             //});
-            app.UseIdentity();
-            app.ApplicationServices.GetRequiredService<ApplicationDbContext>().Seed(app.ApplicationServices.GetRequiredService<UserManager<ApplicationUser>>(), app.ApplicationServices.GetRequiredService<RoleManager<Role>>());
+            app.UseAuthentication();
+            
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
-            app.UseFacebookAuthentication(new FacebookOptions()
-            {
-                AppId = Configuration["Authentication:Facebook:AppId"],
-                AppSecret = Configuration["Authentication:Facebook:AppSecret"]
-            });
-            app.UseLinkedInAuthentication(new LinkedInOptions()
-            {
-                AppId = Configuration["Authentication:LinkedIn:AppId"],
-                AppSecret = Configuration["Authentication:LinkedIn:AppSecret"],
-                ProfileScheme = LinkedInDefaults.ProfileLoadFormat.AppDefined
-            });
+            //app.UseFacebookAuthentication(new FacebookOptions()
+            //{
+            //    AppId = Configuration["Authentication:Facebook:AppId"],
+            //    AppSecret = Configuration["Authentication:Facebook:AppSecret"]
+            //});
+            //app.UseLinkedInAuthentication(new LinkedInOptions()
+            //{
+            //    AppId = Configuration["Authentication:LinkedIn:AppId"],
+            //    AppSecret = Configuration["Authentication:LinkedIn:AppSecret"],
+            //    ProfileScheme = LinkedInDefaults.ProfileLoadFormat.AppDefined
+            //});
             app.UseSession();
             app.UseMvc(routes =>
             {

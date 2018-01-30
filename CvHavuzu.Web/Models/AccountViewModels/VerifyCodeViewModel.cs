@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CvHavuzu.Web.Models.AccountViewModels
+namespace CvHavuzu.Models.AccountViewModels
 {
     public class VerifyCodeViewModel
     {
@@ -16,10 +16,10 @@ namespace CvHavuzu.Web.Models.AccountViewModels
 
         public string ReturnUrl { get; set; }
 
-        [Display(Name = "Bu tarayıcı hatırlansın mı?")]
+        [Display(Name = "Bu tarayıcıyı hatırla?")]
         public bool RememberBrowser { get; set; }
 
-        [Display(Name = "Beni hatırla.")]
+        [Display(Name = "Beni hatırla?")]
         public bool RememberMe { get; set; }
     }
 }

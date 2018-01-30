@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CvHavuzu.Web.Models.ManageViewModels
+namespace CvHavuzu.Models.ManageViewModels
 {
     public class VerifyPhoneNumberViewModel
     {
@@ -13,7 +13,7 @@ namespace CvHavuzu.Web.Models.ManageViewModels
 
         [Required]
         [Phone]
-        [Display(Name = "Phone number")]
+        [Display(Name = "Telefon numarası")]
         public string PhoneNumber { get; set; }
     }
 }
