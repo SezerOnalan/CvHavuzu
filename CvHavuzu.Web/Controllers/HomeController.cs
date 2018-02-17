@@ -118,20 +118,29 @@ namespace CvHavuzu.Web.Controllers
             return NotFound();
         }
 
-        public IActionResult Index(string query = "", int page = 1, int sirala=0)
+        public IActionResult Index(string skills, int? gender, int? ProfessionId, int? EducationLevelId, int? UniversityId, int? DepartmentId, int? CityId, int? DistrictId, int Age1 = 20, int Age2 = 35, string query = "", int page = 1, int sirala = 0)
         {
            
                 ViewBag.Query = query;
             ViewBag.Sirala = sirala;
-                var resumes = _context.Resumes.Include(x => x.Department)
-                    .Include(x => x.University)
-                    .Include(x => x.Profession)
-                    .Include(x => x.ResumeStatus)
-                    .Include(x => x.Consultant)
-                    .Include(x => x.EducationLevel)
-                    .Include(x => x.Teacher)
-                    .Include(x => x.City)
-                    .Include(x => x.District).Where(r => r.ShowInList == true && r.Approved == true);
+            var resumes = _context.Resumes.Include(x => x.Department)
+                .Include(x => x.University)
+                .Include(x => x.Profession)
+                .Include(x => x.ResumeStatus)
+                .Include(x => x.Consultant)
+                .Include(x => x.EducationLevel)
+                .Include(x => x.Teacher)
+                .Include(x => x.City)
+                .Include(x => x.District).Where(r => r.ShowInList == true && r.Approved == true).Where(r =>
+                (!string.IsNullOrEmpty(skills) && !string.IsNullOrEmpty(r.Skills) ? r.Skills.Contains(skills) : true) &&
+                (gender.HasValue? gender.ToString() == r.Gender.ToString():true) &&
+                (ProfessionId.HasValue ? r.ProfessionId == ProfessionId : true) &&
+                (EducationLevelId.HasValue  ? r.EducationLevelId == EducationLevelId : true) &&
+                (UniversityId.HasValue ? r.UniversityId == UniversityId : true) &&
+                (DepartmentId.HasValue ? r.DepartmentId == DepartmentId : true) &&
+                (CityId.HasValue? r.CityId  == CityId : true) &&
+                (DistrictId.HasValue ? r.DistrictId == DistrictId : true) &&
+                (r.BirthDate.HasValue ? Age1<(DateTime.Now.Year - r.BirthDate.Value.Year) && (DateTime.Now.Year - r.BirthDate.Value.Year)<Age2:true));
 
                 if (String.IsNullOrEmpty(query))
                 {
@@ -197,7 +206,17 @@ namespace CvHavuzu.Web.Controllers
                     break;
 
             }
-            return View(resumes.ToPagedList<Resume>(page, 10));
+            ViewBag.Age1 = Age1;
+            ViewBag.Age2 = Age2;
+            ViewBag.Skills = skills;
+            ViewBag.Professions = new SelectList(_context.Professions.ToList(), "Id", "Name");
+            ViewBag.EducationLevels = new SelectList(_context.EducationLevels.ToList(), "Id", "Name");
+            ViewBag.Universities = new SelectList(_context.Universities.ToList(), "Id", "Name");
+            ViewBag.Departments = new SelectList(_context.Departments.ToList(), "Id", "Name");
+            ViewBag.Cities = new SelectList(_context.Cities.ToList(), "Id", "Name");
+            ViewBag.Districts = new SelectList(_context.Districts.ToList(), "Id", "Name");
+            var result = resumes.ToPagedList<Resume>(page, 10);
+            return View(result);
 
            
         }

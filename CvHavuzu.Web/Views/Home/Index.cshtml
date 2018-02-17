@@ -7,8 +7,6 @@
 <!-- Page header -->
 <header class="page-header size-lg">
     <div class="container">
-      
-
             <h1 class="text-center">@ViewBag.Setting.Title</h1>
             @*<p class="small text-center">@Html.Raw(ViewBag.Setting.WelcomeText)</p>*@
         
@@ -26,25 +24,84 @@
                         <div class="col-xs-12">
                             <br />
                             <form role="form" asp-action="Index" asp-controller="Home" method="get" id="resumesForm">
-                                <div class="input-group">
-                                    <input type="text" name="query" id="query" value="@ViewBag.Query" placeholder="Özgeçmiş adı, konumu, yetkinlikleri, vb. ara.." class="form-control" />
-                                    
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-primary" type="submit">Ara</button>
-                                    </span>                                   
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="text" name="query" id="query" value="@ViewBag.Query" placeholder="Özgeçmiş adı, konumu, yetkinlikleri, vb. ara.." class="form-control input-sm" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Skills" value="@ViewBag.Skills" placeholder="Yetkinlikler" class="form-control input-sm" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select name="Gender" class="form-control input-sm" asp-items="@Html.GetEnumSelectList(typeof(CvHavuzu.Web.Models.Gender))">
+                                            <option value="">Cinsiyet Seçiniz</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select name="ProfessionId" class="form-control input-sm" asp-items="@ViewBag.Professions">
+                                            <option value="">Meslek Seçiniz</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select name="EducationLevelId" class="form-control input-sm" asp-items="@ViewBag.EducationLevels">
+                                            <option value="">Eğitim Seviyesi Seçiniz</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-group input-group-sm">
+                                            <input type="number" name="Age1" placeholder="En Küçük Yaş" class="form-control input-sm" value="@ViewBag.Age1" />
+                                            <span class="input-group-addon">-</span>
+                                            <input type="number" name="Age2" placeholder="En Büyük Yaş" class="form-control input-sm" value="@ViewBag.Age2" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select name="UniversityId" class="form-control input-sm" asp-items="@ViewBag.Universities">
+                                            <option value="">Üniversite Seçiniz</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select name="DepartmentId" class="form-control input-sm" asp-items="@ViewBag.Departments">
+                                            <option value="">Bölüm Seçiniz</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select name="CityId" class="form-control input-sm" asp-items="@ViewBag.Cities">
+                                            <option value="">Şehir Seçiniz</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select name="DistrictId" class="form-control input-sm" asp-items="@ViewBag.Districts">
+                                            <option value="">İlçe Seçiniz</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @Html.DropDownList("Sirala", new SelectListItem[]
+{ new SelectListItem() { Text = "Güncel Olan Önce", Value = "0" }
+                   , new SelectListItem() { Text="Ada Göre Artan", Value="1"}
+                   , new SelectListItem() { Text = "Ada Göre Azalan", Value = "2" }
+                   , new SelectListItem() { Text = "Konuma Göre Artan", Value = "3" }
+                   , new SelectListItem() { Text = "Konuma Göre Azalan", Value = "4" }
+                   , new SelectListItem() { Text = "Üniversite Adına Göre artan", Value = "5" }
+                   , new SelectListItem() { Text = "Üniversite Adına Göre Azalan", Value = "6" }}
+, new { @class = "form-control input-sm", })
+                                    </div>
+                                    <div class="col-md-6">
+                                        
+                                            <button class="btn btn-sm btn-primary pull-right" type="submit">Ara</button>
+                                  
+                                    </div>
                                 </div>
                                 
-                                <div class="text-right">
-                                    @Html.DropDownList("Sirala", new SelectListItem[]
-                               { new SelectListItem() { Text = "Güncel Olan Önce", Value = "0" }
-                               , new SelectListItem() { Text="Ada Göre Artan", Value="1"}
-                               , new SelectListItem() { Text = "Ada Göre Azalan", Value = "2" }
-                               , new SelectListItem() { Text = "Konuma Göre Artan", Value = "3" }
-                               , new SelectListItem() { Text = "Konuma Göre Azalan", Value = "4" }
-                               , new SelectListItem() { Text = "Üniversite Adına Göre artan", Value = "5" }
-                               , new SelectListItem() { Text = "Üniversite Adına Göre Azalan", Value = "6" }}
-                               , new { @class = "form-control text-right pull-right", @onchange = "document.getElementById('resumesForm').submit();", @style="width:200px;" })
-                                </div>
+                               
                                 <div class="text-left">
                                     <small style="color:#cccccc;">Bulunan özgeçmiş sayısı: @Model.TotalItemCount</small>
                                 </div>
