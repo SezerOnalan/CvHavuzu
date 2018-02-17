@@ -1,12 +1,12 @@
-﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+﻿
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="@ViewBag.Setting.SeoDescription">
-    <meta name="keywords" content="@ViewBag.Setting.SeoKeywords">
+    <meta name="description" content="@ViewBag.Setting?.SeoDescription">
+    <meta name="keywords" content="@ViewBag.Setting?.SeoKeywords">
     <script src='https://www.google.com/recaptcha/api.js'></script>
     
 
@@ -30,7 +30,7 @@
         <link href="/assets/css/app.min.css" rel="stylesheet">
         <link href="/assets/css/custom.css" rel="stylesheet">
     </environment>
-    @Html.Raw(JavaScriptSnippet.FullScript)
+  
 </head>
 
 <body class="nav-on-header bg-alt">
@@ -100,7 +100,7 @@
             <div class="row">
                 <div class="col-sm-12 col-md-6">
                     <h6>Hakkında</h6>
-                    <p class="text-justify">@Html.Raw(ViewBag.Setting.FooterText)</p>
+                    <p class="text-justify">@Html.Raw(ViewBag.Setting?.FooterText)</p>
                 </div>
 
                 <div class="col-xs-6 col-md-3">
@@ -140,9 +140,9 @@
 
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <ul class="social-icons">
-                        <li><a class="facebook" href="@ViewBag.Setting.Facebook"  target="_blank"><i class="fa fa-facebook"></i></a></li>
-                        <li><a class="twitter" href="@ViewBag.Setting.Twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                        <li><a class="linkedin" href="@ViewBag.Setting.LinkedIn" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a class="facebook" href="@ViewBag.Setting?.Facebook"  target="_blank"><i class="fa fa-facebook"></i></a></li>
+                        <li><a class="twitter" href="@ViewBag.Setting?.Twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                        <li><a class="linkedin" href="@ViewBag.Setting?.LinkedIn" target="_blank"><i class="fa fa-linkedin"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -173,6 +173,6 @@
         <script src="~/assets/js/custom.js"></script>
     </environment>
     @RenderSection("Scripts", required: false)
-    @Html.Raw(ViewBag.Setting.CustomHtml)
+    @Html.Raw(ViewBag.Setting?.CustomHtml)
 </body>
 </html>

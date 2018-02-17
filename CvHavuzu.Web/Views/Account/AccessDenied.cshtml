@@ -1,18 +1,8 @@
 ﻿@{
-    ViewData["Title"] = "Access Denied";
+    ViewData["Title"] = "Access denied";
 }
-<header class="page-header size-lg">
-    <div class="container">
-        <h1 class="text-danger">Erişim reddedildi.</h1>
-    </div>
+
+<header>
+    <h2 class="text-danger">@ViewData["Title"]</h2>
+    <p class="text-danger">You do not have access to this resource.</p>
 </header>
-<main>
-    <section class="no-padding-top bg-alt">
-        <div class="container">
-            <p class="text-danger">Buraya erişim yetkiniz yoktur.</p>
-            @section Scripts {
-                @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
-            }
-        </div>
-    </section>
-</main>

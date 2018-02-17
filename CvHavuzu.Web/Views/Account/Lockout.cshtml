@@ -1,25 +1,8 @@
 ﻿@{
-    ViewData["Title"] = "Kilitli";
+    ViewData["Title"] = "Locked out";
 }
 
-
-<header class="page-header size-lg">
-    <div class="container">
-        <h1 class="text-center">Kilitli</h1>
-        @*<p class="text-center">Hesap kilitlendi.Lütfen tekrar giriş yapınız.</p>*@
-    </div>
+<header>
+    <h2 class="text-danger">@ViewData["Title"]</h2>
+    <p class="text-danger">This account has been locked out, please try again later.</p>
 </header>
-
-<main>
-    <section class="no-padding-top bg-alt">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8">
-                    <p>
-                        Tekrar giriş yapmak için <a asp-controller="Account" asp-action="Login"> buraya tıklayınız</a>.
-                    </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>

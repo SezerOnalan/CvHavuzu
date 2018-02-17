@@ -23,7 +23,10 @@ namespace CvHavuzu.Web.Data
             {
                 return;   // DB has been seeded
             }
-
+            if (context.Settings.Any())
+            {
+                return;   // DB has been seeded
+            }
 
             // Perform seed operations
             AddMailSettings(context);

@@ -1,21 +1,10 @@
 ﻿@{
-    ViewData["Title"] = "Confirm Email";
+    ViewData["Title"] = "Confirm email";
 }
 
-<header class="page-header size-lg">
-    <div class="container">
-        <h2 class="text-center">Email onaylandı .</h2>
-
-    </div>
-</header>
-
-<main>
-    <section class="no-padding-top bg-alt">
-        <div class="container">
-            <p>
-                Email'nizi onayladığınız için teşekkürler. Lütfen <a asp-controller="Account" asp-action="Login">Giriş yapmak için tıklayınız..</a>.
-
-            </p>
-        </div>
-    </section>
-</main>
+<h2>@ViewData["Title"]</h2>
+<div>
+    <p>
+        Thank you for confirming your email.
+    </p>
+</div>

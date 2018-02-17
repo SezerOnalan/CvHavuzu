@@ -34,20 +34,61 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <select name="Gender" class="form-control input-sm" asp-items="@Html.GetEnumSelectList(typeof(CvHavuzu.Web.Models.Gender))">
+                                        <select name="Gender" class="form-control input-sm">
                                             <option value="">Cinsiyet Seçiniz</option>
+                                            @if (ViewBag.Gender == "1")
+    {
+                                        <option value="1" selected>Erkek</option>
+
+}
+else
+{
+
+                                        <option value="1">Erkek</option>
+}
+
+                                            @if (ViewBag.Gender == "2")
+    {
+                                        <option value="2" selected>Kadın</option>
+}
+else
+{
+                                        <option value="2">Kadın</option>
+}
                                         </select>
                                     </div>
                                     <div class="col-md-6">
-                                        <select name="ProfessionId" class="form-control input-sm" asp-items="@ViewBag.Professions">
+                                        <select name="ProfessionId" class="form-control input-sm">
                                             <option value="">Meslek Seçiniz</option>
+                                            @foreach (var item in (IEnumerable<Profession>)ViewBag.Professions)
+                                            {
+                                                if (ViewBag.ProfessionId!=null &&item.Id == ViewBag.ProfessionId)
+                                                {
+                                                    <option value="@item.Id" selected>@item.Name</option>
+                                                } else { 
+                                                    <option value="@item.Id">@item.Name</option>
+                                                }
+
+                                            }
                                         </select>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <select name="EducationLevelId" class="form-control input-sm" asp-items="@ViewBag.EducationLevels">
+                                        <select name="EducationLevelId" class="form-control input-sm" >
                                             <option value="">Eğitim Seviyesi Seçiniz</option>
+                                            @foreach (var item in (IEnumerable<EducationLevel>)ViewBag.EducationLevels)
+    {
+        if (ViewBag.EducationLevelId!=null && item.Id == ViewBag.EducationLevelId)
+        {
+                                        <option value="@item.Id" selected>@item.Name</option>
+}
+else
+{
+                                        <option value="@item.Id">@item.Name</option>
+}
+
+}
                                         </select>
                                     </div>
                                     <div class="col-md-6">
@@ -60,25 +101,73 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <select name="UniversityId" class="form-control input-sm" asp-items="@ViewBag.Universities">
+                                        <select name="UniversityId" class="form-control input-sm">
                                             <option value="">Üniversite Seçiniz</option>
+                                            @foreach (var item in (IEnumerable<University>)ViewBag.Universities)
+    {
+        if (ViewBag.UniversityId!=null && item.Id == ViewBag.UniversityId)
+        {
+                                        <option value="@item.Id" selected>@item.Name</option>
+}
+else
+{
+                                        <option value="@item.Id">@item.Name</option>
+}
+
+}
                                         </select>
                                     </div>
                                     <div class="col-md-6">
-                                        <select name="DepartmentId" class="form-control input-sm" asp-items="@ViewBag.Departments">
+                                        <select name="DepartmentId" class="form-control input-sm">
                                             <option value="">Bölüm Seçiniz</option>
+                                            @foreach (var item in (IEnumerable<Department>)ViewBag.Departments)
+    {
+        if (ViewBag.DepartmentId!=null && item.Id == ViewBag.DepartmentId)
+        {
+                                        <option value="@item.Id" selected>@item.Name</option>
+}
+else
+{
+                                        <option value="@item.Id">@item.Name</option>
+}
+
+}
                                         </select>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <select name="CityId" class="form-control input-sm" asp-items="@ViewBag.Cities">
+                                        <select name="CityId" class="form-control input-sm">
                                             <option value="">Şehir Seçiniz</option>
+                                            @foreach (var item in (IEnumerable<City>)ViewBag.Cities)
+    {
+        if (ViewBag.CityId!=null&&item.Id == ViewBag.CityId)
+        {
+                                        <option value="@item.Id" selected>@item.Name</option>
+}
+else
+{
+                                        <option value="@item.Id">@item.Name</option>
+}
+
+}
                                         </select>
                                     </div>
                                     <div class="col-md-6">
-                                        <select name="DistrictId" class="form-control input-sm" asp-items="@ViewBag.Districts">
+                                        <select name="DistrictId" class="form-control input-sm">
                                             <option value="">İlçe Seçiniz</option>
+                                            @foreach (var item in (IEnumerable<District>)ViewBag.Districts)
+    {
+        if (ViewBag.DistrictId!=null&&item.Id == ViewBag.DistrictId)
+        {
+                                        <option value="@item.Id" selected>@item.Name</option>
+}
+else
+{
+                                        <option value="@item.Id">@item.Name</option>
+}
+
+}
                                         </select>
                                     </div>
                                 </div>
@@ -227,8 +316,8 @@
 
                 </div>
                 <div class="text-center">
-
-                    <pager class="pager-container" list="@Model" options="@PagedListRenderOptions.ClassicPlusFirstAndLast" asp-action="Index" asp-controller="Home" />
+                 
+                    <pager class="pager-container" list="@Model" options="@PagedListRenderOptions.ClassicPlusFirstAndLast" asp-action="Index" asp-controller="Home" asp-route-query="@ViewBag.Query" asp-route-skills="@ViewBag.Skills" asp-route-gender="@ViewBag.Gender" asp-route-professionid="@ViewBag.ProfessionId" asp-route-educationlevelid="@ViewBag.EducationLevelId" asp-route-age1="@ViewBag.Age1" asp-route-age2="@ViewBag.Age2" asp-route-universityid="@ViewBag.UniversityId" asp-route-departmentid="@ViewBag.DepartmentId" asp-route-cityid="@ViewBag.CityId" asp-route-districtid="@ViewBag.DistrictId" asp-route-sirala="@ViewBag.Sirala" />
                 </div>
             </div>
         </div>

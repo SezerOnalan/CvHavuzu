@@ -118,11 +118,13 @@ namespace CvHavuzu.Web.Controllers
             return NotFound();
         }
 
-        public IActionResult Index(string skills, int? gender, int? ProfessionId, int? EducationLevelId, int? UniversityId, int? DepartmentId, int? CityId, int? DistrictId, int Age1 = 20, int Age2 = 35, string query = "", int page = 1, int sirala = 0)
+        public IActionResult Index(int? ProfessionId, int? EducationLevelId, int? UniversityId, int? DepartmentId, int? CityId, int? DistrictId, int Age1 = 20, int Age2 = 35, string skills = "", string gender = "", string query = "", int page = 1, int sirala = 0)
         {
            
                 ViewBag.Query = query;
             ViewBag.Sirala = sirala;
+            skills = skills ?? "";
+            skills = skills.ToLower();
             var resumes = _context.Resumes.Include(x => x.Department)
                 .Include(x => x.University)
                 .Include(x => x.Profession)
@@ -132,8 +134,8 @@ namespace CvHavuzu.Web.Controllers
                 .Include(x => x.Teacher)
                 .Include(x => x.City)
                 .Include(x => x.District).Where(r => r.ShowInList == true && r.Approved == true).Where(r =>
-                (!string.IsNullOrEmpty(skills) && !string.IsNullOrEmpty(r.Skills) ? r.Skills.Contains(skills) : true) &&
-                (gender.HasValue? gender.ToString() == r.Gender.ToString():true) &&
+                (!string.IsNullOrEmpty(skills) && !string.IsNullOrEmpty(r.Skills) ? r.Skills.ToLower().Contains(skills) : true) &&
+                (gender=="1"?r.Gender == Gender.Erkek:(gender=="2"?r.Gender==Gender.Kadın:true)) &&
                 (ProfessionId.HasValue ? r.ProfessionId == ProfessionId : true) &&
                 (EducationLevelId.HasValue  ? r.EducationLevelId == EducationLevelId : true) &&
                 (UniversityId.HasValue ? r.UniversityId == UniversityId : true) &&
@@ -209,13 +211,21 @@ namespace CvHavuzu.Web.Controllers
             ViewBag.Age1 = Age1;
             ViewBag.Age2 = Age2;
             ViewBag.Skills = skills;
-            ViewBag.Professions = new SelectList(_context.Professions.ToList(), "Id", "Name");
-            ViewBag.EducationLevels = new SelectList(_context.EducationLevels.ToList(), "Id", "Name");
-            ViewBag.Universities = new SelectList(_context.Universities.ToList(), "Id", "Name");
-            ViewBag.Departments = new SelectList(_context.Departments.ToList(), "Id", "Name");
-            ViewBag.Cities = new SelectList(_context.Cities.ToList(), "Id", "Name");
-            ViewBag.Districts = new SelectList(_context.Districts.ToList(), "Id", "Name");
+            ViewBag.Gender = gender;
+            ViewBag.ProfessionId = ProfessionId;
+            ViewBag.EducationLevelId = EducationLevelId;
+            ViewBag.UniversityId = UniversityId;
+            ViewBag.DepartmentId = DepartmentId;
+            ViewBag.CityId = CityId;
+            ViewBag.DistrictId = DistrictId;
             var result = resumes.ToPagedList<Resume>(page, 10);
+            var p = _context.Resumes.Include(r=>r.Profession).Where(w=>w.Profession!=null).Select(s=>s.Profession).Distinct().ToList();
+            ViewBag.Professions = p;
+            ViewBag.EducationLevels = _context.Resumes.Include(r => r.EducationLevel).Where(w => w.EducationLevel != null).Select(s => s.EducationLevel).Distinct().ToList();
+            ViewBag.Universities = _context.Resumes.Include(r => r.University).Where(w => w.University != null).Select(s => s.University).Distinct().ToList();
+            ViewBag.Departments = _context.Resumes.Include(r => r.Department).Where(w => w.Department != null).Select(s => s.Department).Distinct().ToList();
+            ViewBag.Cities = _context.Resumes.Include(r => r.City).Where(w => w.City != null).Select(s => s.City).Distinct().ToList();
+            ViewBag.Districts = _context.Resumes.Include(r => r.District).Where(w => w.District != null).Select(s => s.District).Distinct().ToList();
             return View(result);
 
            

@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using CvHavuzu.Models.AccountViewModels;
+using CvHavuzu.Services;
 using CvHavuzu.Web.Data;
 using CvHavuzu.Web.Models;
 using CvHavuzu.Web.Services;
-using CvHavuzu.Models.AccountViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
-using CvHavuzu.Services;
+using Microsoft.Extensions.Options;
+
 
 namespace CvHavuzu.Web.Controllers
 {
@@ -25,11 +28,11 @@ namespace CvHavuzu.Web.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
 
-        public AccountController(
+        public AccountController(ApplicationDbContext context,
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            ILogger<AccountController> logger, ApplicationDbContext context):base(context)
+            ILogger<AccountController> logger):base(context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -53,7 +56,7 @@ namespace CvHavuzu.Web.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-      
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
@@ -199,18 +202,6 @@ namespace CvHavuzu.Web.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> Lock(string returnUrl = null)
-        {
-            ViewBag.UserName = User.Identity.Name;
-            ViewBag.FullName = User.Identity.Name;
-            ViewData["ReturnUrl"] = returnUrl;
-            await _signInManager.SignOutAsync();
-            _logger.LogInformation("User logged out.");
-            return View();
-        }
-
-        [HttpGet]
-        [AllowAnonymous]
         public IActionResult Lockout()
         {
             return View();
@@ -225,8 +216,8 @@ namespace CvHavuzu.Web.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
