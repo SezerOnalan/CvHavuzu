@@ -10,13 +10,15 @@ namespace CvHavuzu.Models.AccountViewModels
     {
         [Required]
         [EmailAddress]
+        [Display(Name = "E-posta")]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
+        [Display(Name = "Parola")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Beni hatırla?")]
         public bool RememberMe { get; set; }
     }
 }
