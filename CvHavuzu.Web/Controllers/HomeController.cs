@@ -311,5 +311,9 @@ namespace CvHavuzu.Web.Controllers
             return View();
         }
 
+        public IActionResult PersonalDataUsage() {
+            return View();
+        }
+
     }
 }   
