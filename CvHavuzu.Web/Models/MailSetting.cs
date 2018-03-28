@@ -11,16 +11,24 @@ namespace CvHavuzu.Web.Models
         public int Id { get; set; }
         [Required]
         [StringLength(200)]
-        [Display(Name = "Gönderen Mail Adresi")]
-        public string FromAddress { get; set; }
+        [Display(Name = "Mail Kullanıcı Adı")]
+        public string MailUsername { get; set; }
         [Required]
         [StringLength(200)]
-        [Display(Name = "Gönderen Mail Şifresi")]
-        public string FromAddressPassword { get; set; }
+        [Display(Name = "Mail Şifresi")]
+        public string MailPassword { get; set; }
+        [Required]
+        [StringLength(200)]
+        [Display(Name = "Gönderen Mail Adresi")]
+        public string FromAddress { get; set; }    
         [Required]
         [StringLength(200)]
         [Display(Name = "Gönderen Adı")]
         public string FromAddressTitle { get; set; }
+        [Required]
+        [StringLength(200)]
+        [Display(Name = "Hedef Adres")]
+        public string ToAddress { get; set; }
         [Required]
         [StringLength(200)]
         [Display(Name = "Mailin Konusu")]

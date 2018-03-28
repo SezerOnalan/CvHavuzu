@@ -25,6 +25,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Ip)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
             <th data-orderable="false" class="dt-right">Eylemler</th>
         </tr>
     </thead>
@@ -46,6 +49,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Ip)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateDate)
                 </td>
                 <td class="dt-right">
                     <a asp-action="Details" class="btn btn-default" asp-route-id="@item.Id">Detaylar</a>

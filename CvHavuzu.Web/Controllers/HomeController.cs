@@ -243,6 +243,7 @@ namespace CvHavuzu.Web.Controllers
         public async Task<IActionResult> Contact(Contact contact)
         {
             contact.Ip = Request.HttpContext.Connection.RemoteIpAddress.ToString();
+            contact.CreateDate = DateTime.Now;
             if (ModelState.IsValid)
             {
                 _context.Add(contact);
@@ -253,8 +254,7 @@ namespace CvHavuzu.Web.Controllers
                 string FromAddress = mailSetting.FromAddress;
                 string FromAddressTitle = mailSetting.FromAddressTitle;
 
-                string ToAddress = contact.Email;
-                string ToAddressTitle = contact.FullName;
+                string ToAddress = mailSetting.ToAddress;
                 string Subject = mailSetting.Subject;
                 string BodyContent = mailSetting.BodyContent;
 
@@ -263,17 +263,17 @@ namespace CvHavuzu.Web.Controllers
 
                 var mimeMessage = new MimeMessage();
                 mimeMessage.From.Add(new MailboxAddress(FromAddressTitle, FromAddress));
-                mimeMessage.To.Add(new MailboxAddress(ToAddressTitle, ToAddress));
-                mimeMessage.Subject = Subject;
+                mimeMessage.To.Add(new MailboxAddress(ToAddress));
+                mimeMessage.Subject = string.Format(Subject, contact.FullName);
                 mimeMessage.Body = new TextPart("plain")
                 {
-                    Text = BodyContent
+                    Text = string.Format(BodyContent,contact.FullName,contact.Phone,contact.Email,contact.Message,contact.Ip,contact.CreateDate),
                 };
 
                 using (var client = new SmtpClient())
                 {
                     client.Connect(SmptServer, SmptPortNumber, false);
-                    client.Authenticate(mailSetting.FromAddress, mailSetting.FromAddressPassword);
+                    client.Authenticate(mailSetting.MailUsername, mailSetting.MailPassword);
                     client.Send(mimeMessage);
                     client.Disconnect(true);
                 }

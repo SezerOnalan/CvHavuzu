@@ -13,9 +13,10 @@ using System;
 namespace CvHavuzu.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180328082535_addCreateDate")]
+    partial class addCreateDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -140,15 +141,11 @@ namespace CvHavuzu.Web.Migrations
                         .IsRequired()
                         .HasMaxLength(200);
 
+                    b.Property<string>("FromAddressPassword")
+                        .IsRequired()
+                        .HasMaxLength(200);
+
                     b.Property<string>("FromAddressTitle")
-                        .IsRequired()
-                        .HasMaxLength(200);
-
-                    b.Property<string>("MailPassword")
-                        .IsRequired()
-                        .HasMaxLength(200);
-
-                    b.Property<string>("MailUsername")
                         .IsRequired()
                         .HasMaxLength(200);
 
@@ -159,10 +156,6 @@ namespace CvHavuzu.Web.Migrations
                         .HasMaxLength(200);
 
                     b.Property<string>("Subject")
-                        .IsRequired()
-                        .HasMaxLength(200);
-
-                    b.Property<string>("ToAddress")
                         .IsRequired()
                         .HasMaxLength(200);
 

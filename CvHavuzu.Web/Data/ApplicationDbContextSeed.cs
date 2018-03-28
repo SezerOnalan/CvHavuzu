@@ -80,7 +80,8 @@ namespace CvHavuzu.Web.Data
             // yeni bir mail setting kaydı oluşturup veritabanına ekle
             var cms = new MailSetting();
             cms.FromAddress = "denemecvhavuzu@gmail.com";
-            cms.FromAddressPassword = "123:Asdfg";
+            cms.MailUsername = "denemecvhavuzu@gmail.com";
+            cms.MailPassword = "123:Asdfg";
             cms.FromAddressTitle = "Cv Havuzu";
             cms.Subject = "İletişim";
             cms.BodyContent = "Mesajınız Bize İletilmiştir. İlginiz İçin Teşekkür Ederiz";

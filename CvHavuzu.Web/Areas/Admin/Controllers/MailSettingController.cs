@@ -31,13 +31,15 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
             {
                 cms = new MailSetting();
                 cms.FromAddress="denemecvhavuzu@gmail.com";
-                cms.FromAddressPassword="123:Asdfg";
+                cms.MailUsername="denemecvhavuzu@gmail.com";
+                cms.MailPassword="123:Asdfg";
                 cms.FromAddressTitle = "Cv Havuzu";
-                cms.Subject = "Ýletiþim"; 
-                cms.BodyContent = "Mesajýnýz Bize Ýletilmiþtir. Ýlginiz Ýçin Teþekkür Ederiz";
+                cms.Subject = "CV Havuzu Ä°letiÅŸim Formu - {0}"; 
+                cms.BodyContent = "Mesajï¿½nï¿½z Bize ï¿½letilmiï¿½tir. ï¿½lginiz ï¿½ï¿½in Teï¿½ekkï¿½r Ederiz";
                 cms.SmptServer = "smtp.gmail.com";
                 cms.SmptPortNumber = 587;
                 cms.UseSSL = false;
+                cms.ToAddress = "nbu@bilisimegitim.com";
                 context.Add(cms);
                 context.SaveChanges();
 
@@ -58,12 +60,14 @@ namespace CvHavuzu.Web.Areas.Admin.Controllers
                     cms = context.MailSettings.FirstOrDefault();
                     cms.FromAddress = mailSetting.FromAddress;
                     cms.FromAddressTitle = mailSetting.FromAddressTitle;
-                    cms.FromAddressPassword = mailSetting.FromAddressPassword;
+                    cms.MailUsername = mailSetting.MailUsername;
+                    cms.MailPassword = mailSetting.MailPassword;
                     cms.BodyContent = mailSetting.BodyContent;
                     cms.SmptPortNumber = mailSetting.SmptPortNumber;
                     cms.SmptServer = mailSetting.SmptServer;
                     cms.Subject = mailSetting.Subject;
                     cms.UseSSL = mailSetting.UseSSL;
+                    cms.ToAddress = mailSetting.ToAddress;
                     context.SaveChanges();
                 }
             }

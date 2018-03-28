@@ -8,6 +8,9 @@ namespace CvHavuzu.Web.Models
 {
     public class Contact
     {
+        public Contact() {
+            CreateDate = DateTime.Now;
+        }
         public int Id { get; set; }
         [Display(Name ="Ad Soyad")]
         [Required]
@@ -27,6 +30,8 @@ namespace CvHavuzu.Web.Models
         [Required]
         [StringLength(200)]
         public string Ip { get; set; }
+        [Display(Name = "Tarih")]
+        public DateTime? CreateDate {get; set;}
 
     }
 }
