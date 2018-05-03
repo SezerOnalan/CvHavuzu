@@ -32,7 +32,7 @@ else
                     <td><a href="/Admin/Resume/Details/?id=@stat.ResumeId">@stat.ResumeId</a></td>
                     <td>@stat.ResumeFullName</td>
                     <td>@stat.Ip</td>              
-                    <td>@stat.DownloadDate</td>
+                    <td>@string.Format("{0:yyyy-MM-dd HH:mm:ss}", stat.DownloadDate)</td>
                     <td>@stat.Fullname</td>
                     <td>@stat.CompanyName</td>
                     <td>@stat.Email</td>
@@ -49,7 +49,8 @@ else
         $('#tblRecords').DataTable({
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.13/i18n/Turkish.json"
-            }
+            },
+            "order": [[3, "desc"]]
         });
     });
 </script>
